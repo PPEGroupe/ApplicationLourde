@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Client | MegaCasting" Height="700" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -24,12 +24,12 @@
 
                         <DataGrid Grid.Row="0">
                             <DataGrid.Columns>
-                                <DataGridTextColumn  MinWidth="50" Header="Société"/>
-                                <DataGridTextColumn  MinWidth="50" Header="Site" />
-                                <DataGridTextColumn  MinWidth="50" Header="E-mail" />
-                                <DataGridTextColumn  MinWidth="50" Header="Téléphone" />
-                                <DataGridTextColumn  MinWidth="50" Header="Fax" />
-                                <DataGridTextColumn  MinWidth="50" Header="Adresse" />
+                                <DataGridTextColumn  MinWidth="100" Header="Société"/>
+                                <DataGridTextColumn  MinWidth="100" Header="Site" />
+                                <DataGridTextColumn  MinWidth="100" Header="E-mail" />
+                                <DataGridTextColumn  MinWidth="100" Header="Téléphone" />
+                                <DataGridTextColumn  MinWidth="100" Header="Fax" />
+                                <DataGridTextColumn  MinWidth="100" Header="Adresse" />
                             </DataGrid.Columns>
                         </DataGrid>
 
