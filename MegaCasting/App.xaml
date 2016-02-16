@@ -4,6 +4,37 @@
              xmlns:local="clr-namespace:MegaCasting"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="20,0,30,0" />
+            <Setter Property="Padding" Value="10,2,10,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="Gray" />
+            
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Padding" Value="5,2,10,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="20,0,30,0" />
+            <Setter Property="Padding" Value="10,2,10,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        
     </Application.Resources>
 </Application>
