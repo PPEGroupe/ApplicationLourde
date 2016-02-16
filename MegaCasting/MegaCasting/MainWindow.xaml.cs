@@ -24,5 +24,24 @@ namespace MegaCasting
         {
             InitializeComponent();
         }
+
+        private void AddClient_Click(object sender, RoutedEventArgs e)
+        {
+            ClientWindow clientWindow = new ClientWindow();
+
+            clientWindow.ShowDialog();
+        }
+
+        private void UpdateClient_Click(object sender, RoutedEventArgs e)
+        {
+            ClientWindow clientWindow = new ClientWindow();
+
+            clientWindow.ShowDialog();
+        }
+
+        private void DeleteClient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

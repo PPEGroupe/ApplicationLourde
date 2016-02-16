@@ -40,9 +40,9 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" Content="Ajouter"/>
-                            <Button Grid.Column="1" Content="Modifier"/>
-                            <Button Grid.Column="2" Content="Supprimer"/>
+                            <Button Grid.Column="0" Content="Ajouter" Click="AddClient_Click"/>
+                            <Button Grid.Column="1" Content="Modifier" Click="UpdateClient_Click"/>
+                            <Button Grid.Column="2" Content="Supprimer" Click="DeleteClient_Click"/>
                         </Grid>
                     </Grid>
                 </TabItem>
