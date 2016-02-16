@@ -7,6 +7,48 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TabControl>
+                <TabItem Header="Client">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <DataGrid Grid.Row="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn  MinWidth="50" Header="Société"/>
+                                <DataGridTextColumn  MinWidth="50" Header="Site" />
+                                <DataGridTextColumn  MinWidth="50" Header="E-mail" />
+                                <DataGridTextColumn  MinWidth="50" Header="Téléphone" />
+                                <DataGridTextColumn  MinWidth="50" Header="Fax" />
+                                <DataGridTextColumn  MinWidth="50" Header="Adresse" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Content="Ajouter"/>
+                            <Button Grid.Column="1" Content="Modifier"/>
+                            <Button Grid.Column="2" Content="Supprimer"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                
+                <TabItem Header="Offre"></TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>
