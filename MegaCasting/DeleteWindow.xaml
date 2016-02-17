@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="DeleteWindow" Height="300" Width="300">
+        Title="Supprimer un client" Height="180" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Êtes-vous sûr(e) de vouloir supprimer ?"/>
+        <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Êtes-vous sûr(e) de vouloir supprimer ?"/>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Annuler" Click="ButtonCancel_Click"/>
             <Button Content="Valider" Click="ButtonValidate_Click"/>
         </StackPanel>
