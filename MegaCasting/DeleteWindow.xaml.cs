@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MegaCasting
 {
     /// <summary>
-    /// Interaction logic for ClientWindow.xaml
+    /// Logique d'interaction pour DeleteWindow.xaml
     /// </summary>
-    public partial class ClientWindow : Window
+    public partial class DeleteWindow : Window
     {
-        public ClientWindow()
+        public DeleteWindow()
         {
             InitializeComponent();
         }

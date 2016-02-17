@@ -1,0 +1,22 @@
+﻿<Window x:Class="MegaCasting.DeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaCasting"
+        mc:Ignorable="d"
+        Title="DeleteWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Êtes-vous sûr(e) de vouloir supprimer ?"/>
+
+        <StackPanel Grid.Row="1">
+            <Button Content="Annuler" Click="ButtonCancel_Click"/>
+            <Button Content="Valider" Click="ButtonValidate_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
