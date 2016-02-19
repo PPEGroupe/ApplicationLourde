@@ -14,11 +14,16 @@
         </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Margin="10,0,10,0" Source="header.png"/>
-        
+
         <TabControl Grid.Row="1">
             <TabItem Header="Client" MinWidth="150" Height="30">
-                <DockPanel>
-                    <DataGrid DockPanel.Dock="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"/>
                             <DataGridTextColumn  MinWidth="100" Header="Site" />
@@ -28,23 +33,16 @@
                             <DataGridTextColumn  MinWidth="100" Header="Adresse" />
                         </DataGrid.Columns>
                     </DataGrid>
-
-                    <Grid DockPanel.Dock="Bottom">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="0" Content="Ajouter" Click="ButtonAddClient_Click"/>
-                        <Button Grid.Column="1" Content="Modifier" Click="ButtonUpdateClient_Click"/>
-                        <Button Grid.Column="2" Content="Supprimer" Click="ButtonDeleteClient_Click"/>
-                    </Grid>
-                </DockPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                        <Button Content="Ajouter" Click="ButtonAddClient_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateClient_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteClient_Click"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
 
             <TabItem Header="Offre" MinWidth="150" Height="30">
-                
+
             </TabItem>
         </TabControl>
 
