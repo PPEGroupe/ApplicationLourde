@@ -45,5 +45,6 @@ namespace MegaCasting
 
             deleteWindow.ShowDialog();
         }
+
     }
 }
