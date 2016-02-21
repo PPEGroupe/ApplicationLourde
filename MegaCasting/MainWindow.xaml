@@ -13,7 +13,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Margin="10,0,10,0" Source="header.png"/>
+        <Image Grid.Row="0" MaxHeight="95" Margin="10,0,10,0" Source="header.png"/>
 
         <TabControl Grid.Row="1">
             <TabItem Header="Client" MinWidth="150" Height="30">
