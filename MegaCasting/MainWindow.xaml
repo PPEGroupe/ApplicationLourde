@@ -60,9 +60,9 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
-                        <Button Content="Ajouter" Click="ButtonAddOffre_Click"/>
-                        <Button Content="Modifier" Click="ButtonUpdateOffre_Click"/>
-                        <Button Content="Supprimer" Click="ButtonDeleteOffre_Click"/>
+                        <Button Content="Ajouter" Click="ButtonAddOffer_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateOffer_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteOffer_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

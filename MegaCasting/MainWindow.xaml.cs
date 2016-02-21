@@ -46,17 +46,21 @@ namespace MegaCasting
             deleteWindow.ShowDialog();
         }
 
-        private void ButtonAddOffre_Click(object sender, RoutedEventArgs e)
+        private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
+            OfferWindow offerWindow = new OfferWindow();
 
+            offerWindow.ShowDialog();
         }
 
-        private void ButtonUpdateOffre_Click(object sender, RoutedEventArgs e)
+        private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
         {
+            OfferWindow offerWindow = new OfferWindow();
 
+            offerWindow.ShowDialog();
         }
 
-        private void ButtonDeleteOffre_Click(object sender, RoutedEventArgs e)
+        private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
         {
 
         }
