@@ -5,7 +5,7 @@
     <DockPanel>
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="160"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -52,7 +52,7 @@
 
             <StackPanel Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
                 <Button Click="ButtonCancel_Click">Annuler</Button>
-                <Button Click="ButtonValidate_Click">Valide</Button>
+                <Button Click="ButtonValidate_Click">Valider</Button>
             </StackPanel>
         </Grid>
     </DockPanel>
