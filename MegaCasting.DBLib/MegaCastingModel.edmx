@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MegaCastingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdJobDomain" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobDomain">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateStartPublication" Type="date" Nullable="false" />
+          <Property Name="PublicationDuration" Type="int" Nullable="false" />
+          <Property Name="DateStartContract" Type="date" Nullable="false" />
+          <Property Name="JobQuantity" Type="int" Nullable="false" />
+          <Property Name="Latitude" Type="nchar" MaxLength="10" />
+          <Property Name="Longitude" Type="nchar" MaxLength="10" />
+          <Property Name="JobDescription" Type="text" Nullable="false" />
+          <Property Name="ProfileDescription" Type="text" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdTypeOfContrat" Type="bigint" Nullable="false" />
+          <Property Name="IdJob" Type="bigint" Nullable="false" />
+          <Property Name="IdClient" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfContract">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Job_JobDomain">
+          <End Role="JobDomain" Type="Self.JobDomain" Multiplicity="1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobDomain">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="IdJobDomain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdJob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_TypeOfContract">
+          <End Role="TypeOfContract" Type="Self.TypeOfContract" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfContract">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdTypeOfContrat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MegaCastingModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobDomain" EntityType="Self.JobDomain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfContract" EntityType="Self.TypeOfContract" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Job_JobDomain" Association="Self.FK_Job_JobDomain">
+            <End Role="JobDomain" EntitySet="JobDomain" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Client" Association="Self.FK_Offer_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Job" Association="Self.FK_Offer_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_TypeOfContract" Association="Self.FK_Offer_TypeOfContract">
+            <End Role="TypeOfContract" EntitySet="TypeOfContract" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MegaCastingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Offer" Relationship="Self.FK_Offer_Client" FromRole="Client" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdJobDomain" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="JobDomain" Relationship="Self.FK_Job_JobDomain" FromRole="Job" ToRole="JobDomain" />
+          <NavigationProperty Name="Offer" Relationship="Self.FK_Offer_Job" FromRole="Job" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="JobDomain">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_JobDomain" FromRole="JobDomain" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reference" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateStartPublication" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PublicationDuration" Type="Int32" Nullable="false" />
+          <Property Name="DateStartContract" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="JobQuantity" Type="Int32" Nullable="false" />
+          <Property Name="Latitude" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfileDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdTypeOfContrat" Type="Int64" Nullable="false" />
+          <Property Name="IdJob" Type="Int64" Nullable="false" />
+          <Property Name="IdClient" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Offer_Client" FromRole="Offer" ToRole="Client" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Offer_Job" FromRole="Offer" ToRole="Job" />
+          <NavigationProperty Name="TypeOfContract" Relationship="Self.FK_Offer_TypeOfContract" FromRole="Offer" ToRole="TypeOfContract" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfContract">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" />
+          <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Offer" Relationship="Self.FK_Offer_TypeOfContract" FromRole="TypeOfContract" ToRole="Offer" />
+        </EntityType>
+        <Association Name="FK_Offer_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_JobDomain">
+          <End Role="JobDomain" Type="Self.JobDomain" Multiplicity="1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobDomain">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="IdJobDomain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdJob" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_TypeOfContract">
+          <End Role="TypeOfContract" Type="Self.TypeOfContract" Multiplicity="1" />
+          <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfContract">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdTypeOfContrat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MegaCastingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Job" EntityType="Self.Job" />
+          <EntitySet Name="JobDomain" EntityType="Self.JobDomain" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" />
+          <EntitySet Name="TypeOfContract" EntityType="Self.TypeOfContract" />
+          <AssociationSet Name="FK_Offer_Client" Association="Self.FK_Offer_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_JobDomain" Association="Self.FK_Job_JobDomain">
+            <End Role="JobDomain" EntitySet="JobDomain" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Job" Association="Self.FK_Offer_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_TypeOfContract" Association="Self.FK_Offer_TypeOfContract">
+            <End Role="TypeOfContract" EntitySet="TypeOfContract" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MegaCastingModelStoreContainer" CdmEntityContainer="MegaCastingEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="MegaCastingModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job">
+            <EntityTypeMapping TypeName="MegaCastingModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="IdJobDomain" ColumnName="IdJobDomain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobDomain">
+            <EntityTypeMapping TypeName="MegaCastingModel.JobDomain">
+              <MappingFragment StoreEntitySet="JobDomain">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offer">
+            <EntityTypeMapping TypeName="MegaCastingModel.Offer">
+              <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="DateStartPublication" ColumnName="DateStartPublication" />
+                <ScalarProperty Name="PublicationDuration" ColumnName="PublicationDuration" />
+                <ScalarProperty Name="DateStartContract" ColumnName="DateStartContract" />
+                <ScalarProperty Name="JobQuantity" ColumnName="JobQuantity" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="ProfileDescription" ColumnName="ProfileDescription" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="IdTypeOfContrat" ColumnName="IdTypeOfContrat" />
+                <ScalarProperty Name="IdJob" ColumnName="IdJob" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partner">
+            <EntityTypeMapping TypeName="MegaCastingModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfContract">
+            <EntityTypeMapping TypeName="MegaCastingModel.TypeOfContract">
+              <MappingFragment StoreEntitySet="TypeOfContract">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

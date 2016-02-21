@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCasting", "MegaCasting\MegaCasting.csproj", "{3D5A3260-72C0-42DA-8DDA-6DBB8B7C5872}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaCasting.DBLib", "MegaCasting.DBLib\MegaCasting.DBLib.csproj", "{4EE7CB9B-AC1F-47F5-A6CB-E98CE823544A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3D5A3260-72C0-42DA-8DDA-6DBB8B7C5872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D5A3260-72C0-42DA-8DDA-6DBB8B7C5872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D5A3260-72C0-42DA-8DDA-6DBB8B7C5872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE7CB9B-AC1F-47F5-A6CB-E98CE823544A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE7CB9B-AC1F-47F5-A6CB-E98CE823544A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE7CB9B-AC1F-47F5-A6CB-E98CE823544A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE7CB9B-AC1F-47F5-A6CB-E98CE823544A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
