@@ -16,6 +16,7 @@
         <Image Grid.Row="0" MaxHeight="95" Margin="10,0,10,0" Source="header.png"/>
 
         <TabControl Grid.Row="1">
+            <!-- Onglet Client-->
             <TabItem Header="Client" MinWidth="150" Height="30">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -40,9 +41,30 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-
+            <!-- Onglet Offre-->
             <TabItem Header="Offre" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
 
+                    <DataGrid Grid.Row="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  MinWidth="100" Header="Société"/>
+                            <DataGridTextColumn  MinWidth="100" Header="N°Offre" />
+                            <DataGridTextColumn  MinWidth="100" Header="Nom de l'Offre" />
+                            <DataGridTextColumn  MinWidth="100" Header="Date de Fin" />
+                            <DataGridTextColumn  MinWidth="100" Header="Date de Début" />
+                            <DataGridTextColumn  MinWidth="100" Header="Demande" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                        <Button Content="Ajouter" Click="ButtonAddOffre_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateOffre_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteOffre_Click"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
 
