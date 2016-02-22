@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace MegaCasting
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MegaCastingEntities db = new MegaCastingEntities();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            List clients = new List();
+
+            Client = new Client();
+
         }
 
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
