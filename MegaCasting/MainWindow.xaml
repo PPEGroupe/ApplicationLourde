@@ -56,9 +56,12 @@
                             <DataGridTextColumn  MinWidth="100" Header="Société"/>
                             <DataGridTextColumn  MinWidth="100" Header="N°Offre" />
                             <DataGridTextColumn  MinWidth="100" Header="Nom de l'Offre" />
-                            <DataGridTextColumn  MinWidth="100" Header="Date de Fin" />
                             <DataGridTextColumn  MinWidth="100" Header="Date de Début" />
-                            <DataGridTextColumn  MinWidth="100" Header="Demande" />
+                            <DataGridTextColumn  MinWidth="100" Header="Durée de l'offre" />
+                            <DataGridTextColumn  MinWidth="100" Header="Date de Début du Contrat" />
+                            <DataGridTextColumn  MinWidth="100" Header="Nombre de Postes"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Description de l'Offre" />
+                            <DataGridTextColumn  MinWidth="100" Header="Adresse" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MegaCasting.DBLib;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace MegaCasting
 
             List clients = new List();
 
-            Client = new Client();
+            Client client = new Client();
 
         }
 

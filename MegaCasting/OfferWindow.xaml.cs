@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MegaCasting.DBLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,17 @@ namespace MegaCasting
     {
         public OfferWindow()
         {
-            InitializeComponent();
+           InitializeComponent();
+
+           Offer offer = new Offer();
+
+            offer.Label = "00001";
+            offer.Reference = "000012";
+            
+
+            this.DataContext = offer;
+           
+
         }
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
