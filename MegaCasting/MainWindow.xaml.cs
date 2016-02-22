@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +23,16 @@ namespace MegaCasting
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MegaCastingEntities db = new MegaCastingEntities();
+        MegaCastingEntities db = new MegaCastingEntities();
+        public ObservableCollection<Client> Clients { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            List clients = new List();
+            this.Clients = new ObservableCollection<Client>(db.Client.ToList());
 
-            Client client = new Client();
-
+            this.DataContext = this;
         }
 
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
