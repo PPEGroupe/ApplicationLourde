@@ -24,14 +24,15 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" ItemsSource="{Binding test}">
+                    <DataGrid Grid.Row="0" ItemsSource="{Binding Path=Clients}" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn  MinWidth="100" Header="Société"    Binding="{Binding Company}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Site"       Binding="{Binding Site}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="E-mail"     Binding="{Binding Email}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Téléphone"  Binding="{Binding Phone}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Fax"        Binding="{Binding Fax}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Adresse"    Binding="{Binding Address}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Société"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="E-mail"         Binding="{Binding Email}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Téléphone"      Binding="{Binding PhoneNumber}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Fax"            Binding="{Binding Fax}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Adresse"        Binding="{Binding Address}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Code postal"    Binding="{Binding ZipCode}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     
