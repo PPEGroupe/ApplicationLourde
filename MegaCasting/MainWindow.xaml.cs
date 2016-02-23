@@ -44,6 +44,7 @@ namespace MegaCasting
             clientWindow.DataContext = client;
             
             clientWindow.ShowDialog();
+
         }
 
         private void ButtonUpdateClient_Click(object sender, RoutedEventArgs e)
@@ -77,6 +78,12 @@ namespace MegaCasting
             OfferWindow offerWindow = new OfferWindow();
 
             offerWindow.ShowDialog();
+
+            if (offerWindow.DialogResult == true)
+            {
+                // ListClient.ItemsSource.UpdateSource();
+            }
+
         }
 
         private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
