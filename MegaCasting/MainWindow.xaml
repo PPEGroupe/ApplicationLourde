@@ -24,7 +24,7 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" ItemsSource="{Binding Path=Clients}" >
+                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}" >
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"/>
                             <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>

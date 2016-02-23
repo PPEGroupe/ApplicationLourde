@@ -20,37 +20,22 @@ namespace MegaCasting
     /// </summary>
     public partial class ClientWindow : Window
     {
-        private MegaCastingEntities db = new MegaCastingEntities();
+        private MegaCastingEntities db;
 
-        public ClientWindow()
+        public ClientWindow(MegaCastingEntities context)
         {
+            db = context;
             InitializeComponent();
-
-            Client client = new Client();
-
-            client.Identifier = 00222;
-            client.ZipCode = "53000";
-            client.PhoneNumber = "03165986532";
-            client.URL = "www.client.com";
-            client.Address = "39 rue franche comté 53000";
-            client.City = "Laval";
-            client.Email = "client@client.com";
-            client.Fax = "0649";
-
-            this.DataContext = client;
-
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-
-            this.Close();
+            this.DialogResult = false;
         }
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            
-            this.Close();
+            this.DialogResult = true;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace MegaCasting
     /// </summary>
     public partial class MainWindow : Window
     {
-        MegaCastingEntities db = new MegaCastingEntities();
+        private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
 
         public MainWindow()
@@ -37,14 +37,23 @@ namespace MegaCasting
 
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
-            ClientWindow clientWindow = new ClientWindow();
+            ClientWindow clientWindow = new ClientWindow(db);
 
+            Client client = new Client();
+
+            clientWindow.DataContext = client;
+            
             clientWindow.ShowDialog();
         }
 
         private void ButtonUpdateClient_Click(object sender, RoutedEventArgs e)
         {
-            ClientWindow clientWindow = new ClientWindow();
+            
+            ClientWindow clientWindow = new ClientWindow(db);
+
+            Client client = (Client)ListClient.SelectedItem;
+
+            clientWindow.DataContext = client;
 
             clientWindow.ShowDialog();
         }
