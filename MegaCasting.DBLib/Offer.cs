@@ -15,7 +15,7 @@ namespace MegaCasting.DBLib
     public partial class Offer
     {
         public long Identifier { get; set; }
-        public string Label { get; set; }
+        public string Title { get; set; }
         public string Reference { get; set; }
         public System.DateTime DateStartPublication { get; set; }
         public int PublicationDuration { get; set; }
@@ -32,8 +32,8 @@ namespace MegaCasting.DBLib
         public long IdJob { get; set; }
         public long IdClient { get; set; }
     
-        public virtual Client Client { get; set; }
         public virtual Job Job { get; set; }
         public virtual TypeOfContract TypeOfContract { get; set; }
+        public virtual Client Client { get; set; }
     }
 }
