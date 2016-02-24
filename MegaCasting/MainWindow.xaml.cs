@@ -26,6 +26,7 @@ namespace MegaCasting
     {
         private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<Offer> Offers { get; set; }
 
         public MainWindow()
         {
@@ -103,14 +104,14 @@ namespace MegaCasting
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
-            OfferWindow offerWindow = new OfferWindow();
+            OfferWindow offerWindow = new OfferWindow(db);
 
             offerWindow.ShowDialog();
         }
 
         private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
         {
-            OfferWindow offerWindow = new OfferWindow();
+            OfferWindow offerWindow = new OfferWindow(db);
 
             offerWindow.ShowDialog();
 
@@ -123,7 +124,38 @@ namespace MegaCasting
 
         private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
         {
+            DeleteWindow deleteWindow = new DeleteWindow();
 
+            deleteWindow.ShowDialog();
+
+            OfferWindow offerWindow = new OfferWindow(db);
+
+            // tester si la fenetre deleteWindow renvois un vrai
+            if (deleteWindow.DialogResult == true)
+            {
+                Offer offer = (Offer)ListOffer.SelectedItem;
+
+                // Si il'y a un client séléctioné.
+                if (offer != null)
+                {
+
+                    // supprimé le client de la base de donnée /!\ ça marche pas
+                    db.Offer.Remove(offer);
+
+                    // supprimé le client de la fenétre.
+                    Offers.Remove(offer);
+
+                    //Sauvegarder les changements.
+                    db.SaveChanges();
+                }
+                // Si il n'y a aucun client de séléctioné 
+                else
+                {
+                    // Afficher le message d'erreur 
+                    MessageBox.Show("Vous n'avez séléctionné aucun offre.");
+                }
+
+            }
         }
     }
 }

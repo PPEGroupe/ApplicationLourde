@@ -20,24 +20,23 @@ namespace MegaCasting
     /// </summary>
     public partial class OfferWindow : Window
     {
-        public OfferWindow()
+        private MegaCastingEntities db;
+
+        public OfferWindow(MegaCastingEntities context)
         {
-           InitializeComponent();
+            db = context;
 
-           Offer offer = new Offer();            
-
-           this.DataContext = offer;
+            InitializeComponent();
            
-
         }
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = false;
         }
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = true;
         }
     }
 }

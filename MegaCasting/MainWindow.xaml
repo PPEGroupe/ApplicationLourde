@@ -52,17 +52,17 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0">
+                    <DataGrid Grid.Row="0" x:Name="ListOffer" ItemsSource="{Binding Path=Offers}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"/>
-                            <DataGridTextColumn  MinWidth="100" Header="N°Offre" />
-                            <DataGridTextColumn  MinWidth="100" Header="Nom de l'Offre" />
-                            <DataGridTextColumn  MinWidth="100" Header="Date de Début" />
-                            <DataGridTextColumn  MinWidth="100" Header="Durée de l'offre" />
-                            <DataGridTextColumn  MinWidth="100" Header="Date de Début du Contrat" />
-                            <DataGridTextColumn  MinWidth="100" Header="Nombre de Postes"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Description de l'Offre" />
-                            <DataGridTextColumn  MinWidth="100" Header="Adresse" />
+                            <DataGridTextColumn  MinWidth="100" Header="N°Offre"                   Binding="{Binding Reference}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Nom de l'Offre"            Binding="{Binding Label}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Date de Début"             Binding="{Binding DateStartPublication}" />
+                            <DataGridTextColumn  MinWidth="100" Header="Durée de l'offre"          Binding="{Binding PublicationDuration}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Date de Début du Contrat"  Binding="{Binding DateStartContract}" />
+                            <DataGridTextColumn  MinWidth="100" Header="Nombre de Postes"          Binding="{Binding JobQuantity}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Description de l'Offre"    Binding="{Binding JobDescription}" />
+                            <DataGridTextColumn  MinWidth="100" Header="Adresse"                   Binding="{Binding Address}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
