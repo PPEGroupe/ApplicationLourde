@@ -26,33 +26,32 @@
             <Border Grid.Column="0" Grid.Row="0" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Société :</Label>
             </Border>
+            <TextBox Grid.Column="1" Grid.Row="0" x:Name="CompanyTextBox" Text="{Binding Path=Identifier, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="1" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Site Internet :</Label>
             </Border>
+            <TextBox Grid.Column="1" Grid.Row="1" x:Name="WebSiteTextBox" Text="{Binding Path=URL, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="2" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">E-mail :</Label>
             </Border>
+            <TextBox Grid.Column="1" Grid.Row="2" x:Name="EmailTextBox" Text="{Binding Path=Email, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="3" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Téléphone :</Label>
             </Border>
+            <TextBox Grid.Column="1" Grid.Row="3" x:Name="PhoneNumberTextBox" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="4" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Fax :</Label>
             </Border>
+            <TextBox Grid.Column="1" Grid.Row="4" x:Name="FaxTextBox" Text="{Binding Path=Fax, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="5" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Adresse :</Label>
             </Border>
-
-            <TextBox Grid.Column="1" Grid.Row="0" x:Name="CompanyTextBox"       Text="{Binding Path=Identifier,   UpdateSourceTrigger=Explicit}" />
-            <TextBox Grid.Column="1" Grid.Row="1" x:Name="WebSiteTextBox"       Text="{Binding Path=URL,          UpdateSourceTrigger=Explicit}" />
-            <TextBox Grid.Column="1" Grid.Row="2" x:Name="EmailTextBox"         Text="{Binding Path=Email,        UpdateSourceTrigger=Explicit}" />
-            <TextBox Grid.Column="1" Grid.Row="3" x:Name="PhoneNumberTextBox"   Text="{Binding Path=PhoneNumber,  UpdateSourceTrigger=Explicit}" />
-            <TextBox Grid.Column="1" Grid.Row="4" x:Name="FaxTextBox"           Text="{Binding Path=Fax,          UpdateSourceTrigger=Explicit}" />
-            <TextBox Grid.Column="1" Grid.Row="5" x:Name="AddressTextBox"       Text="{Binding Path=Address,      UpdateSourceTrigger=Explicit}" />
+            <TextBox Grid.Column="1" Grid.Row="5" x:Name="AddressTextBox" Text="{Binding Path=Address, UpdateSourceTrigger=Explicit}" />
 
             <StackPanel Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
                 <Button Click="ButtonCancel_Click">Annuler</Button>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Client | MegaCasting" Height="500" Width="700" MinHeight="500" MinWidth="700">
+        Title="MegaCasting" Height="500" Width="900" MinHeight="500" MinWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +24,7 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" x:Name="ListClient" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding Path=Clients}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"/>
                             <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
