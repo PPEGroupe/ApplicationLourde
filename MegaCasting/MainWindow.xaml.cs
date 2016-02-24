@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace MegaCasting
 {
     /// <summary>
@@ -60,9 +61,40 @@ namespace MegaCasting
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
         {
+            
+
             DeleteWindow deleteWindow = new DeleteWindow();
 
             deleteWindow.ShowDialog();
+
+            ClientWindow clientWindow = new ClientWindow(db);
+
+            // tester si la fenetre deleteWindow renvois un vrai
+            if (deleteWindow.DialogResult == true)
+            {
+                Client client = (Client)ListClient.SelectedItem;
+
+                // Si il'y a un client séléctioné.
+                if( client != null )
+                {
+
+                    // supprimé le client de la base de donnée /!\ ça marche pas
+                    this.db.Client.Remove(client);
+
+                    // supprimé le client de la fenétre.
+                    Clients.Remove(client);
+
+                }
+                // Si il n'y a aucun client de séléctioné 
+                else
+                {
+                    // Afficher le message d'erreur 
+                    MessageBox.Show("Vous n'avez séléctionné aucun client.");
+                }
+                
+            }
+
+            
         }
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
