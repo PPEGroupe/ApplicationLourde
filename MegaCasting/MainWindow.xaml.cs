@@ -81,7 +81,7 @@ namespace MegaCasting
 
             if (offerWindow.DialogResult == true)
             {
-                // ListClient.ItemsSource.UpdateSource();
+
             }
 
         }

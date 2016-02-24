@@ -35,6 +35,13 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
             this.DialogResult = true;
         }
     }
