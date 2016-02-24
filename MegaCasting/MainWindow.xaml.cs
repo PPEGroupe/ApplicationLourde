@@ -55,17 +55,10 @@ namespace MegaCasting
 
             Client client = (Client)ListClient.SelectedItem;
 
-            if (client != null)
-            {
-                clientWindow.DataContext = client;
+            clientWindow.DataContext = client;
 
-                clientWindow.ShowDialog();
-            }
-            else
-            {
-                // Afficher le message d'erreur 
-                MessageBox.Show("Vous n'avez séléctionné aucun client.");
-            }
+            clientWindow.ShowDialog();
+            
         }
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
@@ -88,11 +81,13 @@ namespace MegaCasting
                 {
 
                     // supprimé le client de la base de donnée /!\ ça marche pas
-                    this.db.Client.Remove(client);
+                    db.Client.Remove(client);
 
                     // supprimé le client de la fenétre.
                     Clients.Remove(client);
 
+                    //Sauvegarder les changements.
+                    db.SaveChanges();
                 }
                 // Si il n'y a aucun client de séléctioné 
                 else
