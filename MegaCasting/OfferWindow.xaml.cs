@@ -24,13 +24,9 @@ namespace MegaCasting
         {
            InitializeComponent();
 
-           Offer offer = new Offer();
+           Offer offer = new Offer();            
 
-            offer.Label = "00001";
-            offer.Reference = "000012";
-            
-
-            this.DataContext = offer;
+           this.DataContext = offer;
            
 
         }
