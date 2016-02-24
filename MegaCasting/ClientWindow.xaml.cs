@@ -35,6 +35,7 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            
             CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();

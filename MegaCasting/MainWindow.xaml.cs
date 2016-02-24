@@ -41,26 +41,32 @@ namespace MegaCasting
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
             ClientWindow clientWindow = new ClientWindow(db);
-
             Client client = new Client();
 
             clientWindow.DataContext = client;
-            
             clientWindow.ShowDialog();
 
+            if (clientWindow.DialogResult == true)
+            {
+                Clients.Add(client);
+                db.Client.Add(client);
+
+                db.SaveChanges();
+            }
         }
 
         private void ButtonUpdateClient_Click(object sender, RoutedEventArgs e)
         {
-            
             ClientWindow clientWindow = new ClientWindow(db);
-
             Client client = (Client)ListClient.SelectedItem;
 
             clientWindow.DataContext = client;
-
             clientWindow.ShowDialog();
-            
+
+            if (clientWindow.DialogResult == true)
+            {
+                db.SaveChanges();
+            }
         }
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
