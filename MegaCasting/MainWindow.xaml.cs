@@ -89,7 +89,7 @@ namespace MegaCasting
                 {
 
                     // supprimer le client de la base de donnée 
-                    db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier);
+                    db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
 
                     // supprimer le client de la fenétre.
                     Clients.Remove(client);

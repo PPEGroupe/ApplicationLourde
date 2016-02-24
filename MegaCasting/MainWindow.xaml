@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="MegaCasting" Height="500" Width="900" MinHeight="500" MinWidth="900">
+        Title="Client | MegaCasting" Height="500" Width="700" MinHeight="500" MinWidth="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +24,7 @@
                         <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" x:Name="ListClient" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding Path=Clients}" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" x:Name="ListClient" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding Path=Client}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"        Binding="{Binding Company}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
@@ -35,7 +35,7 @@
                             <DataGridTextColumn  MinWidth="100" Header="Code postal"    Binding="{Binding ZipCode}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    
+
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
                         <Button Content="Ajouter" Click="ButtonAddClient_Click"/>
                         <Button Content="Modifier" Click="ButtonUpdateClient_Click"/>
@@ -43,7 +43,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            
+
             <!-- Onglet Offre-->
             <TabItem Header="Offre" MinWidth="150" Height="30">
                 <Grid>
