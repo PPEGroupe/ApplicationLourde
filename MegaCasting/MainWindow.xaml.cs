@@ -26,12 +26,14 @@ namespace MegaCasting
     {
         private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<Offer> Offers { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
             this.Clients = new ObservableCollection<Client>(db.Client.ToList());
+            this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
 
             this.DataContext = this;
         }
@@ -80,10 +82,10 @@ namespace MegaCasting
                 if( client != null )
                 {
 
-                    // supprimé le client de la base de donnée /!\ ça marche pas
-                    db.Client.Remove(client);
+                    // supprimer le client de la base de donnée 
+                    db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier);
 
-                    // supprimé le client de la fenétre.
+                    // supprimer le client de la fenétre.
                     Clients.Remove(client);
 
                     //Sauvegarder les changements.
@@ -103,27 +105,48 @@ namespace MegaCasting
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
-            OfferWindow offerWindow = new OfferWindow();
+            OfferWindow offerWindow = new OfferWindow(db);
+
+            Offer offer = new Offer();
+
+            offerWindow.DataContext = offer;
 
             offerWindow.ShowDialog();
         }
 
         private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
         {
-            OfferWindow offerWindow = new OfferWindow();
+            OfferWindow offerWindow = new OfferWindow(db);
+
+            Offer offer = (Offer)ListClient.SelectedItem;
+
+            offerWindow.DataContext = offer;
 
             offerWindow.ShowDialog();
-
-            if (offerWindow.DialogResult == true)
-            {
-
-            }
-
         }
 
         private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
         {
+            Offer offer = (Offer)ListClient.SelectedItem;
 
+            if (offer != null)
+            {
+
+                // supprimer le client de la base de donnée 
+                db.Offer.Remove(db.Offer.First(dbOffer => dbOffer.Identifier == offer.Identifier));
+
+                // supprimer le client de la fenétre.
+                Offers.Remove(offer);
+
+                //Sauvegarder les changements.
+                db.SaveChanges();
+            }
+            // Si il n'y a aucun client de séléctioné 
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
+            }
         }
     }
 }
