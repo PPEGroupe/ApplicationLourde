@@ -55,9 +55,17 @@ namespace MegaCasting
 
             Client client = (Client)ListClient.SelectedItem;
 
-            clientWindow.DataContext = client;
+            if (client != null)
+            {
+                clientWindow.DataContext = client;
 
-            clientWindow.ShowDialog();
+                clientWindow.ShowDialog();
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Vous n'avez séléctionné aucun client.");
+            }
         }
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
