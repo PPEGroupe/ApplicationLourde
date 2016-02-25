@@ -23,11 +23,11 @@ namespace MegaCasting
         private MegaCastingEntities db;
 
         public OfferWindow(MegaCastingEntities context)
+            db = context;
+            InitializeComponent();          
         {
             db = context;
-
             InitializeComponent();
-           
         }
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -36,6 +36,18 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            DateStartPublicationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            PublicationDurationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            DateStartContractTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            JobQuantityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            JobDescriptionTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
             this.DialogResult = true;
         }
     }

@@ -33,6 +33,7 @@ namespace MegaCasting
             InitializeComponent();
 
             this.Clients = new ObservableCollection<Client>(db.Client.ToList());
+            this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
 
             this.DataContext = this;
         }
@@ -40,26 +41,32 @@ namespace MegaCasting
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
             ClientWindow clientWindow = new ClientWindow(db);
-
             Client client = new Client();
 
             clientWindow.DataContext = client;
-            
             clientWindow.ShowDialog();
 
+            if (clientWindow.DialogResult == true)
+            {
+                Clients.Add(client);
+                db.Client.Add(client);
+
+                db.SaveChanges();
+            }
         }
 
         private void ButtonUpdateClient_Click(object sender, RoutedEventArgs e)
         {
-            
             ClientWindow clientWindow = new ClientWindow(db);
-
             Client client = (Client)ListClient.SelectedItem;
 
             clientWindow.DataContext = client;
-
             clientWindow.ShowDialog();
-            
+
+            if (clientWindow.DialogResult == true)
+            {
+                db.SaveChanges();
+            }
         }
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
@@ -81,10 +88,10 @@ namespace MegaCasting
                 if( client != null )
                 {
 
-                    // supprimé le client de la base de donnée /!\ ça marche pas
-                    db.Client.Remove(client);
+                    // supprimer le client de la base de donnée 
+                    db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
 
-                    // supprimé le client de la fenétre.
+                    // supprimer le client de la fenétre.
                     Clients.Remove(client);
 
                     //Sauvegarder les changements.
@@ -106,6 +113,10 @@ namespace MegaCasting
         {
             OfferWindow offerWindow = new OfferWindow(db);
 
+            Offer offer = new Offer();
+
+            offerWindow.DataContext = offer;
+
             offerWindow.ShowDialog();
         }
 
@@ -113,18 +124,17 @@ namespace MegaCasting
         {
             OfferWindow offerWindow = new OfferWindow(db);
 
+            Offer offer = (Offer)ListClient.SelectedItem;
+
+            offerWindow.DataContext = offer;
+
+
             offerWindow.ShowDialog();
-
-            if (offerWindow.DialogResult == true)
-            {
-
-            }
-
         }
 
         private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
         {
-            DeleteWindow deleteWindow = new DeleteWindow();
+            Offer offer = (Offer)ListClient.SelectedItem;
 
             deleteWindow.ShowDialog();
 
@@ -155,6 +165,23 @@ namespace MegaCasting
                     MessageBox.Show("Vous n'avez séléctionné aucun offre.");
                 }
 
+            if (offer != null)
+            {
+
+                // supprimer le client de la base de donnée 
+                db.Offer.Remove(db.Offer.First(dbOffer => dbOffer.Identifier == offer.Identifier));
+
+                // supprimer le client de la fenétre.
+                Offers.Remove(offer);
+
+                //Sauvegarder les changements.
+                db.SaveChanges();
+            }
+            // Si il n'y a aucun client de séléctioné 
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
             }
         }
     }
