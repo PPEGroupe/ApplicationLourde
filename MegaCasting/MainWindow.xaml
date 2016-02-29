@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Client | MegaCasting" Height="500" Width="700" MinHeight="500" MinWidth="700">
+        Title="Client | MegaCasting" Height="500" Width="850" MinHeight="500" MinWidth="850">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,6 +16,7 @@
         <Image Grid.Row="0" MaxHeight="95" Margin="10,0,10,0" Source="header.png"/>
 
         <TabControl Grid.Row="1">
+            
             <!-- Onglet Client-->
             <TabItem Header="Client" MinWidth="150" Height="30">
                 <Grid>
@@ -55,6 +56,8 @@
                     <DataGrid Grid.Row="0" x:Name="ListOffer" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding Path=Offers}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"                    Binding="{Binding Client.Company}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Métier"                     Binding="{Binding Job.Label}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Domaine de M."              Binding="{Binding Job.JobDomain.Label}"/>
                             <DataGridTextColumn  MinWidth="100" Header="N°Offre"                    Binding="{Binding Reference}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Nom de l'Offre"             Binding="{Binding Title}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Date de Début"              Binding="{Binding DateStartPublication}"/>
@@ -64,7 +67,7 @@
                             <DataGridTextColumn  MinWidth="100" Header="Description de l'Offre"     Binding="{Binding JobDescription}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Adresse"                    Binding="{Binding Address}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Ville"                      Binding="{Binding City}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="CP"                         Binding="{Binding ZipCode}"/>
+                            <DataGridTextColumn  MinWidth="70" Header="Code Postal"                 Binding="{Binding ZipCode}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
