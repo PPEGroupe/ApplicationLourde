@@ -29,10 +29,11 @@ namespace MegaCasting
         {
             db = context;
 
-            this.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
-            this.Jobs = new ObservableCollection<Job>(db.Job.ToList());
-
             InitializeComponent();
+
+            // Instancie les listes de classes
+            this.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
+            this.Jobs       = new ObservableCollection<Job>(db.Job.ToList());
 
             this.DataContext = this;
         }

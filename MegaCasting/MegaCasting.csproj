@@ -97,6 +97,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OfferDataContext.cs" />
     <Compile Include="OfferWindow.xaml.cs">
       <DependentUpon>OfferWindow.xaml</DependentUpon>
     </Compile>

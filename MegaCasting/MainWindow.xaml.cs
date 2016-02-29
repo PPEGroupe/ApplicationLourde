@@ -27,6 +27,7 @@ namespace MegaCasting
         private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<Offer> Offers { get; set; }
+        public ObservableCollection<Job> Jobs { get; set; }
 
         public MainWindow()
         {
@@ -36,7 +37,8 @@ namespace MegaCasting
             {
                 // Instancie les listes de classes
                 this.Clients = new ObservableCollection<Client>(db.Client.ToList());
-                this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
+                this.Offers  = new ObservableCollection<Offer>(db.Offer.ToList());
+                this.Jobs  = new ObservableCollection<Job>(db.Job.ToList());
             }
             catch (Exception)
             {
@@ -123,11 +125,11 @@ namespace MegaCasting
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
             OfferWindow offerWindow = new OfferWindow(db);
-
             Offer offer = new Offer();
-
-            offerWindow.DataContext = offer;
-
+            OfferDataContext offerDataContext = new OfferDataContext();
+            offerDataContext.Offer = offer;
+            offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
+            offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
             offerWindow.ShowDialog();
 
             if (offerWindow.DialogResult == true)
@@ -147,9 +149,14 @@ namespace MegaCasting
         {
             OfferWindow offerWindow = new OfferWindow(db);
             Offer offer = (Offer)ListOffer.SelectedItem;
+            OfferDataContext offerDataContext = new OfferDataContext();
+            offerDataContext.Offer = offer;
+            offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
+            offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
+
             if (offer != null)
             {
-                offerWindow.DataContext = offer;
+                offerWindow.DataContext = offerDataContext;
                 offerWindow.ShowDialog();
 
                 if (offerWindow.DialogResult == true)
