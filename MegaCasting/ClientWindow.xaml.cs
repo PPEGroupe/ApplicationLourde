@@ -41,6 +41,7 @@ namespace MegaCasting
             PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
             this.DialogResult = true;
         }
