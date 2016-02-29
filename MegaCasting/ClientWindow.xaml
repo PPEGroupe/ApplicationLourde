@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion client" MinHeight="270" MinWidth="400" MaxHeight="270" MaxWidth="400">
+        Title="Gestion client" MinHeight="270" MinWidth="400" MaxHeight="300" MaxWidth="400">
     <DockPanel>
         <Grid>
             <Grid.ColumnDefinitions >
@@ -14,6 +14,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
@@ -53,7 +54,13 @@
             </Border>
             <TextBox Grid.Column="1" Grid.Row="5" x:Name="AddressTextBox" Text="{Binding Path=Address, UpdateSourceTrigger=Explicit}" />
 
-            <StackPanel Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
+            <Border Grid.Column="0" Grid.Row="6" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
+                <Label Style="{StaticResource LabelForTextBox}">Code postal :</Label>
+            </Border>
+            <TextBox Grid.Column="1" Grid.Row="6" x:Name="ZipCodeTextBox" Text="{Binding Path=ZipCode, UpdateSourceTrigger=Explicit}" />
+            
+
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
                 <Button Click="ButtonCancel_Click">Annuler</Button>
                 <Button Click="ButtonValidate_Click">Valider</Button>
             </StackPanel>
