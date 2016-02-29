@@ -44,20 +44,39 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            // Applique les modifications
-            CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            DateStartPublicationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            PublicationDurationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            DateStartContractTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            JobQuantityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            JobDescriptionTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
+                   || String.IsNullOrWhiteSpace(this.JobComboBox.Text)
+                   || String.IsNullOrWhiteSpace(this.ReferenceTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.TitleTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.DateStartPublicationTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.PublicationDurationTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.DateStartContractTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.JobQuantityTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.JobDescriptionTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.AddressTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.CityTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.ZipCodeTextBox.Text))
+            {
+                MessageBox.Show("Veuillez remplir tous les champs avant de valider");
+            }
+            else
+            { 
+                // Applique les modifications
+                CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                DateStartPublicationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                PublicationDurationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                DateStartContractTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                JobQuantityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                JobDescriptionTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
-            this.DialogResult = true;
+                this.DialogResult = true;
+            }
         }
     }
 }

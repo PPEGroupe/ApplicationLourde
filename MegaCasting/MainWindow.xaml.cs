@@ -135,11 +135,8 @@ namespace MegaCasting
                 Offers.Add(offer);
                 db.Offer.Add(offer);
 
-                if (true)
-                {
-
-                }
                 db.SaveChanges();
+                
             }
         }
 
