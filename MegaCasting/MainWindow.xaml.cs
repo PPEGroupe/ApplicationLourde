@@ -32,8 +32,18 @@ namespace MegaCasting
         {
             InitializeComponent();
 
-            this.Clients = new ObservableCollection<Client>(db.Client.ToList());
-            this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
+            try
+            {
+                // Instancie les listes de classes
+                this.Clients = new ObservableCollection<Client>(db.Client.ToList());
+                this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
+            }
+            catch (Exception)
+            {
+                // Si SQL Serveur n'est pas lancé, un message est affiché et l'application se ferme
+                MessageBox.Show("L'application n'a pas pu démarrer. Veuillez vérifier que SQL Serveur est bien lancé.");
+                Application.Current.Shutdown();
+            }
 
             this.DataContext = this;
         }
@@ -71,37 +81,30 @@ namespace MegaCasting
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
         {
-            
-
             DeleteWindow deleteWindow = new DeleteWindow();
-
             deleteWindow.ShowDialog();
 
-            ClientWindow clientWindow = new ClientWindow(db);
-
-            // tester si la fenetre deleteWindow renvois un vrai
+            // Teste si la fenetre deleteWindow renvoi un vrai
             if (deleteWindow.DialogResult == true)
             {
                 Client client = (Client)ListClient.SelectedItem;
 
-                // Si il'y a un client séléctioné.
+                // S'il y a un client sélectionné
                 if( client != null )
                 {
-
-                    // supprimer le client de la base de donnée 
+                    // Supprime le client de la BDD
                     db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
 
-                    // supprimer le client de la fenétre.
+                    // Supprime le client la liste
                     Clients.Remove(client);
 
-                    //Sauvegarder les changements.
+                    // Sauvegarde les changements en BDD
                     db.SaveChanges();
                 }
-                // Si il n'y a aucun client de séléctioné 
+                // S'il aucun client n'est sélectioné 
                 else
                 {
-                    // Afficher le message d'erreur 
-                    MessageBox.Show("Vous n'avez séléctionné aucun client.");
+                    MessageBox.Show("Veuillez sélectionner un client");
                 }
                 
             }
