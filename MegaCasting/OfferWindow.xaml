@@ -39,18 +39,14 @@
             <Border Grid.Column="0" Grid.Row="1" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Domaine de métier :</Label>
             </Border>
-            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=JobDomains}"
-                  DisplayMemberPath="Label"
-                  SelectedValuePath="Identifier"
-                  SelectedValue="{Binding Path=Label}" />
+            <ComboBox Grid.Column="1" Grid.Row="1" x:Name="JobDomainComboBox" ItemsSource="{Binding Path=JobDomains}" 
+                DisplayMemberPath="Label" />
 
             <Border Grid.Column="0" Grid.Row="2" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
-            <Label Style="{StaticResource LabelForTextBox}">Métier :</Label>
+                <Label Style="{StaticResource LabelForTextBox}">Métier :</Label>
             </Border>
-            <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Path=Jobs}"
-                  DisplayMemberPath="Label"
-                  SelectedValuePath="Identifier"
-                  SelectedValue="{Binding Path=Label}" />
+            <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}" 
+                DisplayMemberPath="Label" />
             
             <Border Grid.Column="0" Grid.Row="3" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">N° Offre :</Label>
@@ -68,7 +64,7 @@
             <TextBox Grid.Column="1" Grid.Row="5" x:Name="DateStartPublicationTextBox" Text="{Binding Path=DateStartPublication, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="6" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
-                <Label Style="{StaticResource LabelForTextBox}">Durrée de l'offre :</Label>
+                <Label Style="{StaticResource LabelForTextBox}">Durée de l'offre :</Label>
             </Border>
             <TextBox Grid.Column="1" Grid.Row="6" x:Name="PublicationDurationTextBox" Text="{Binding Path=PublicationDuration, UpdateSourceTrigger=Explicit}" />
 

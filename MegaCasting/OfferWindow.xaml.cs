@@ -25,8 +25,7 @@ namespace MegaCasting
         public ObservableCollection<JobDomain> JobDomains { get; set; }
         public ObservableCollection<Job> Jobs { get; set; }
 
-        public OfferWindow(MegaCastingEntities context)
-                     
+        public OfferWindow(MegaCastingEntities context)    
         {
             db = context;
 
@@ -34,8 +33,10 @@ namespace MegaCasting
             this.Jobs = new ObservableCollection<Job>(db.Job.ToList());
 
             InitializeComponent();
+
             this.DataContext = this;
         }
+
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
@@ -43,6 +44,7 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            // Applique les modifications
             CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();

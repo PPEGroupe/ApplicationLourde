@@ -128,11 +128,9 @@ namespace MegaCasting
         private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
         {
             OfferWindow offerWindow = new OfferWindow(db);
-
             Offer offer = (Offer)ListClient.SelectedItem;
             
             offerWindow.DataContext = offer;
-
             offerWindow.ShowDialog();
 
             if (offerWindow.DialogResult == true)
