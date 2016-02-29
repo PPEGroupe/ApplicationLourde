@@ -70,43 +70,54 @@ namespace MegaCasting
             ClientWindow clientWindow = new ClientWindow(db);
             Client client = (Client)ListClient.SelectedItem;
 
-            clientWindow.DataContext = client;
-            clientWindow.ShowDialog();
-
-            if (clientWindow.DialogResult == true)
+            if (client != null)
             {
-                db.SaveChanges();
+                clientWindow.DataContext = client;
+
+                clientWindow.ShowDialog();
+
+                if (clientWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vous n'avez séléctionné aucun client.");
             }
         }
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
         {
-            DeleteWindow deleteWindow = new DeleteWindow();
-            deleteWindow.ShowDialog();
+
+            Client client = (Client)ListClient.SelectedItem;
 
             // Teste si la fenetre deleteWindow renvoi un vrai
-            if (deleteWindow.DialogResult == true)
+            if (client != null)
             {
-                Client client = (Client)ListClient.SelectedItem;
+                DeleteWindow deleteWindow = new DeleteWindow();
 
-                // S'il y a un client sélectionné
-                if( client != null )
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
                 {
-                    // Supprime le client de la BDD
+                    // Si il'y a une offre séléctionée.             
+                    // supprimer le client de la base de donnée 
                     db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
 
-                    // Supprime le client la liste
+                    // supprimer le l'offre de la fenétre.
                     Clients.Remove(client);
 
-                    // Sauvegarde les changements en BDD
+                    //Sauvegarder les changements.
                     db.SaveChanges();
                 }
-                // S'il aucun client n'est sélectioné 
-                else
-                {
-                    MessageBox.Show("Veuillez sélectionner un client");
-                }
-            } 
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
+            }
         }
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
@@ -121,42 +132,51 @@ namespace MegaCasting
 
             if (offerWindow.DialogResult == true)
             {
+                Offers.Add(offer);
+                db.Offer.Add(offer);
 
+                if (true)
+                {
+
+                }
+                db.SaveChanges();
             }
         }
 
         private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
         {
             OfferWindow offerWindow = new OfferWindow(db);
-            Offer offer = (Offer)ListClient.SelectedItem;
-            
-            offerWindow.DataContext = offer;
-            offerWindow.ShowDialog();
-
-            if (offerWindow.DialogResult == true)
+            Offer offer = (Offer)ListOffer.SelectedItem;
+            if (offer != null)
             {
-                db.SaveChanges();
+                offerWindow.DataContext = offer;
+                offerWindow.ShowDialog();
+
+                if (offerWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
             }
         }
 
         private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
         {
-
-            DeleteWindow deleteWindow = new DeleteWindow();
-
-            deleteWindow.ShowDialog();
-
-            OfferWindow offerWindow = new OfferWindow(db);
-
             Offer offer = (Offer)ListOffer.SelectedItem;
 
-            // tester si la fenetre deleteWindow renvois un vrai
-            if (deleteWindow.DialogResult == true)
+            if (offer != null)
             {
-                // Si il'y a une offre séléctionée.
+                DeleteWindow deleteWindow = new DeleteWindow();
 
-                if (offer != null)
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
                 {
+                    // Si il'y a une offre séléctionée.             
                     // supprimer l'offre de la base de donnée 
                     db.Offer.Remove(db.Offer.First(dbOffer => dbOffer.Identifier == offer.Identifier));
 
@@ -166,7 +186,7 @@ namespace MegaCasting
                     //Sauvegarder les changements.
                     db.SaveChanges();
                 }
-            }// Si il n'y a aucune offre de séléctioné 
+            }
             else
             {
                 // Afficher le message d'erreur 
