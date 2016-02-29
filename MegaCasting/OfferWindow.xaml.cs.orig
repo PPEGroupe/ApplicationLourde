@@ -1,7 +1,6 @@
 ﻿using MegaCasting.DBLib;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,19 +21,17 @@ namespace MegaCasting
     public partial class OfferWindow : Window
     {
         private MegaCastingEntities db;
-        public ObservableCollection<JobDomain> JobDomains { get; set; }
-        public ObservableCollection<Job> Jobs { get; set; }
 
         public OfferWindow(MegaCastingEntities context)
-                     
         {
             db = context;
-
-            this.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
-            this.Jobs = new ObservableCollection<Job>(db.Job.ToList());
+<<<<<<< HEAD
 
             InitializeComponent();
-            this.DataContext = this;
+           
+=======
+            InitializeComponent();          
+>>>>>>> e5b90c04d3b71e1cc7571d8a06f3b30814fdb9f6
         }
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -43,6 +40,8 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
+=======
             CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
@@ -55,6 +54,7 @@ namespace MegaCasting
             CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
+>>>>>>> e5b90c04d3b71e1cc7571d8a06f3b30814fdb9f6
             this.DialogResult = true;
         }
     }
