@@ -87,7 +87,6 @@ namespace MegaCasting
                 // Si il'y a un client séléctioné.
                 if( client != null )
                 {
-
                     // supprimer le client de la base de donnée 
                     db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
 
@@ -103,10 +102,7 @@ namespace MegaCasting
                     // Afficher le message d'erreur 
                     MessageBox.Show("Vous n'avez séléctionné aucun client.");
                 }
-                
-            }
-
-            
+            } 
         }
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
@@ -118,6 +114,11 @@ namespace MegaCasting
             offerWindow.DataContext = offer;
 
             offerWindow.ShowDialog();
+
+            if (offerWindow.DialogResult == true)
+            {
+
+            }
         }
 
         private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
@@ -125,11 +126,15 @@ namespace MegaCasting
             OfferWindow offerWindow = new OfferWindow(db);
 
             Offer offer = (Offer)ListClient.SelectedItem;
-
+            
             offerWindow.DataContext = offer;
 
-
             offerWindow.ShowDialog();
+
+            if (offerWindow.DialogResult == true)
+            {
+                db.SaveChanges();
+            }
         }
 
         private void ButtonDeleteOffer_Click(object sender, RoutedEventArgs e)
@@ -146,29 +151,25 @@ namespace MegaCasting
             // tester si la fenetre deleteWindow renvois un vrai
             if (deleteWindow.DialogResult == true)
             {
-
-
-                // Si il'y a un client séléctioné.
+                // Si il'y a une offre séléctionée.
 
                 if (offer != null)
                 {
-
-                    // supprimer le client de la base de donnée 
+                    // supprimer l'offre de la base de donnée 
                     db.Offer.Remove(db.Offer.First(dbOffer => dbOffer.Identifier == offer.Identifier));
 
-                    // supprimer le client de la fenétre.
+                    // supprimer le l'offre de la fenétre.
                     Offers.Remove(offer);
 
                     //Sauvegarder les changements.
                     db.SaveChanges();
                 }
-            }// Si il n'y a aucun client de séléctioné 
+            }// Si il n'y a aucune offre de séléctioné 
             else
             {
                 // Afficher le message d'erreur 
                 MessageBox.Show("Vous n'avez séléctionné aucune offre.");
             }
         }
-    }
-    
+    }  
 }
