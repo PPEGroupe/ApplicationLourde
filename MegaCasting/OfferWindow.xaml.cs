@@ -30,12 +30,6 @@ namespace MegaCasting
             db = context;
 
             InitializeComponent();
-
-            // Instancie les listes de classes
-            this.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
-            this.Jobs       = new ObservableCollection<Job>(db.Job.ToList());
-
-            this.DataContext = this;
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
@@ -50,9 +44,9 @@ namespace MegaCasting
                    || String.IsNullOrWhiteSpace(this.JobComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.ReferenceTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.TitleTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.DateStartPublicationTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.DateStartPublicationDatePicker.Text)
                    || String.IsNullOrWhiteSpace(this.PublicationDurationTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.DateStartContractTextBox.Text)
+                   || String.IsNullOrWhiteSpace(this.DateStartContractDatePicker.Text)
                    || String.IsNullOrWhiteSpace(this.JobQuantityTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.JobDescriptionTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.AddressTextBox.Text)
@@ -67,9 +61,9 @@ namespace MegaCasting
                 CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                DateStartPublicationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                DateStartPublicationDatePicker.GetBindingExpression(DatePicker.TextProperty).UpdateSource();
                 PublicationDurationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                DateStartContractTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                DateStartContractDatePicker.GetBindingExpression(DatePicker.TextProperty).UpdateSource();
                 JobQuantityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 JobDescriptionTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();

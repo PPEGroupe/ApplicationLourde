@@ -60,7 +60,7 @@
             <Border Grid.Column="0" Grid.Row="5" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Date de début :</Label>
             </Border>
-            <TextBox Grid.Column="1" Grid.Row="5" x:Name="DateStartPublicationTextBox" Text="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" />
+            <DatePicker Grid.Column="1" Grid.Row="5" x:Name="DateStartPublicationDatePicker" Text="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="6" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Durée de l'offre :</Label>
@@ -70,7 +70,7 @@
             <Border Grid.Column="0" Grid.Row="7" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Date de début du contrat :</Label>
             </Border>
-            <TextBox Grid.Column="1" Grid.Row="7" x:Name="DateStartContractTextBox" Text="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}" />
+            <DatePicker Grid.Column="1" Grid.Row="7" x:Name="DateStartContractDatePicker" Text="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="8" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Nombre de postes :</Label>
