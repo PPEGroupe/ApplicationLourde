@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="JobDomainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="JobWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +94,9 @@
     </Compile>
     <Compile Include="DeleteWindow.xaml.cs">
       <DependentUpon>DeleteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JobDomainWindow.xaml.cs">
+      <DependentUpon>JobDomainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="JobWindow.xaml.cs">
       <DependentUpon>JobWindow.xaml</DependentUpon>

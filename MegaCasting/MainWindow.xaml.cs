@@ -58,8 +58,8 @@ namespace MegaCasting
 
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
-            ClientWindow clientWindow = new ClientWindow(db);
             Client client = new Client();
+            ClientWindow clientWindow = new ClientWindow(db);
 
             clientWindow.DataContext = client;
             clientWindow.ShowDialog();
@@ -75,13 +75,12 @@ namespace MegaCasting
 
         private void ButtonUpdateClient_Click(object sender, RoutedEventArgs e)
         {
-            ClientWindow clientWindow = new ClientWindow(db);
             Client client = (Client)ListClient.SelectedItem;
 
             if (client != null)
             {
+                ClientWindow clientWindow = new ClientWindow(db);
                 clientWindow.DataContext = client;
-
                 clientWindow.ShowDialog();
 
                 if (clientWindow.DialogResult == true)
@@ -124,14 +123,14 @@ namespace MegaCasting
             else
             {
                 // Afficher le message d'erreur 
-                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
+                MessageBox.Show("Veuillez sélectionner un client.");
             }
         }
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
-            OfferWindow offerWindow = new OfferWindow(db);
             Offer offer = new Offer();
+            OfferWindow offerWindow = new OfferWindow(db);
             OfferDataContext offerDataContext = new OfferDataContext();
             offerDataContext.Offer = offer;
             offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
@@ -150,15 +149,16 @@ namespace MegaCasting
 
         private void ButtonUpdateOffer_Click(object sender, RoutedEventArgs e)
         {
-            OfferWindow offerWindow = new OfferWindow(db);
             Offer offer = (Offer)ListOffer.SelectedItem;
-            OfferDataContext offerDataContext = new OfferDataContext();
-            offerDataContext.Offer = offer;
-            offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
-            offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
 
             if (offer != null)
             {
+                OfferWindow offerWindow = new OfferWindow(db);
+                OfferDataContext offerDataContext = new OfferDataContext();
+                offerDataContext.Offer = offer;
+                offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
+                offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
+
                 offerWindow.DataContext = offerDataContext;
                 offerWindow.ShowDialog();
 
@@ -169,7 +169,7 @@ namespace MegaCasting
             }
             else
             {
-                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
+                MessageBox.Show("Veuillez sélectionner une offre.");
             }
         }
 
@@ -206,12 +206,40 @@ namespace MegaCasting
 
         private void ButtonAddJobDomain_Click(object sender, RoutedEventArgs e)
         {
+            JobDomain jobDomain = new JobDomain();
+            JobDomainWindow jobDomainWindow = new JobDomainWindow(db);
 
+            jobDomainWindow.DataContext = jobDomain;
+            jobDomainWindow.ShowDialog();
+
+            if (jobDomainWindow.DialogResult == true)
+            {
+                JobDomains.Add(jobDomain);
+                db.JobDomain.Add(jobDomain);
+
+                db.SaveChanges();
+            }
         }
 
         private void ButtonUpdateJobDomain_Click(object sender, RoutedEventArgs e)
         {
+            JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
 
+            if (jobDomain != null)
+            {
+                JobDomainWindow jobDomainWindow = new JobDomainWindow(db);
+                jobDomainWindow.DataContext = jobDomain;
+                jobDomainWindow.ShowDialog();
+
+                if (jobDomainWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un domaine de métier.");
+            }
         }
 
         private void ButtonDeleteJobDomain_Click(object sender, RoutedEventArgs e)
@@ -222,12 +250,40 @@ namespace MegaCasting
 
         private void ButtonAddJob_Click(object sender, RoutedEventArgs e)
         {
+            Job job = new Job();
+            JobWindow jobWindow = new JobWindow(db);
 
+            jobWindow.DataContext = job;
+            jobWindow.ShowDialog();
+
+            if (jobWindow.DialogResult == true)
+            {
+                Jobs.Add(job);
+                db.Job.Add(job);
+
+                db.SaveChanges();
+            }
         }
 
         private void ButtonUpdateJob_Click(object sender, RoutedEventArgs e)
         {
+            Job job = (Job)ListJob.SelectedItem;
 
+            if (job != null)
+            {
+            JobWindow jobWindow = new JobWindow(db);
+                jobWindow.DataContext = job;
+                jobWindow.ShowDialog();
+
+                if (jobWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un domaine de métier.");
+            }
         }
 
         private void ButtonDeleteJob_Click(object sender, RoutedEventArgs e)
