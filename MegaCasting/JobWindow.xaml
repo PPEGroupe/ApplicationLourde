@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="JobWindow" Height="300" Width="300">
+        Title="JobWindow" MinHeight="480" MinWidth="400" MaxHeight="480" MaxWidth="400">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Column="0" Grid.Row="0" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
+            <Label Style="{StaticResource LabelForTextBox}">Métier :</Label>
+        </Border>
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="CompanyTextBox" />
+
+
     </Grid>
 </Window>

@@ -56,6 +56,8 @@ namespace MegaCasting
             this.DataContext = this;
         }
 
+        //====================================== Boutons Client ======================================//
+
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
             Client client = new Client();
@@ -126,6 +128,8 @@ namespace MegaCasting
                 MessageBox.Show("Veuillez sélectionner un client.");
             }
         }
+
+        //====================================== Boutons Offre ======================================//
 
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
@@ -204,9 +208,11 @@ namespace MegaCasting
             }
         }
 
+        //====================================== Boutons Métier ======================================//
+
         private void ButtonAddJobDomain_Click(object sender, RoutedEventArgs e)
         {
-            JobDomain jobDomain = new JobDomain();
+            JobWindow jobWindow = new JobWindow(db);
             JobDomainWindow jobDomainWindow = new JobDomainWindow(db);
 
             jobDomainWindow.DataContext = jobDomain;
@@ -216,7 +222,7 @@ namespace MegaCasting
             {
                 JobDomains.Add(jobDomain);
                 db.JobDomain.Add(jobDomain);
-
+             
                 db.SaveChanges();
             }
         }
