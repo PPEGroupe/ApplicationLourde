@@ -28,6 +28,9 @@ namespace MegaCasting
         public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<Offer> Offers { get; set; }
         public ObservableCollection<Job> Jobs { get; set; }
+        public ObservableCollection<JobDomain> JobDomains { get; set; }
+        public ObservableCollection<Partner> Partners { get; set; }
+        public ObservableCollection<TypeOfContract> TypeOfContracts { get; set; }
 
         public MainWindow()
         {
@@ -36,9 +39,12 @@ namespace MegaCasting
             try
             {
                 // Instancie les listes de classes
-                this.Clients = new ObservableCollection<Client>(db.Client.ToList());
-                this.Offers  = new ObservableCollection<Offer>(db.Offer.ToList());
-                this.Jobs  = new ObservableCollection<Job>(db.Job.ToList());
+                this.Clients         = new ObservableCollection<Client>(db.Client.ToList());
+                this.Offers          = new ObservableCollection<Offer>(db.Offer.ToList());
+                this.Jobs            = new ObservableCollection<Job>(db.Job.ToList());
+                this.JobDomains      = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
+                this.Partners        = new ObservableCollection<Partner>(db.Partner.ToList());
+                this.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
             }
             catch (Exception)
             {
@@ -196,6 +202,37 @@ namespace MegaCasting
                 // Afficher le message d'erreur 
                 MessageBox.Show("Vous n'avez séléctionné aucune offre.");
             }
+        }
+
+        private void ButtonAddJobDomain_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonUpdateJobDomain_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDeleteJobDomain_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void ButtonAddJob_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonUpdateJob_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDeleteJob_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }  
 }
