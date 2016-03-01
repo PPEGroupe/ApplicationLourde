@@ -24,9 +24,12 @@ namespace MegaCasting
     /// </summary>
     public partial class DeleteWindow : Window
     {
+        #region Attributs
         private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
+        #endregion
 
+        #region Constructeur
         public DeleteWindow()
         {
             InitializeComponent();
@@ -35,7 +38,9 @@ namespace MegaCasting
 
             this.DataContext = this;
         }
+        #endregion
 
+        #region Boutons
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
@@ -45,5 +50,6 @@ namespace MegaCasting
         {
             this.DialogResult = true;
         }
+        #endregion
     }
 }

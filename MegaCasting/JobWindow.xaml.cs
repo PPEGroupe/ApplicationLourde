@@ -21,15 +21,19 @@ namespace MegaCasting
     /// </summary>
     public partial class JobWindow : Window
     {
+        #region Attributs
         private MegaCastingEntities db;
         public ObservableCollection<Job> Jobs { get; set; }
         public ObservableCollection<JobDomain> JobDomains { get; set; }
+        #endregion
 
+        #region Constructeur
         public JobWindow(MegaCastingEntities context)
         {
             db = context;
-            
+
             InitializeComponent();
         }
+        #endregion
     }
 }

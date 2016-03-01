@@ -21,17 +21,22 @@ namespace MegaCasting
     /// </summary>
     public partial class JobDomainWindow : Window
     {
+        #region Attributs
         private MegaCastingEntities db;
         public ObservableCollection<JobDomain> JobDomains { get; set; }
         public ObservableCollection<Job> Jobs { get; set; }
+        #endregion
 
+        #region Constructeur
         public JobDomainWindow(MegaCastingEntities context)
         {
             db = context;
 
             InitializeComponent();
         }
+        #endregion
 
+        #region Boutons
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
@@ -41,5 +46,6 @@ namespace MegaCasting
         {
             this.DialogResult = true;
         }
+        #endregion
     }
 }

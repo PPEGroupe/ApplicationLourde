@@ -20,14 +20,19 @@ namespace MegaCasting
     /// </summary>
     public partial class ClientWindow : Window
     {
+        #region Attribut
         private MegaCastingEntities db;
+        #endregion
 
+        #region Constructeur
         public ClientWindow(MegaCastingEntities context)
         {
             db = context;
             InitializeComponent();
         }
+        #endregion
 
+        #region Boutons
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
@@ -45,5 +50,6 @@ namespace MegaCasting
 
             this.DialogResult = true;
         }
+        #endregion
     }
 }

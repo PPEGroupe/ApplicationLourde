@@ -31,7 +31,7 @@
             <Setter Property="FontSize" Value="12" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
-        
+
         <!--Style appliqué sur les Boutons -->
         <Style TargetType="Button">
             <Setter Property="Width" Value="150" />
@@ -56,6 +56,30 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#CCC"/>
         </Style>
-        
+
+        <Style TargetType="Button" x:Key="Tight">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="2,0,2,0" />
+            <Setter Property="Padding" Value="10,2,10,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.0" Color="#FEFEFE" />
+                            <GradientStop Offset="1.0" Color="#CCC" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="#555"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#CCC"/>
+        </Style>
+
     </Application.Resources>
 </Application>

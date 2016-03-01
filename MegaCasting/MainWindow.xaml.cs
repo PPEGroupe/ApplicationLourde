@@ -24,6 +24,7 @@ namespace MegaCasting
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Attributs
         private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<Offer> Offers { get; set; }
@@ -31,7 +32,9 @@ namespace MegaCasting
         public ObservableCollection<JobDomain> JobDomains { get; set; }
         public ObservableCollection<Partner> Partners { get; set; }
         public ObservableCollection<TypeOfContract> TypeOfContracts { get; set; }
+        #endregion
 
+        #region Constructeur
         public MainWindow()
         {
             InitializeComponent();
@@ -55,9 +58,9 @@ namespace MegaCasting
 
             this.DataContext = this;
         }
+        #endregion
 
-        //====================================== Boutons Client ======================================//
-
+        #region Boutons Clients
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
             Client client = new Client();
@@ -128,9 +131,9 @@ namespace MegaCasting
                 MessageBox.Show("Veuillez sélectionner un client.");
             }
         }
-
-        //====================================== Boutons Offre ======================================//
-
+        #endregion
+        
+        #region Boutons Offre
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
             Offer offer = new Offer();
@@ -207,12 +210,12 @@ namespace MegaCasting
                 MessageBox.Show("Vous n'avez séléctionné aucune offre.");
             }
         }
+        #endregion
 
-        //====================================== Boutons Métier ======================================//
-
+        #region Boutons Domaine de Métier
         private void ButtonAddJobDomain_Click(object sender, RoutedEventArgs e)
         {
-            JobWindow jobWindow = new JobWindow(db);
+            JobDomain jobDomain = new JobDomain();
             JobDomainWindow jobDomainWindow = new JobDomainWindow(db);
 
             jobDomainWindow.DataContext = jobDomain;
@@ -252,8 +255,9 @@ namespace MegaCasting
         {
 
         }
+        #endregion
 
-
+        #region Boutons Métier
         private void ButtonAddJob_Click(object sender, RoutedEventArgs e)
         {
             Job job = new Job();
@@ -296,5 +300,6 @@ namespace MegaCasting
         {
 
         }
-    }  
+        #endregion
+    }
 }

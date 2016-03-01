@@ -95,22 +95,23 @@
                             <DataGridTextColumn MinWidth="400" Header="Domaine Métier"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0">
-                        <Button Content="Ajouter" Click="ButtonAddJobDomain_Click"/>
-                        <Button Content="Modifier" Click="ButtonUpdateJobDomain_Click"/>
-                        <Button Content="Supprimer" Click="ButtonDeleteJobDomain_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Ajouter" Click="ButtonAddJobDomain_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Modifier" Click="ButtonUpdateJobDomain_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Supprimer" Click="ButtonDeleteJobDomain_Click"/>
                     </StackPanel>
                     
-
                     <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="400" Header="Métier"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
-                        <Button Content="Ajouter" Click="ButtonAddJob_Click"/>
-                        <Button Content="Modifier" Click="ButtonUpdateJob_Click"/>
-                        <Button Content="Supprimer" Click="ButtonDeleteJob_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Ajouter" Click="ButtonAddJob_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Modifier" Click="ButtonUpdateJob_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Supprimer" Click="ButtonDeleteJob_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
