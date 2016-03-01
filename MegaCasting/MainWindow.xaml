@@ -77,6 +77,43 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
+            
+            <!-- Onglet Métier-->
+            <TabItem Header="Métier" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListJobDomain" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn MinWidth="400" Header="Domaine Métier"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                        <Button Content="Ajouter" Click="ButtonAddJobDomain_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateJobDomain_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteJobDomain_Click"/>
+                    </StackPanel>
+                    
+
+                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn MinWidth="400" Header="Métier"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                        <Button Content="Ajouter" Click="ButtonAddJob_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateJob_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteJob_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
 
         <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">Copyright ©2015 par MégaProduction. Tous droits réservés</TextBlock>
