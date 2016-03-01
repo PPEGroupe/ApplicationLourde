@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using MegaCasting.DBLib;
 
 namespace MegaCasting
 {
@@ -19,8 +21,14 @@ namespace MegaCasting
     /// </summary>
     public partial class JobWindow : Window
     {
-        public JobWindow()
+        private MegaCastingEntities db;
+        public ObservableCollection<Job> Jobs { get; set; }
+        public ObservableCollection<JobDomain> JobDomains { get; set; }
+
+        public JobWindow(MegaCastingEntities context)
         {
+            db = context;
+            
             InitializeComponent();
         }
     }

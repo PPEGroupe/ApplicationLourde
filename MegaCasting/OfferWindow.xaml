@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
         Title="OfferWindow" MinHeight="480" MinWidth="400" MaxHeight="480" MaxWidth="400">
-    <DockPanel>
-        <Grid>
+    <Grid>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition Width="Auto"/>
@@ -46,7 +45,7 @@
             </Border>
             <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs.Jobs}" 
                 DisplayMemberPath="Label" />
-            
+
             <Border Grid.Column="0" Grid.Row="3" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">N° Offre :</Label>
             </Border>
@@ -86,7 +85,7 @@
                 <Label Style="{StaticResource LabelForTextBox}">Adresse :</Label>
             </Border>
             <TextBox Grid.Column="1" Grid.Row="10" x:Name="AddressTextBox" Text="{Binding Path=Offer.Address, UpdateSourceTrigger=Explicit}" />
-            
+
             <Border Grid.Column="0" Grid.Row="11" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Ville :</Label>
             </Border>
@@ -102,5 +101,4 @@
                 <Button Click="ButtonValidate_Click">Valider</Button>
             </StackPanel>
         </Grid>
-    </DockPanel>
 </Window>
