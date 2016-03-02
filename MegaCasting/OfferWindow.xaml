@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="OfferWindow" MinHeight="480" MinWidth="400" MaxHeight="480" MaxWidth="400">
+        Title="OfferWindow" MinHeight="480" MinWidth="400">
     <Grid>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="180"/>
@@ -13,19 +13,19 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
@@ -37,16 +37,16 @@
             <Border Grid.Column="0" Grid.Row="1" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Domaine de métier :</Label>
             </Border>
-            <ComboBox Grid.Column="1" Grid.Row="1" x:Name="JobDomainComboBox" ItemsSource="{Binding Path=JobDomains.JobDomains}" 
+        <ComboBox Grid.Column="1" Grid.Row="1" x:Name="JobDomainComboBox" ItemsSource="{Binding Path=JobDomains}"  SelectedItem="{Binding Offer.Job.JobDomain}"
                 DisplayMemberPath="Label" />
 
             <Border Grid.Column="0" Grid.Row="2" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Métier :</Label>
             </Border>
-            <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs.Jobs}" 
+            <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}"  SelectedItem="{Binding Offer.Job}"
                 DisplayMemberPath="Label" />
 
-            <Border Grid.Column="0" Grid.Row="3" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
+            <Border Grid.Column="0" Grid.Row="3" CornerRadius="8" Style="{StaticResource BorderForTextBox}" >
                 <Label Style="{StaticResource LabelForTextBox}">N° Offre :</Label>
             </Border>
             <TextBox Grid.Column="1" Grid.Row="3" x:Name="ReferenceTextBox" Text="{Binding Path=Offer.Reference, UpdateSourceTrigger=Explicit}" />
@@ -59,7 +59,7 @@
             <Border Grid.Column="0" Grid.Row="5" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Date de début :</Label>
             </Border>
-            <DatePicker Grid.Column="1" Grid.Row="5" x:Name="DateStartPublicationDatePicker" Text="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" />
+            <DatePicker Grid.Column="1" Grid.Row="5" x:Name="DateStartPublicationDatePicker" SelectedDate="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="6" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Durée de l'offre :</Label>
@@ -69,7 +69,7 @@
             <Border Grid.Column="0" Grid.Row="7" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Date de début du contrat :</Label>
             </Border>
-            <DatePicker Grid.Column="1" Grid.Row="7" x:Name="DateStartContractDatePicker" Text="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}" />
+        <DatePicker Grid.Column="1" Grid.Row="7" x:Name="DateStartContractDatePicker" SelectedDate="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}" />
 
             <Border Grid.Column="0" Grid.Row="8" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
                 <Label Style="{StaticResource LabelForTextBox}">Nombre de postes :</Label>
