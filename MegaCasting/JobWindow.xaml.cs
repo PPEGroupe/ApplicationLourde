@@ -35,5 +35,17 @@ namespace MegaCasting
             InitializeComponent();
         }
         #endregion
+
+        #region Boutons
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
+
+        private void ButtonValidate_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+        #endregion
     }
 }
