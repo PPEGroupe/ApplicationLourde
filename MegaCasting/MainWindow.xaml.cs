@@ -262,28 +262,38 @@ namespace MegaCasting
         #region Boutons Métier
         private void ButtonAddJob_Click(object sender, RoutedEventArgs e)
         {
+            JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
             Job job = new Job();
             JobWindow jobWindow = new JobWindow(db);
 
-            jobWindow.DataContext = job;
-            jobWindow.ShowDialog();
-
-            if (jobWindow.DialogResult == true)
+            if (jobDomain != null)
             {
-                Jobs.Add(job);
-                db.Job.Add(job);
+                job.IdJobDomain = jobDomain.Identifier;
+                jobWindow.DataContext = job;
+                jobWindow.ShowDialog();
 
-                db.SaveChanges();
+                if (jobWindow.DialogResult == true)
+                {
+                    Jobs.Add(job);
+                    db.Job.Add(job);
+
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un domaine de métier.");
             }
         }
 
         private void ButtonUpdateJob_Click(object sender, RoutedEventArgs e)
         {
+            JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
             Job job = (Job)ListJob.SelectedItem;
 
             if (job != null)
             {
-            JobWindow jobWindow = new JobWindow(db);
+                JobWindow jobWindow = new JobWindow(db);
                 jobWindow.DataContext = job;
                 jobWindow.ShowDialog();
 
@@ -294,7 +304,7 @@ namespace MegaCasting
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un domaine de métier.");
+                MessageBox.Show("Veuillez sélectionner un métier.");
             }
         }
 
