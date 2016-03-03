@@ -44,6 +44,8 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            LabelTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
             this.DialogResult = true;
         }
         #endregion
