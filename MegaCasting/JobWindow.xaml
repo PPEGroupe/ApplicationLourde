@@ -5,31 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="JobWindow" MinHeight="180" MinWidth="400" MaxHeight="180" MaxWidth="400">
+        Title="JobWindow" MinHeight="165" MinWidth="400" MaxHeight="165" MaxWidth="400">
     <Grid>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" Grid.Row="0" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
-            <Label Style="{StaticResource LabelForTextBox}">Domaine de métier :</Label>
-        </Border>
+        <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}">Domaine de métier :</Label>
         <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding JobDomain.Label}" />
 
-        <Border Grid.Column="0" Grid.Row="1" CornerRadius="8" Style="{StaticResource BorderForTextBox}">
-            <Label Style="{StaticResource LabelForTextBox}">Métier :</Label>
-        </Border>
+        <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelForTextBox}">Métier :</Label>
         <TextBox Grid.Column="1" Grid.Row="1" x:Name="LabelTextBox" Text="{Binding Label, UpdateSourceTrigger=Explicit}" />
 
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,0,0,0">
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource StackPanelForButtons}">
             <Button Click="ButtonCancel_Click">Annuler</Button>
             <Button Click="ButtonValidate_Click">Valider</Button>
         </StackPanel>

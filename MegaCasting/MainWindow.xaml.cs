@@ -107,7 +107,7 @@ namespace MegaCasting
             if (client != null)
             {
                 DeleteWindow deleteWindow = new DeleteWindow();
-
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le client " + client.Company + " ?";
                 deleteWindow.ShowDialog();
 
                 // tester si la fenetre deleteWindow renvois un vrai
@@ -188,7 +188,7 @@ namespace MegaCasting
             if (offer != null)
             {
                 DeleteWindow deleteWindow = new DeleteWindow();
-
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer l'offre n°" + offer.Reference + " ?";
                 deleteWindow.ShowDialog();
 
                 // tester si la fenetre deleteWindow renvois un vrai
@@ -208,7 +208,7 @@ namespace MegaCasting
             else
             {
                 // Afficher le message d'erreur 
-                MessageBox.Show("Vous n'avez séléctionné aucune offre.");
+                MessageBox.Show("Veuillez sélectionner une offre.");
             }
         }
         #endregion
@@ -254,7 +254,28 @@ namespace MegaCasting
 
         private void ButtonDeleteJobDomain_Click(object sender, RoutedEventArgs e)
         {
+            JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
 
+            if (jobDomain != null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le domaine de métier " + jobDomain.Label + " ?";
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
+                {
+                    db.JobDomain.Remove(db.JobDomain.First(dbJobDomain => dbJobDomain.Identifier == jobDomain.Identifier));
+                    JobDomains.Remove(jobDomain);
+                    
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Veuillez sélectionner un domaine de métier.");
+            }
         }
         #endregion
 
@@ -309,7 +330,28 @@ namespace MegaCasting
 
         private void ButtonDeleteJob_Click(object sender, RoutedEventArgs e)
         {
+            Job job = (Job)ListJob.SelectedItem;
 
+            if (job!= null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le métier " + job.Label + " ?";
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
+                {
+                    db.Job.Remove(db.Job.First(dbJob => dbJob.Identifier == job.Identifier));
+                    Jobs.Remove(job);
+
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Veuillez sélectionner un métier.");
+            }
         }
         #endregion
 

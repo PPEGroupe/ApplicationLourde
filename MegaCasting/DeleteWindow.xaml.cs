@@ -27,6 +27,7 @@ namespace MegaCasting
         #region Attributs
         private MegaCastingEntities db = new MegaCastingEntities();
         public ObservableCollection<Client> Clients { get; set; }
+        public string Description { get; set; }
         #endregion
 
         #region Constructeur

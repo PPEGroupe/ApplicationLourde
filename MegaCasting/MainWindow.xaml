@@ -22,10 +22,10 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" x:Name="ListClient" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding Path=Clients}" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"        Binding="{Binding Company}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
@@ -37,7 +37,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
                         <Button Content="Ajouter" Click="ButtonAddClient_Click"/>
                         <Button Content="Modifier" Click="ButtonUpdateClient_Click"/>
                         <Button Content="Supprimer" Click="ButtonDeleteClient_Click"/>
@@ -50,10 +50,10 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" x:Name="ListOffer" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding Path=Offers}" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" x:Name="ListOffer" ItemsSource="{Binding Path=Offers}">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"                    Binding="{Binding Client.Company}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Métier"                     Binding="{Binding Job.Label}"/>
@@ -70,7 +70,7 @@
                             <DataGridTextColumn  MinWidth="70" Header="Code Postal"                 Binding="{Binding ZipCode}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
                         <Button Content="Ajouter" Click="ButtonAddOffer_Click"/>
                         <Button Content="Modifier" Click="ButtonUpdateOffer_Click"/>
                         <Button Content="Supprimer" Click="ButtonDeleteOffer_Click"/>
@@ -83,35 +83,36 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListJobDomain" ItemsSource="{Binding Path=JobDomains}" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" SelectedCellsChanged="ListJobDomain_SelectedCellsChanged">
+                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListJobDomain" ItemsSource="{Binding Path=JobDomains}" SelectedCellsChanged="ListJobDomain_SelectedCellsChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="400" Header="Domaine Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0">
-                        <Button Style="{StaticResource Tight}" Content="Ajouter" Click="ButtonAddJobDomain_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Modifier" Click="ButtonUpdateJobDomain_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Supprimer" Click="ButtonDeleteJobDomain_Click"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource StackPanelForButtons}">
+                        <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddJobDomain_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdateJobDomain_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteJobDomain_Click"/>
                     </StackPanel>
 
-                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Path=Jobs}" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Path=Jobs}">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="400" Header="Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
-                        <Button Style="{StaticResource Tight}" Content="Ajouter" Click="ButtonAddJob_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Modifier" Click="ButtonUpdateJob_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Supprimer" Click="ButtonDeleteJob_Click"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddJob_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdateJob_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteJob_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
