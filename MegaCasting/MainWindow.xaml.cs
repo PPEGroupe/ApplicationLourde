@@ -142,6 +142,8 @@ namespace MegaCasting
             offerDataContext.Offer = offer;
             offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
             offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
+
+            offerWindow.DataContext = offerDataContext;
             offerWindow.ShowDialog();
 
             if (offerWindow.DialogResult == true)
