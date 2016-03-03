@@ -44,7 +44,6 @@ namespace MegaCasting
                 // Instancie les listes de classes
                 this.Clients         = new ObservableCollection<Client>(db.Client.ToList());
                 this.Offers          = new ObservableCollection<Offer>(db.Offer.ToList());
-                this.Jobs            = new ObservableCollection<Job>(db.Job.ToList());
                 this.JobDomains      = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
                 this.Partners        = new ObservableCollection<Partner>(db.Partner.ToList());
                 this.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
@@ -301,5 +300,20 @@ namespace MegaCasting
 
         }
         #endregion
+
+        #region Selection table
+
+        private void ListJobDomain_Selected(object sender, RoutedEventArgs e)
+        {            
+        }
+
+
+        #endregion
+
+        private void ListJobDomain_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            JobDomain jobdomain = (JobDomain)ListJobDomain.SelectedItem;
+            this.Jobs = new ObservableCollection<Job>(db.Job.Where(dbJob => dbJob.IdJobDomain == jobdomain.Identifier).ToList());
+        }
     }
 }

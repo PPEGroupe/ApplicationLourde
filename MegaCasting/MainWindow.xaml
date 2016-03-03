@@ -90,9 +90,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListJobDomain" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListJobDomain" ItemsSource="{Binding Path=JobDomains}" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" SelectedCellsChanged="ListJobDomain_SelectedCellsChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn MinWidth="400" Header="Domaine Métier"/>
+                            <DataGridTextColumn MinWidth="400" Header="Domaine Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     
@@ -101,10 +101,10 @@
                         <Button Style="{StaticResource Tight}" Content="Modifier" Click="ButtonUpdateJobDomain_Click"/>
                         <Button Style="{StaticResource Tight}" Content="Supprimer" Click="ButtonDeleteJobDomain_Click"/>
                     </StackPanel>
-                    
-                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
+
+                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Path=Jobs}" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn MinWidth="400" Header="Métier"/>
+                            <DataGridTextColumn MinWidth="400" Header="Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     
