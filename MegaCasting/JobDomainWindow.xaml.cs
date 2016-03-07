@@ -25,6 +25,7 @@ namespace MegaCasting
         private MegaCastingEntities db;
         public ObservableCollection<JobDomain> JobDomains { get; set; }
         public ObservableCollection<Job> Jobs { get; set; }
+
         #endregion
 
         #region Constructeur
