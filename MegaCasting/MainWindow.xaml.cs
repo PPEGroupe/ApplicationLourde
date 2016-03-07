@@ -360,6 +360,7 @@ namespace MegaCasting
         {
             JobDomain jobdomain = (JobDomain)ListJobDomain.SelectedItem;
 
+
             if (jobdomain != null)
             {
                 ObservableCollection<Job> temp = new ObservableCollection<Job>(db.Job.Where(dbJob => dbJob.IdJobDomain == jobdomain.Identifier).ToList());
@@ -372,6 +373,6 @@ namespace MegaCasting
                 }
             }
         }
-        #endregion
+        #endregion  
     }
 }
