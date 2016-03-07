@@ -40,15 +40,28 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text)
+                ||String.IsNullOrWhiteSpace(this.WebSiteTextBox.Text)
+                ||String.IsNullOrWhiteSpace(this.EmailTextBox.Text)
+                ||String.IsNullOrWhiteSpace(this.PhoneNumberTextBox.Text)
+                ||String.IsNullOrWhiteSpace(this.FaxTextBox.Text)
+                ||String.IsNullOrWhiteSpace(this.AddressTextBox.Text)
+                ||String.IsNullOrWhiteSpace(this.ZipCodeTextBox.Text))
+            {
+                MessageBox.Show("Veuillez remplir tous les champs avant de valider");
+            }
+            else
+            {
+                CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
-            this.DialogResult = true;
+                this.DialogResult = true;
+            }  
         }
         #endregion
     }

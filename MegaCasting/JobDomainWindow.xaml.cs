@@ -45,9 +45,15 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            LabelTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-
-            this.DialogResult = true;
+            if (String.IsNullOrWhiteSpace(this.LabelTextBox.Text))
+            {
+                MessageBox.Show("Veuillez remplir tous les champs avant de valider");
+            }
+            else
+            {
+                LabelTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                this.DialogResult = true;
+            }
         }
         #endregion
     }
