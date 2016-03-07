@@ -363,12 +363,14 @@ namespace MegaCasting
             JobDomain jobdomain = (JobDomain)ListJobDomain.SelectedItem;
 
 
+
             if (jobdomain != null)
             {
-                this.Jobs = new ObservableCollection<Job>(db.Job.Where(dbJob => dbJob.IdJobDomain == jobdomain.Identifier).ToList());
-                Binding binding1 = new Binding();
-                binding1.Source = Jobs;
-                ListJob.Items.Refresh();
+                this.Jobs = new ObservableCollection<Job>(db.Job.Where(x => x.IdJobDomain == jobdomain.Identifier).ToList());
+               
+                //Binding binding1 = new Binding();
+                //binding1.Source = Jobs;
+                //ListJob.Items.Refresh();
             }
             else
             {
@@ -376,11 +378,7 @@ namespace MegaCasting
             }
         }
 
-        #endregion
-
-        
-
-        
+        #endregion  
  
     }
 }
