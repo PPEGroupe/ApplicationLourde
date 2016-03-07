@@ -45,9 +45,10 @@ namespace MegaCasting
                 this.Clients         = new ObservableCollection<Client>(db.Client.ToList());
                 this.Offers          = new ObservableCollection<Offer>(db.Offer.ToList());
                 this.JobDomains      = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
-                this.Jobs            = new ObservableCollection<Job>(db.Job.ToList());
                 this.Partners        = new ObservableCollection<Partner>(db.Partner.ToList());
                 this.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
+
+                this.Jobs = new ObservableCollection<Job>();
             }
             catch (Exception)
             {
@@ -357,28 +358,23 @@ namespace MegaCasting
         #endregion
 
         #region Selection table
-
         private void ListJobDomain_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             JobDomain jobdomain = (JobDomain)ListJobDomain.SelectedItem;
 
 
-
             if (jobdomain != null)
             {
-                this.Jobs = new ObservableCollection<Job>(db.Job.Where(x => x.IdJobDomain == jobdomain.Identifier).ToList());
-               
-                //Binding binding1 = new Binding();
-                //binding1.Source = Jobs;
-                //ListJob.Items.Refresh();
-            }
-            else
-            {
-                MessageBox.Show(" ...");
+                ObservableCollection<Job> temp = new ObservableCollection<Job>(db.Job.Where(dbJob => dbJob.IdJobDomain == jobdomain.Identifier).ToList());
+
+                Jobs.Clear();
+
+                foreach (Job job in temp)
+                {
+                    Jobs.Add(job);
+                }
             }
         }
-
         #endregion  
- 
     }
 }

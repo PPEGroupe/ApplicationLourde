@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MegaCasting"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
+        
         <!--Style appliqué sur les labels -->
         <Style TargetType="Label" x:Key="LabelForTextBox">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -81,13 +81,27 @@
             <Setter Property="Cursor" Value="Hand" />
         </Style>
 
-
         <Style TargetType="DataGridCell">
             <Setter Property="Height" Value="30" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontSize" Value="12" />
         </Style>
-        
+
+        <Style TargetType="{x:Type DataGridCell}" x:Key="DataGridCellCenter">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="5,5,5,5" />
+            <Setter Property="FontFamily" Value="Century Gothic" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--Style appliqué sur les StackPanels -->
         <Style TargetType="StackPanel" x:Key="StackPanelForButtons">
             <Setter Property="Orientation" Value="Horizontal" />
@@ -139,25 +153,5 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#CCC"/>
         </Style>
-
-        <Style x:Key="DataGridCellCenter"
-        TargetType="{x:Type DataGridCell}">
-            <Setter Property="Height" Value="30" />
-            <Setter Property="Padding" Value="5,5,5,5" />
-            <Setter Property="FontFamily" Value="Century Gothic" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Margin" Value="5,0,5,0"/>
-            <Setter Property="Template">
-
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
     </Application.Resources>
 </Application>
