@@ -95,6 +95,7 @@
     <Compile Include="DeleteWindow.xaml.cs">
       <DependentUpon>DeleteWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JobDataContext.cs" />
     <Compile Include="JobDomainWindow.xaml.cs">
       <DependentUpon>JobDomainWindow.xaml</DependentUpon>
     </Compile>

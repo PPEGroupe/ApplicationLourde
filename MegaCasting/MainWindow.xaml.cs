@@ -284,27 +284,22 @@ namespace MegaCasting
         #region Boutons Métier
         private void ButtonAddJob_Click(object sender, RoutedEventArgs e)
         {
-            JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
             Job job = new Job();
+            job.JobDomain = (JobDomain)ListJobDomain.SelectedItem;
+            JobDataContext jobDataContext = new JobDataContext();
+            jobDataContext.Job = job;
+            jobDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
             JobWindow jobWindow = new JobWindow(db);
+            
+            jobWindow.DataContext = jobDataContext;
+            jobWindow.ShowDialog();
 
-            if (jobDomain != null)
+            if (jobWindow.DialogResult == true)
             {
-                job.IdJobDomain = jobDomain.Identifier;
-                jobWindow.DataContext = job;
-                jobWindow.ShowDialog();
+                Jobs.Add(job);
+                db.Job.Add(job);
 
-                if (jobWindow.DialogResult == true)
-                {
-                    Jobs.Add(job);
-                    db.Job.Add(job);
-
-                    db.SaveChanges();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Veuillez sélectionner un domaine de métier.");
+                db.SaveChanges();
             }
         }
 
@@ -312,11 +307,14 @@ namespace MegaCasting
         {
             JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
             Job job = (Job)ListJob.SelectedItem;
+            JobDataContext jobDataContext = new JobDataContext();
+            jobDataContext.Job = job;
+            jobDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
 
             if (job != null)
             {
                 JobWindow jobWindow = new JobWindow(db);
-                jobWindow.DataContext = job;
+                jobWindow.DataContext = jobDataContext;
                 jobWindow.ShowDialog();
 
                 if (jobWindow.DialogResult == true)
