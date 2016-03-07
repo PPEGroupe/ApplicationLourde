@@ -25,7 +25,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}">
+                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}" CellStyle="{StaticResource DataGridCellCenter}">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"        Binding="{Binding Company}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
@@ -53,7 +53,7 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Grid.Row="0" x:Name="ListOffer" ItemsSource="{Binding Path=Offers}">
+                    <DataGrid Grid.Row="0" x:Name="ListOffer" ItemsSource="{Binding Path=Offers}" CellStyle="{StaticResource DataGridCellCenter}">
                         <DataGrid.Columns>
                             <DataGridTextColumn  MinWidth="100" Header="Société"                    Binding="{Binding Client.Company}"/>
                             <DataGridTextColumn  MinWidth="100" Header="Métier"                     Binding="{Binding Job.Label}"/>
@@ -91,9 +91,12 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListJobDomain" ItemsSource="{Binding Path=JobDomains}" SelectedCellsChanged="ListJobDomain_SelectedCellsChanged">
+                    <DataGrid  Grid.Row="0"  Grid.Column="0" x:Name="ListJobDomain" ItemsSource="{Binding Path=JobDomains}" SelectedCellsChanged="ListJobDomain_SelectedCellsChanged" CellStyle="{StaticResource DataGridCellCenter}">
+                        
                         <DataGrid.Columns>
-                            <DataGridTextColumn MinWidth="400" Header="Domaine Métier" Binding="{Binding Label}"/>
+                            
+                            <DataGridTextColumn  MinWidth="390" Header="Domaine Métier" Binding="{Binding Label}" />
+                            
                         </DataGrid.Columns>
                     </DataGrid>
 
@@ -103,7 +106,7 @@
                         <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteJobDomain_Click"/>
                     </StackPanel>
 
-                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Path=Jobs}">
+                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Path=Jobs}" CellStyle="{StaticResource DataGridCellCenter}">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="400" Header="Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
