@@ -103,7 +103,7 @@
                         <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteJobDomain_Click"/>
                     </StackPanel>
 
-                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Jobs , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"   CellStyle="{StaticResource DataGridCellCenter}">
+                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListJob" ItemsSource="{Binding Jobs  }"   CellStyle="{StaticResource DataGridCellCenter}">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="400" Header="Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
