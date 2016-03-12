@@ -260,17 +260,26 @@ namespace MegaCasting
 
             if (jobDomain != null)
             {
-                DeleteWindow deleteWindow = new DeleteWindow();
-                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le domaine de métier " + jobDomain.Label + " ?";
-                deleteWindow.ShowDialog();
+                int numberJobs = db.Job.Count(dbJob => dbJob.IdJobDomain == jobDomain.Identifier);
 
-                // tester si la fenetre deleteWindow renvois un vrai
-                if (deleteWindow.DialogResult == true)
+                if (numberJobs == 0)
                 {
-                    db.JobDomain.Remove(db.JobDomain.First(dbJobDomain => dbJobDomain.Identifier == jobDomain.Identifier));
-                    JobDomains.Remove(jobDomain);
-                    
-                    db.SaveChanges();
+                    DeleteWindow deleteWindow = new DeleteWindow();
+                    deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le domaine de métier " + jobDomain.Label + " ?";
+                    deleteWindow.ShowDialog();
+
+                    // tester si la fenetre deleteWindow renvois un vrai
+                    if (deleteWindow.DialogResult == true)
+                    {
+                        db.JobDomain.Remove(db.JobDomain.First(dbJobDomain => dbJobDomain.Identifier == jobDomain.Identifier));
+                        JobDomains.Remove(jobDomain);
+
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ce domaine de métier contient un ou plusieurs métier. Impossible de le supprimer.");
                 }
             }
             else
@@ -358,12 +367,12 @@ namespace MegaCasting
         #region Selection table
         private void ListJobDomain_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            JobDomain jobdomain = (JobDomain)ListJobDomain.SelectedItem;
+            JobDomain jobDomain = (JobDomain)ListJobDomain.SelectedItem;
 
 
-            if (jobdomain != null)
+            if (jobDomain != null)
             {
-                ObservableCollection<Job> temp = new ObservableCollection<Job>(db.Job.Where(dbJob => dbJob.IdJobDomain == jobdomain.Identifier).ToList());
+                ObservableCollection<Job> temp = new ObservableCollection<Job>(db.Job.Where(dbJob => dbJob.IdJobDomain == jobDomain.Identifier).ToList());
 
                 Jobs.Clear();
 
