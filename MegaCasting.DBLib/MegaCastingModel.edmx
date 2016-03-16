@@ -52,7 +52,7 @@
           <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IdTypeOfContrat" Type="bigint" Nullable="false" />
+          <Property Name="IdTypeOfContract" Type="bigint" Nullable="false" />
           <Property Name="IdJob" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="bigint" Nullable="false" />
         </EntityType>
@@ -69,7 +69,7 @@
           <Key>
             <PropertyRef Name="Identifier" />
           </Key>
-          <Property Name="Identifier" Type="bigint" Nullable="false" />
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Label" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <Association Name="FK_Job_JobDomain">
@@ -116,7 +116,7 @@
               <PropertyRef Name="Identifier" />
             </Principal>
             <Dependent Role="Offer">
-              <PropertyRef Name="IdTypeOfContrat" />
+              <PropertyRef Name="IdTypeOfContract" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -204,7 +204,12 @@
             <End Role="JobDomain" EntitySet="JobDomain" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
+          <EntitySet Name="Client" EntityType="MegaCastingModel.Client" />
           <EntitySet Name="Offer" EntityType="MegaCastingModel.Offer" />
+          <AssociationSet Name="FK_Offer_Client" Association="MegaCastingModel.FK_Offer_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
           <AssociationSet Name="FK_Offer_Job" Association="MegaCastingModel.FK_Offer_Job">
             <End Role="Job" EntitySet="Job" />
             <End Role="Offer" EntitySet="Offer" />
@@ -213,12 +218,22 @@
             <End Role="TypeOfContract" EntitySet="TypeOfContract" />
             <End Role="Offer" EntitySet="Offer" />
           </AssociationSet>
-          <EntitySet Name="Client" EntityType="MegaCastingModel.Client" />
-          <AssociationSet Name="FK_Offer_Client" Association="MegaCastingModel.FK_Offer_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Offer" EntitySet="Offer" />
-          </AssociationSet>
           </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_Client" FromRole="Client" ToRole="Offer" />
+        </EntityType>
         <EntityType Name="Offer">
           <Key>
             <PropertyRef Name="Identifier" />
@@ -237,13 +252,25 @@
           <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdTypeOfContrat" Type="Int64" Nullable="false" />
+          <Property Name="IdTypeOfContract" Type="Int64" Nullable="false" />
           <Property Name="IdJob" Type="Int64" Nullable="false" />
           <Property Name="IdClient" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="MegaCastingModel.FK_Offer_Client" FromRole="Offer" ToRole="Client" />
           <NavigationProperty Name="Job" Relationship="MegaCastingModel.FK_Offer_Job" FromRole="Offer" ToRole="Job" />
           <NavigationProperty Name="TypeOfContract" Relationship="MegaCastingModel.FK_Offer_TypeOfContract" FromRole="Offer" ToRole="TypeOfContract" />
-          <NavigationProperty Name="Client" Relationship="MegaCastingModel.FK_Offer_Client" FromRole="Offer" ToRole="Client" />
         </EntityType>
+        <Association Name="FK_Offer_Client">
+          <End Type="MegaCastingModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="MegaCastingModel.Offer" Role="Offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Offer_Job">
           <End Type="MegaCastingModel.Job" Role="Job" Multiplicity="1" />
           <End Type="MegaCastingModel.Offer" Role="Offer" Multiplicity="*" />
@@ -264,34 +291,7 @@
               <PropertyRef Name="Identifier" />
             </Principal>
             <Dependent Role="Offer">
-              <PropertyRef Name="IdTypeOfContrat" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="Identifier" />
-          </Key>
-          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_Client" FromRole="Client" ToRole="Offer" />
-        </EntityType>
-        <Association Name="FK_Offer_Client">
-          <End Type="MegaCastingModel.Client" Role="Client" Multiplicity="1" />
-          <End Type="MegaCastingModel.Offer" Role="Offer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Identifier" />
-            </Principal>
-            <Dependent Role="Offer">
-              <PropertyRef Name="IdClient" />
+              <PropertyRef Name="IdTypeOfContract" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,12 +336,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="MegaCastingModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Offer">
             <EntityTypeMapping TypeName="MegaCastingModel.Offer">
               <MappingFragment StoreEntitySet="Offer">
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
                 <ScalarProperty Name="IdJob" ColumnName="IdJob" />
-                <ScalarProperty Name="IdTypeOfContrat" ColumnName="IdTypeOfContrat" />
+                <ScalarProperty Name="IdTypeOfContract" ColumnName="IdTypeOfContract" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -355,21 +370,6 @@
                 <ScalarProperty Name="DateStartPublication" ColumnName="DateStartPublication" />
                 <ScalarProperty Name="Reference" ColumnName="Reference" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="MegaCastingModel.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -28,12 +28,12 @@ namespace MegaCasting.DBLib
         public string Address { get; set; }
         public string City { get; set; }
         public string ZipCode { get; set; }
-        public long IdTypeOfContrat { get; set; }
+        public long IdTypeOfContract { get; set; }
         public long IdJob { get; set; }
         public long IdClient { get; set; }
     
+        public virtual Client Client { get; set; }
         public virtual Job Job { get; set; }
         public virtual TypeOfContract TypeOfContract { get; set; }
-        public virtual Client Client { get; set; }
     }
 }

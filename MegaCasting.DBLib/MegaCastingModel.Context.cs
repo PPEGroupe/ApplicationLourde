@@ -29,7 +29,7 @@ namespace MegaCasting.DBLib
         public virtual DbSet<JobDomain> JobDomain { get; set; }
         public virtual DbSet<Partner> Partner { get; set; }
         public virtual DbSet<TypeOfContract> TypeOfContract { get; set; }
-        public virtual DbSet<Offer> Offer { get; set; }
         public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Offer> Offer { get; set; }
     }
 }

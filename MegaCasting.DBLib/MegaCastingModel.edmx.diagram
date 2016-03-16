@@ -10,11 +10,11 @@
         <EntityTypeShape EntityType="MegaCastingModel.Partner" Width="1.5" PointX="7.625" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MegaCastingModel.TypeOfContract" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="MegaCastingModel.FK_Job_JobDomain" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MegaCastingModel.Offer" Width="1.5" PointX="5.25" PointY="2.375" />
+        <EntityTypeShape EntityType="MegaCastingModel.Client" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MegaCastingModel.Offer" Width="1.5" PointX="5.625" PointY="0.75" />
+        <AssociationConnector Association="MegaCastingModel.FK_Offer_Client" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_Job" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_TypeOfContract" />
-        <EntityTypeShape EntityType="MegaCastingModel.Client" Width="1.5" PointX="3.375" PointY="0.75" />
-        <AssociationConnector Association="MegaCastingModel.FK_Offer_Client" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

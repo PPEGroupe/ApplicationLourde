@@ -139,10 +139,14 @@ namespace MegaCasting
         {
             Offer offer = new Offer();
             OfferWindow offerWindow = new OfferWindow(db);
+            offer.DateStartContract = DateTime.Today;
+            offer.DateStartPublication = DateTime.Today;
             OfferDataContext offerDataContext = new OfferDataContext();
             offerDataContext.Offer = offer;
+            offerDataContext.Clients = new ObservableCollection<Client>(db.Client.ToList());
             offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
             offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
+            offerDataContext.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
 
             offerWindow.DataContext = offerDataContext;
             offerWindow.ShowDialog();

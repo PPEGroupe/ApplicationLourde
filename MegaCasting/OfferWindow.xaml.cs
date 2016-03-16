@@ -44,8 +44,7 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
+            if (String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.JobComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.ReferenceTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.TitleTextBox.Text)
@@ -61,16 +60,16 @@ namespace MegaCasting
                 MessageBox.Show("Veuillez remplir tous les champs avant de valider");
             }
             else
-            { 
+            {
                 // Applique les modifications
-                CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                DateStartPublicationDatePicker.GetBindingExpression(DatePicker.TextProperty).UpdateSource();
+                DateStartPublicationDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
                 PublicationDurationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                DateStartContractDatePicker.GetBindingExpression(DatePicker.TextProperty).UpdateSource();
+                DateStartContractDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
                 JobQuantityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 JobDescriptionTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                ProfileDescriptionTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
