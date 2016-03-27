@@ -13,6 +13,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
+using MegaCasting.GeocodeService;
+using MegaCasting.SearchService;
+using MegaCasting.ImageryService;
+using MegaCasting.RouteService;
 
 namespace MegaCasting
 {
@@ -99,6 +104,215 @@ namespace MegaCasting
         }
         #endregion
 
+        #region Carte
+        private void Geocode_Click(object sender, RoutedEventArgs e)
+        {
+            labelResults.Content = GeocodeAddress(textInput.Text);
+        }
+
+        private String GeocodeAddress(string address)
+        {
+            string results = "";
+            string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
+            GeocodeRequest geocodeRequest = new GeocodeRequest();
+
+            // Set the credentials using a valid Bing Maps key
+            geocodeRequest.Credentials = new GeocodeService.Credentials();
+            geocodeRequest.Credentials.ApplicationId = key;
+
+            // Set the full address query
+            geocodeRequest.Query = address;
+
+            // Set the options to only return high confidence results 
+            ConfidenceFilter[] filters = new ConfidenceFilter[1];
+            filters[0] = new ConfidenceFilter();
+            filters[0].MinimumConfidence = GeocodeService.Confidence.High;
+
+            // Add the filters to the options
+            GeocodeOptions geocodeOptions = new GeocodeOptions();
+            geocodeOptions.Filters = filters;
+            geocodeRequest.Options = geocodeOptions;
+
+            // Make the geocode request
+            GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
+            GeocodeResponse geocodeResponse = geocodeService.Geocode(geocodeRequest);
+
+            if (geocodeResponse.Results.Length > 0)
+                results = String.Format("Latitude: {0}\nLongitude: {1}",
+                  geocodeResponse.Results[0].Locations[0].Latitude,
+                  geocodeResponse.Results[0].Locations[0].Longitude);
+            else
+                results = "Aucun résultats trouvés";
+
+            return results;
+        }
+
+        private GeocodeService.Location GeocodeAddressGetLocation(string address)
+        {
+
+            string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
+            GeocodeRequest geocodeRequest = new GeocodeRequest();
+
+            // Set the credentials using a valid Bing Maps key
+            geocodeRequest.Credentials = new GeocodeService.Credentials();
+            geocodeRequest.Credentials.ApplicationId = key;
+
+            // Set the full address query
+            geocodeRequest.Query = address;
+
+            // Set the options to only return high confidence results 
+            ConfidenceFilter[] filters = new ConfidenceFilter[1];
+            filters[0] = new ConfidenceFilter();
+            filters[0].MinimumConfidence = GeocodeService.Confidence.High;
+
+            // Add the filters to the options
+            GeocodeOptions geocodeOptions = new GeocodeOptions();
+            geocodeOptions.Filters = filters;
+            geocodeRequest.Options = geocodeOptions;
+
+            // Make the geocode request
+            GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
+            GeocodeResponse geocodeResponse = geocodeService.Geocode(geocodeRequest);
+
+            if (geocodeResponse.Results.Length > 0)
+                return geocodeResponse.Results[0].Locations[0];
+            else
+                return null;
+
+        }
+
+        private string ReverseGeocodePoint(string locationString)
+        {
+            string results = "";
+            string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
+            ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest();
+
+            // Set the credentials using a valid Bing Maps key
+            reverseGeocodeRequest.Credentials = new GeocodeService.Credentials();
+            reverseGeocodeRequest.Credentials.ApplicationId = key;
+
+            // Set the point to use to find a matching address
+            GeocodeService.Location point = new GeocodeService.Location();
+            string[] digits = locationString.Split(',');
+
+            point.Latitude = double.Parse(digits[0].Replace('.', ',').Trim());
+            point.Longitude = double.Parse(digits[1].Replace('.', ',').Trim());
+
+            reverseGeocodeRequest.Location = point;
+
+            // Make the reverse geocode request
+            GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
+            GeocodeResponse geocodeResponse = geocodeService.ReverseGeocode(reverseGeocodeRequest);
+
+            if (geocodeResponse.Results.Length > 0)
+                results = geocodeResponse.Results[0].DisplayName;
+            else
+                results = "No Results found";
+
+            return results;
+        }
+
+        private void ReverseGeocode_Click(object sender, RoutedEventArgs e)
+        {
+            labelResults.Content = ReverseGeocodePoint(textInput.Text);
+        }
+
+        private string GetImagery(string locationString)
+        {
+            string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
+            MapUriRequest mapUriRequest = new MapUriRequest();
+
+            // Set credentials using a valid Bing Maps key
+            mapUriRequest.Credentials = new ImageryService.Credentials();
+            mapUriRequest.Credentials.ApplicationId = key;
+
+            // Set the location of the requested image
+            mapUriRequest.Center = new ImageryService.Location();
+
+            GeocodeService.Location loc = this.GeocodeAddressGetLocation(locationString);
+
+            if (loc != null)
+            {
+                mapUriRequest.Center.Latitude = loc.Latitude;
+                mapUriRequest.Center.Longitude = loc.Longitude;
+            }
+            else
+            {
+                MessageBox.Show("Nous n'avons pas trouvé cette adresse.");
+            }
+
+            // Set the map style and zoom level
+            MapUriOptions mapUriOptions = new MapUriOptions();
+            mapUriOptions.Style = MapStyle.Road;
+            mapUriOptions.ZoomLevel = 15;
+
+            // Set the size of the requested image in pixels
+            mapUriOptions.ImageSize = new ImageryService.SizeOfint();
+            mapUriOptions.ImageSize.Height = 500;
+            mapUriOptions.ImageSize.Width = 500;
+
+            mapUriRequest.Options = mapUriOptions;
+
+            //Make the request and return the URI
+            ImageryServiceClient imageryService = new ImageryServiceClient("BasicHttpBinding_IImageryService");
+            MapUriResponse mapUriResponse = imageryService.GetMapUri(mapUriRequest);
+            return mapUriResponse.Uri;
+        }
+
+        //private string RequestImageMetadata(string locationString)
+        //{
+        //    string results = "";
+        //    string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
+
+        //    ImageryMetadataRequest metadataRequest = new ImageryMetadataRequest();
+
+
+
+        //    // Set credentials using a valid Bing Maps key
+        //    metadataRequest.Credentials = new ImageryService.Credentials();
+        //    metadataRequest.Credentials.ApplicationId = key;
+
+        //    // Set the imagery metadata request options
+        //    ImageryService.Location centerLocation = new ImageryService.Location();
+        //    string[] digits = locationString.Split(',');
+        //    centerLocation.Latitude = double.Parse(digits[0].Replace('.', ',').Trim());
+        //    centerLocation.Longitude = double.Parse(digits[1].Replace('.', ',').Trim());
+
+        //    metadataRequest.Options = new ImageryMetadataOptions();
+        //    metadataRequest.Options.Location = centerLocation;
+        //    metadataRequest.Options.ZoomLevel = 10;
+        //    metadataRequest.Style = MapStyle.Road;
+
+        //    // Make the imagery metadata request 
+        //    ImageryServiceClient imageryService = new ImageryServiceClient("BasicHttpBinding_IImageryService");
+        //    ImageryMetadataResponse metadataResponse =
+        //      imageryService.GetImageryMetadata(metadataRequest);
+
+        //    ImageryMetadataResult result = metadataResponse.Results[0];
+        //    if (metadataResponse.Results.Length > 0)
+        //        results = String.Format("Uri: {0}\nVintage: {1} to {2}\nZoom Levels: {3} to {4}",
+        //            result.ImageUri,
+        //            result.Vintage.From.ToString(),
+        //            result.Vintage.To.ToString(),
+        //            result.ZoomRange.From.ToString(),
+        //            result.ZoomRange.To.ToString());
+        //    else
+        //        results = "Metadata is not available";
+        //    return results;
+        //}
+
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            // Make label hidden and image visible
+            labelResults.Visibility = Visibility.Hidden;
+            imageResults.Visibility = Visibility.Visible;
+
+            //Get URI and set image
+            String imageURI = GetImagery(textInput.Text);
+            imageResults.Source = new BitmapImage(new Uri(imageURI));
+        }
+        #endregion
+
         #region Boutons
 
 
@@ -143,8 +357,6 @@ namespace MegaCasting
             }
         }
 
-        #endregion
-
-        
+        #endregion     
     }
 }

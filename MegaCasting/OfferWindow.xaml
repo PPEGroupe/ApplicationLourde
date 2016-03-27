@@ -95,6 +95,7 @@
                     <Button Click="ButtonValidate_Click">Valider</Button>
                 </StackPanel>
             </Grid>
+            
             <!-- Epingle Carte -->
             <Grid Name="Layer1" Grid.Column="1" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
@@ -114,13 +115,24 @@
                         </Button>
                         <TextBlock Padding="8" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" DockPanel.Dock="Left">Carte</TextBlock>
                     </DockPanel>
-                    <ListBox Padding="10" Grid.Row="1">
-                        <ListBoxItem>Button</ListBoxItem>
-                        <ListBoxItem>CheckBox</ListBoxItem>
-                        <ListBoxItem>ComboBox</ListBoxItem>
-                        <ListBoxItem>Label</ListBoxItem>
-                        <ListBoxItem>ListBox</ListBoxItem>
-                    </ListBox>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBox Grid.Row="0" x:Name="textInput" Margin="10" Text="1 Microsoft Way, Redmond, WA"/>
+                        <!--<Button Grid.Row="1" x:Name="Geocode" Margin="10" Content="Geocode" Click="Geocode_Click"/>-->
+                        <Button Grid.Row="2" x:Name="ReverseGeocode" Margin="10" Content="A partir de la localisation" Click="ReverseGeocode_Click"/>
+                        <Button Grid.Row="3" x:Name="search" Margin="10" Content="Chercher" Click="search_Click"/>
+                        <Label Grid.Row="4" x:Name="labelResults" Margin="10" Content="Résultat"/>
+                        <Image Grid.Row="4" x:Name="imageResults" Margin="10" Visibility="Hidden" Stretch="None"/>
+
+                    </Grid>
                 </Grid>
                 <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Left"/>
             </Grid>
