@@ -386,6 +386,40 @@ namespace MegaCasting
                 }
             }
         }
-        #endregion  
+        #endregion
+
+        #region Boutons Partenaire
+        private void ButtonAddPartner_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonUpdatePartner_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDeletePartner_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Boutons Type de contrat
+        private void ButtonAddTypeOfContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonUpdateTypeOfContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDeleteTypeOfContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
