@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion Offre" >
+        Title="Gestion Offre" MinHeight="620" MinWidth="510" MaxHeight="620" MaxWidth="510">
 
     <DockPanel>
         <StackPanel Name="ButtonBar" Orientation="Horizontal" DockPanel.Dock="Right">
@@ -53,6 +53,8 @@
 
                 <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Métier :</Label>
                 <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}"  SelectedItem="{Binding Offer.Job}" DisplayMemberPath="Label" />
+        <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}">Métier :</Label>
+        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}"  SelectedItem="{Binding Offer.Job}" DisplayMemberPath="Label" />
 
                 <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Type de contrat :</Label>
                 <ComboBox Grid.Column="1" Grid.Row="3" x:Name="TypeOfContractComboBox" ItemsSource="{Binding Path=TypeOfContracts}"  SelectedItem="{Binding Offer.TypeOfContract}" DisplayMemberPath="Label" />
