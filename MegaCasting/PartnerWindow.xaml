@@ -1,0 +1,36 @@
+﻿<Window x:Class="MegaCasting.PartnerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaCasting"
+        mc:Ignorable="d"
+        Title="Gestion partenaire" MinHeight="200" MinWidth="510" MaxHeight="200" MaxWidth="510">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}">URL :</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="URLTextBox" Text="{Binding Path=URL, UpdateSourceTrigger=Explicit}" />
+
+        <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelForTextBox}">Email :</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="EmailTextBox" Text="{Binding Path=Email, UpdateSourceTrigger=Explicit}" />
+
+        <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}">Mot de passe :</Label>
+        <PasswordBox Grid.Column="1" Grid.Row="2" x:Name="PasswordTextBox" />
+
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="3" Style="{StaticResource StackPanelForButtons}">
+            <Button Click="ButtonCancel_Click">Annuler</Button>
+            <Button Click="ButtonValidate_Click">Valider</Button>
+        </StackPanel>
+    </Grid>
+</Window>

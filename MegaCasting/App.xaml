@@ -17,10 +17,21 @@
             <Setter Property="FontFamily" Value="Century Gothic" />
             <Setter Property="FontSize" Value="14" />
         </Style>
-        
+
         <!--Style appliqué sur les TextBoxs -->
         <Style TargetType="TextBox">
             <Setter Property="Width" Value="200" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
+        <!--Style appliqué sur les PasswordBoxs -->
+        <Style TargetType="PasswordBox">
+            <Setter Property="Width" Value="300" />
             <Setter Property="Margin" Value="2" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5" />

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion de métier" MinHeight="165" MinWidth="400" MaxHeight="165" MaxWidth="400">
+        Title="Gestion de métier" MinHeight="165" MinWidth="510" MaxHeight="165" MaxWidth="510">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
