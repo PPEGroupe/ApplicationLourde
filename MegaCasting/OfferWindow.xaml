@@ -17,7 +17,7 @@
             </Button>
         </StackPanel>
 
-        <Grid Name="ParentGrid" Grid.IsSharedSizeScope="True">
+        <Grid Name="ParentGrid">
             <!-- Panel de fond Layer0 -->
             <Grid Name="Layer0" MouseEnter="Layer0_MouseEnter">
 
@@ -41,56 +41,56 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="310"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Société :</Label>
-                <ComboBox Grid.Column="1" Grid.Row="0"  x:Name="ClientComboBox" ItemsSource="{Binding Path=Clients}"  SelectedItem="{Binding Offer.Client}" DisplayMemberPath="Company" Margin="10,1,320,3" Width="Auto" />
+                <ComboBox Grid.Column="1" Grid.Row="0"  x:Name="ClientComboBox" ItemsSource="{Binding Path=Clients}"  SelectedItem="{Binding Offer.Client}" DisplayMemberPath="Company" />
 
                 <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Domaine de métier :</Label>
-                <ComboBox Grid.Column="1" Grid.Row="1" x:Name="JobDomainComboBox" ItemsSource="{Binding Path=JobDomains}"  SelectedItem="{Binding Offer.Job.JobDomain}" DisplayMemberPath="Label" Margin="10,1,320,3" Width="Auto" />
+                <ComboBox Grid.Column="1" Grid.Row="1" x:Name="JobDomainComboBox" ItemsSource="{Binding Path=JobDomains}"  SelectedItem="{Binding Offer.Job.JobDomain}" DisplayMemberPath="Label" />
 
                 <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Métier :</Label>
-                <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}"  SelectedItem="{Binding Offer.Job}" DisplayMemberPath="Label" Margin="10,1,320,3" Width="Auto" />
+                <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}"  SelectedItem="{Binding Offer.Job}" DisplayMemberPath="Label" />
 
                 <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Type de contrat :</Label>
-                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="TypeOfContractComboBox" ItemsSource="{Binding Path=TypeOfContracts}"  SelectedItem="{Binding Offer.TypeOfContract}" DisplayMemberPath="Label" Margin="10,1,320,3" Width="Auto" />
+                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="TypeOfContractComboBox" ItemsSource="{Binding Path=TypeOfContracts}"  SelectedItem="{Binding Offer.TypeOfContract}" DisplayMemberPath="Label" />
 
                 <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">N° Offre :</Label>
-                <TextBox Grid.Column="1" Grid.Row="4" x:Name="ReferenceTextBox" Text="{Binding Path=Offer.Reference, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="4" x:Name="ReferenceTextBox" Text="{Binding Path=Offer.Reference, UpdateSourceTrigger=Explicit}"/>
 
                 <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Nom de l'offre :</Label>
-                <TextBox Grid.Column="1" Grid.Row="5" x:Name="TitleTextBox" Text="{Binding Path=Offer.Title, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="TitleTextBox" Text="{Binding Path=Offer.Title, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Date de début :</Label>
-                <DatePicker Grid.Column="1" Grid.Row="6" x:Name="DateStartPublicationDatePicker" SelectedDate="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" Height="31" Margin="10,1,320,3" Width="Auto" />
+                <DatePicker Grid.Column="1" Grid.Row="6" x:Name="DateStartPublicationDatePicker" SelectedDate="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Durée de l'offre :</Label>
-                <TextBox Grid.Column="1" Grid.Row="7" x:Name="PublicationDurationTextBox" Text="{Binding Path=Offer.PublicationDuration, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="7" x:Name="PublicationDurationTextBox" Text="{Binding Path=Offer.PublicationDuration, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Date de début du contrat :</Label>
-                <DatePicker Grid.Column="1" Grid.Row="8" x:Name="DateStartContractDatePicker" SelectedDate="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}" Height="31" Margin="10,1,320,3" Width="Auto" />
+                <DatePicker Grid.Column="1" Grid.Row="8" x:Name="DateStartContractDatePicker" SelectedDate="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}"  />
 
                 <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Nombre de postes :</Label>
-                <TextBox Grid.Column="1" Grid.Row="9" x:Name="JobQuantityTextBox" Text="{Binding Path=Offer.JobQuantity, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="9" x:Name="JobQuantityTextBox" Text="{Binding Path=Offer.JobQuantity, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="10" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Description de l'offre :</Label>
-                <TextBox Grid.Column="1" Grid.Row="10" x:Name="JobDescriptionTextBox" Text="{Binding Path=Offer.JobDescription, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="10" x:Name="JobDescriptionTextBox" Text="{Binding Path=Offer.JobDescription, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="11" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Description du profil :</Label>
-                <TextBox Grid.Column="1" Grid.Row="11" x:Name="ProfileDescriptionTextBox" Text="{Binding Path=Offer.ProfileDescription, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="11" x:Name="ProfileDescriptionTextBox" Text="{Binding Path=Offer.ProfileDescription, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="12" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Adresse :</Label>
-                <TextBox Grid.Column="1" Grid.Row="12" x:Name="AddressTextBox" Text="{Binding Path=Offer.Address, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="12" x:Name="AddressTextBox" Text="{Binding Path=Offer.Address, UpdateSourceTrigger=Explicit}" LostFocus="UpdateMap_LostFocus"/>
 
                 <Label Grid.Column="0" Grid.Row="13" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Ville :</Label>
-                <TextBox Grid.Column="1" Grid.Row="13" x:Name="CityTextBox" Text="{Binding Path=Offer.City, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="13" x:Name="CityTextBox" Text="{Binding Path=Offer.City, UpdateSourceTrigger=Explicit}" LostFocus="UpdateMap_LostFocus" />
 
                 <Label Grid.Column="0" Grid.Row="14" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Code postal :</Label>
-                <TextBox Grid.Column="1" Grid.Row="14" x:Name="ZipCodeTextBox" Text="{Binding Path=Offer.ZipCode, UpdateSourceTrigger=Explicit}" Margin="10,1,320,3" Width="Auto" />
+                <TextBox Grid.Column="1" Grid.Row="14" x:Name="ZipCodeTextBox" Text="{Binding Path=Offer.ZipCode, UpdateSourceTrigger=Explicit}" LostFocus="UpdateMap_LostFocus" />
 
-                <StackPanel Grid.Row="15" Style="{StaticResource StackPanelForButtons}" Grid.Column="1" Margin="4,0,180,0" Width="360">
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="15" Style="{StaticResource StackPanelForButtons}" >
                     <Button Click="ButtonCancel_Click">Annuler</Button>
                     <Button Click="ButtonValidate_Click">Valider</Button>
                 </StackPanel>
@@ -118,14 +118,13 @@
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            
+
                         </Grid.RowDefinitions>
 
                         <Image Grid.Row="0" x:Name="imageResults" Margin="10" Stretch="None"/>
 
                     </Grid>
                 </Grid>
-                <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Left"/>
             </Grid>
         </Grid>
     </DockPanel>

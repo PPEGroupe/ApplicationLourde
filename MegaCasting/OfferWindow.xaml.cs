@@ -36,6 +36,8 @@ namespace MegaCasting
         private MegaCastingEntities db;
         public ObservableCollection<JobDomain> JobDomains { get; set; }
         public ObservableCollection<Job> Jobs { get; set; }
+        private String latitude;
+        private String longitude;
         #endregion
 
         #region Constructeur
@@ -50,7 +52,7 @@ namespace MegaCasting
         }
         #endregion
 
-        #region Panel
+        #region Calque
         // Basculement entre l'état épinglé et non épinglé du Panel1
         public void Panel1Pin_Click(object sender, RoutedEventArgs e)
         {
@@ -63,24 +65,37 @@ namespace MegaCasting
         // Montre le Panel 1 au survol de la souris sur ce boutton
         public void ButtonPanel1_MouseEnter(object sender, MouseEventArgs e)
         {
+            // Affiche le calque 1
+            UpdateMap();
+            Layer1.Visibility = Visibility.Visible;
+        }
+
+        // Met à jour la carte
+        private void UpdateMap()
+        {
             string address = AddressTextBox.Text;
             string city = CityTextBox.Text;
             string zipCode = ZipCodeTextBox.Text;
             //Get URI and set image
             String imageURI = GetImagery(address + " " + city + " " + zipCode);
             imageResults.Source = new BitmapImage(new Uri(imageURI));
-            Layer1.Visibility = Visibility.Visible;
+        }
+
+        // Met à jour la carte à la sortie des TextBox : addresse, ville, code postal
+        private void UpdateMap_LostFocus(object sender, RoutedEventArgs e)
+        {
+            UpdateMap();
         }
 
 
-        // Cache le Panel1 Sinon épinglé quand la souris entre en Layer 0
+        // Cache le Panel1 Sinon épinglé quand la souris entre en Calque 0
         public void Layer0_MouseEnter(object sender, RoutedEventArgs e)
         {
             if (ButtonPanel1.Visibility == Visibility.Visible)
             {
                 Layer1.Visibility = Visibility.Collapsed;
-            }                
-        } 
+            }
+        }
 
         // Epingle un Panel, qui cache le ButtonPanel correspondant 
         public void DockPanel(int paneNumber)
@@ -91,7 +106,7 @@ namespace MegaCasting
                 Panel1PinImage.Source = new BitmapImage(new Uri("pin.gif", UriKind.Relative));
 
                 // Ajoute la colonne clonée au Layer 0
-                Layer0.ColumnDefinitions.Add(column1CloneForLayer0);
+                // Layer0.ColumnDefinitions.Add(column1CloneForLayer0);
             }
         }
 
@@ -111,10 +126,8 @@ namespace MegaCasting
         #endregion
 
         #region Carte
-        
-        private String GeocodeAddress(string address)
+        private void GeocodeAddress(string address)
         {
-            string results = "";
             string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
             GeocodeRequest geocodeRequest = new GeocodeRequest();
 
@@ -140,18 +153,19 @@ namespace MegaCasting
             GeocodeResponse geocodeResponse = geocodeService.Geocode(geocodeRequest);
 
             if (geocodeResponse.Results.Length > 0)
-                results = String.Format("Latitude: {0}\nLongitude: {1}",
-                  geocodeResponse.Results[0].Locations[0].Latitude,
-                  geocodeResponse.Results[0].Locations[0].Longitude);
+            {
+                latitude = geocodeResponse.Results[0].Locations[0].Latitude.ToString();
+                longitude = geocodeResponse.Results[0].Locations[0].Longitude.ToString();
+            }
             else
-                results = "Aucun résultats trouvés";
-
-            return results;
+            {
+                latitude = null;
+                longitude = null;
+            }
         }
 
         private GeocodeService.Location GeocodeAddressGetLocation(string address)
         {
-
             string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
             GeocodeRequest geocodeRequest = new GeocodeRequest();
 
@@ -183,38 +197,6 @@ namespace MegaCasting
 
         }
 
-        private string ReverseGeocodePoint(string locationString)
-        {
-            string results = "";
-            string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
-            ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest();
-
-            // Set the credentials using a valid Bing Maps key
-            reverseGeocodeRequest.Credentials = new GeocodeService.Credentials();
-            reverseGeocodeRequest.Credentials.ApplicationId = key;
-
-            // Set the point to use to find a matching address
-            GeocodeService.Location point = new GeocodeService.Location();
-            string[] digits = locationString.Split(',');
-
-            point.Latitude = double.Parse(digits[0].Replace('.', ',').Trim());
-            point.Longitude = double.Parse(digits[1].Replace('.', ',').Trim());
-
-            reverseGeocodeRequest.Location = point;
-
-            // Make the reverse geocode request
-            GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-            GeocodeResponse geocodeResponse = geocodeService.ReverseGeocode(reverseGeocodeRequest);
-
-            if (geocodeResponse.Results.Length > 0)
-                results = geocodeResponse.Results[0].DisplayName;
-            else
-                results = "No Results found";
-
-            return results;
-        }
-
-
         private string GetImagery(string locationString)
         {
             string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
@@ -233,10 +215,6 @@ namespace MegaCasting
             {
                 mapUriRequest.Center.Latitude = loc.Latitude;
                 mapUriRequest.Center.Longitude = loc.Longitude;
-            }
-            else
-            {
-                MessageBox.Show("Nous n'avons pas trouvé cette adresse.");
             }
 
             // Set the map style and zoom level
@@ -257,57 +235,9 @@ namespace MegaCasting
             return mapUriResponse.Uri;
         }
 
-        //private string RequestImageMetadata(string locationString)
-        //{
-        //    string results = "";
-        //    string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
-
-        //    ImageryMetadataRequest metadataRequest = new ImageryMetadataRequest();
-
-
-
-        //    // Set credentials using a valid Bing Maps key
-        //    metadataRequest.Credentials = new ImageryService.Credentials();
-        //    metadataRequest.Credentials.ApplicationId = key;
-
-        //    // Set the imagery metadata request options
-        //    ImageryService.Location centerLocation = new ImageryService.Location();
-        //    string[] digits = locationString.Split(',');
-        //    centerLocation.Latitude = double.Parse(digits[0].Replace('.', ',').Trim());
-        //    centerLocation.Longitude = double.Parse(digits[1].Replace('.', ',').Trim());
-
-        //    metadataRequest.Options = new ImageryMetadataOptions();
-        //    metadataRequest.Options.Location = centerLocation;
-        //    metadataRequest.Options.ZoomLevel = 10;
-        //    metadataRequest.Style = MapStyle.Road;
-
-        //    // Make the imagery metadata request 
-        //    ImageryServiceClient imageryService = new ImageryServiceClient("BasicHttpBinding_IImageryService");
-        //    ImageryMetadataResponse metadataResponse =
-        //      imageryService.GetImageryMetadata(metadataRequest);
-
-        //    ImageryMetadataResult result = metadataResponse.Results[0];
-        //    if (metadataResponse.Results.Length > 0)
-        //        results = String.Format("Uri: {0}\nVintage: {1} to {2}\nZoom Levels: {3} to {4}",
-        //            result.ImageUri,
-        //            result.Vintage.From.ToString(),
-        //            result.Vintage.To.ToString(),
-        //            result.ZoomRange.From.ToString(),
-        //            result.ZoomRange.To.ToString());
-        //    else
-        //        results = "Metadata is not available";
-        //    return results;
-        //}
-
-        private void search_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
         #endregion
 
         #region Boutons
-
-
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
@@ -333,6 +263,9 @@ namespace MegaCasting
             else
             {
                 // Applique les modifications
+                OfferDataContext offerDataContext = (OfferDataContext)this.DataContext;
+                offerDataContext.Offer.Latitude = latitude;
+                offerDataContext.Offer.Longitude = longitude;
                 ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 DateStartPublicationDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
@@ -349,6 +282,7 @@ namespace MegaCasting
             }
         }
 
-        #endregion     
+        #endregion
+
     }
 }
