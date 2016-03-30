@@ -63,6 +63,12 @@ namespace MegaCasting
         // Montre le Panel 1 au survol de la souris sur ce boutton
         public void ButtonPanel1_MouseEnter(object sender, MouseEventArgs e)
         {
+            string address = AddressTextBox.Text;
+            string city = CityTextBox.Text;
+            string zipCode = ZipCodeTextBox.Text;
+            //Get URI and set image
+            String imageURI = GetImagery(address + " " + city + " " + zipCode);
+            imageResults.Source = new BitmapImage(new Uri(imageURI));
             Layer1.Visibility = Visibility.Visible;
         }
 
@@ -98,18 +104,14 @@ namespace MegaCasting
                 ButtonPanel1.Visibility = Visibility.Visible;
                 Panel1PinImage.Source = new BitmapImage(new Uri("pinHorizontal.gif", UriKind.Relative));
 
-                // Retire la colonne clonée au Layer 0 et 1
+                // Retire la colonne clonée au Layer 0
                 Layer0.ColumnDefinitions.Remove(column1CloneForLayer0);
             }
         }
         #endregion
 
         #region Carte
-        private void Geocode_Click(object sender, RoutedEventArgs e)
-        {
-            labelResults.Content = GeocodeAddress(textInput.Text);
-        }
-
+        
         private String GeocodeAddress(string address)
         {
             string results = "";
@@ -212,10 +214,6 @@ namespace MegaCasting
             return results;
         }
 
-        private void ReverseGeocode_Click(object sender, RoutedEventArgs e)
-        {
-            labelResults.Content = ReverseGeocodePoint(textInput.Text);
-        }
 
         private string GetImagery(string locationString)
         {
@@ -303,13 +301,7 @@ namespace MegaCasting
 
         private void search_Click(object sender, RoutedEventArgs e)
         {
-            // Make label hidden and image visible
-            labelResults.Visibility = Visibility.Hidden;
-            imageResults.Visibility = Visibility.Visible;
-
-            //Get URI and set image
-            String imageURI = GetImagery(textInput.Text);
-            imageResults.Source = new BitmapImage(new Uri(imageURI));
+            
         }
         #endregion
 
