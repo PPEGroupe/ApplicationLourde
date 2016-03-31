@@ -42,10 +42,10 @@ namespace MegaCasting
             try
             {
                 // Instancie les listes de classes
-                this.Clients         = new ObservableCollection<Client>(db.Client.ToList());
-                this.Offers          = new ObservableCollection<Offer>(db.Offer.ToList());
-                this.JobDomains      = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
-                this.Partners        = new ObservableCollection<Partner>(db.Partner.ToList());
+                this.Clients = new ObservableCollection<Client>(db.Client.ToList());
+                this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
+                this.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
+                this.Partners = new ObservableCollection<Partner>(db.Partner.ToList());
                 this.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
 
                 this.Jobs = new ObservableCollection<Job>();
@@ -102,7 +102,6 @@ namespace MegaCasting
 
         private void ButtonDeleteClient_Click(object sender, RoutedEventArgs e)
         {
-
             Client client = (Client)ListClient.SelectedItem;
 
             // Teste si la fenetre deleteWindow renvoi un vrai
@@ -133,7 +132,7 @@ namespace MegaCasting
             }
         }
         #endregion
-        
+
         #region Boutons Offre
         private void ButtonAddOffer_Click(object sender, RoutedEventArgs e)
         {
@@ -157,7 +156,6 @@ namespace MegaCasting
                 db.Offer.Add(offer);
 
                 db.SaveChanges();
-                
             }
         }
 
@@ -232,7 +230,7 @@ namespace MegaCasting
             {
                 JobDomains.Add(jobDomain);
                 db.JobDomain.Add(jobDomain);
-             
+
                 db.SaveChanges();
             }
         }
@@ -303,7 +301,7 @@ namespace MegaCasting
             jobDataContext.Job = job;
             jobDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
             JobWindow jobWindow = new JobWindow(db);
-            
+
             jobWindow.DataContext = jobDataContext;
             jobWindow.ShowDialog();
 
@@ -345,7 +343,7 @@ namespace MegaCasting
         {
             Job job = (Job)ListJob.SelectedItem;
 
-            if (job!= null)
+            if (job != null)
             {
                 DeleteWindow deleteWindow = new DeleteWindow();
                 deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le métier " + job.Label + " ?";
@@ -386,6 +384,148 @@ namespace MegaCasting
                 }
             }
         }
-        #endregion  
+        #endregion
+
+        #region Boutons Partenaire
+        private void ButtonAddPartner_Click(object sender, RoutedEventArgs e)
+        {
+            Partner partner = new Partner();
+            PartnerWindow partnerWindow = new PartnerWindow(db);
+
+            partnerWindow.DataContext = partner;
+            partnerWindow.ShowDialog();
+
+            if (partnerWindow.DialogResult == true)
+            {
+                Partners.Add(partner);
+                db.Partner.Add(partner);
+
+                db.SaveChanges();
+            }
+        }
+
+        private void ButtonUpdatePartner_Click(object sender, RoutedEventArgs e)
+        {
+            Partner partner = (Partner)ListPartner.SelectedItem;
+
+            if (partner != null)
+            {
+                PartnerWindow partnerWindow = new PartnerWindow(db);
+                partnerWindow.DataContext = partner;
+                partnerWindow.ShowDialog();
+
+                if (partnerWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un partenaire de diffusion.");
+            }
+        }
+
+        private void ButtonDeletePartner_Click(object sender, RoutedEventArgs e)
+        {
+            Partner partner = (Partner)ListPartner.SelectedItem;
+
+            if (partner != null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le partenaire " + partner.Email + " ?";
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
+                {
+                    // Si il'y a une offre séléctionée.             
+                    // supprimer l'offre de la base de donnée 
+                    db.Partner.Remove(db.Partner.First(dbPartner => dbPartner.Identifier == partner.Identifier));
+
+                    // supprimer le l'offre de la fenétre.
+                    Partners.Remove(partner);
+
+                    //Sauvegarder les changements.
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Veuillez sélectionner un partenaire.");
+            }
+        }
+        #endregion
+
+        #region Boutons Type de contrat
+        private void ButtonAddTypeOfContract_Click(object sender, RoutedEventArgs e)
+        {
+            TypeOfContract typeOfContract = new TypeOfContract();
+            TypeOfContractWindow typeOfContractWindow = new TypeOfContractWindow(db);
+
+            typeOfContractWindow.DataContext = typeOfContract;
+            typeOfContractWindow.ShowDialog();
+
+            if (typeOfContractWindow.DialogResult == true)
+            {
+                TypeOfContracts.Add(typeOfContract);
+                db.TypeOfContract.Add(typeOfContract);
+
+                db.SaveChanges();
+            }
+        }
+
+        private void ButtonUpdateTypeOfContract_Click(object sender, RoutedEventArgs e)
+        {
+            TypeOfContract typeOfContract = (TypeOfContract)ListTypeOfContract.SelectedItem;
+
+            if (typeOfContract != null)
+            {
+                TypeOfContractWindow typeOfContractWindow = new TypeOfContractWindow(db);
+                typeOfContractWindow.DataContext = typeOfContract;
+                typeOfContractWindow.ShowDialog();
+
+                if (typeOfContractWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un type de contrat.");
+            }
+        }
+
+        private void ButtonDeleteTypeOfContract_Click(object sender, RoutedEventArgs e)
+        {
+            TypeOfContract typeOfContract = (TypeOfContract)ListTypeOfContract.SelectedItem;
+
+            if (typeOfContract != null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le type de contrat " + typeOfContract.Label + " ?";
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
+                {
+                    // Si il'y a une offre séléctionée.             
+                    // supprimer l'offre de la base de donnée 
+                    db.TypeOfContract.Remove(db.TypeOfContract.First(dbTypeOfContract => dbTypeOfContract.Identifier == typeOfContract.Identifier));
+
+                    // supprimer le l'offre de la fenétre.
+                    TypeOfContracts.Remove(typeOfContract);
+
+                    //Sauvegarder les changements.
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Veuillez sélectionner un type de contrat.");
+            }
+        }
+        #endregion
     }
 }

@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PartnerWindow.xaml.cs">
+      <DependentUpon>PartnerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\GeocodeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="TypeOfContractWindows.xaml.cs">
+      <DependentUpon>TypeOfContractWindows.xaml</DependentUpon>
     </Compile>
     <Page Include="ClientWindow.xaml">
       <SubType>Designer</SubType>
@@ -132,6 +138,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OfferWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartnerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TypeOfContractWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,7 +16,7 @@
         <Image Grid.Row="0" MaxHeight="95" Margin="10,0,10,0" Source="header.png"/>
 
         <TabControl Grid.Row="1">
-            
+
             <!-- Onglet Client-->
             <TabItem Header="Client" MinWidth="150" Height="30">
                 <Grid>
@@ -77,7 +77,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            
+
             <!-- Onglet Métier-->
             <TabItem Header="Métier" MinWidth="150" Height="30">
                 <Grid>
@@ -85,7 +85,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -120,6 +120,50 @@
                         <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddJob_Click"/>
                         <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdateJob_Click"/>
                         <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteJob_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Partenaire et Type de contrat -->
+            <TabItem Header="Partenaires / Types de contrat" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListPartner" Width="400"
+                              ItemsSource="{Binding Path=Partners}" 
+                              CellStyle="{StaticResource DataGridCellCenter}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="URL"   Binding="{Binding URL}"/>
+                            <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource StackPanelForButtons}">
+                        <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddPartner_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdatePartner_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeletePartner_Click"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListTypeOfContract" Width="400"
+                              ItemsSource="{Binding Path=TypeOfContracts}" 
+                              CellStyle="{StaticResource DataGridCellCenter}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="Type de contrat" Binding="{Binding Label}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddTypeOfContract_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdateTypeOfContract_Click"/>
+                        <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteTypeOfContract_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
