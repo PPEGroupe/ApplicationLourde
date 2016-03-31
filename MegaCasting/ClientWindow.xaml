@@ -8,7 +8,7 @@
         Title="Gestion client" MinHeight="340" MinWidth="400" MaxHeight="340" MaxWidth="400">
     <Grid>
         <Grid.ColumnDefinitions >
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
