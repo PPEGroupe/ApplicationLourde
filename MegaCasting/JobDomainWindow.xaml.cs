@@ -45,6 +45,7 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            // Vérification de la validité des champs
             if (String.IsNullOrWhiteSpace(this.LabelTextBox.Text))
             {
                 MessageBox.Show("Veuillez remplir tous les champs avant de valider");

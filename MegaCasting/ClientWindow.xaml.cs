@@ -40,6 +40,7 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            // Vérification des champs vides
             if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text)
                 ||String.IsNullOrWhiteSpace(this.WebSiteTextBox.Text)
                 ||String.IsNullOrWhiteSpace(this.EmailTextBox.Text)
@@ -50,6 +51,7 @@ namespace MegaCasting
             {
                 MessageBox.Show("Veuillez remplir tous les champs avant de valider");
             }
+            // Mise à jour de la source
             else
             {
                 CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
