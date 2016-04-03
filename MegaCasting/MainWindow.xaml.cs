@@ -170,6 +170,9 @@ namespace MegaCasting
                 offerDataContext.Offer = offer;
                 offerDataContext.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
                 offerDataContext.Jobs = new ObservableCollection<Job>(db.Job.ToList());
+                offerDataContext.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
+                offerDataContext.Clients = new ObservableCollection<Client>(db.Client.ToList());
+
 
                 offerWindow.DataContext = offerDataContext;
                 offerWindow.ShowDialog();
