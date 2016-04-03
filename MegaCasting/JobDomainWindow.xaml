@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion Domaine de metier" MinHeight="130" MinWidth="510" MaxHeight="130" MaxWidth="510">
+        Title="Gestion | Domaine de metier" MinHeight="130" MinWidth="430" MaxHeight="130" MaxWidth="430">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

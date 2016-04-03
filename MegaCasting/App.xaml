@@ -31,7 +31,7 @@
 
         <!--Style appliqué sur les PasswordBoxs -->
         <Style TargetType="PasswordBox">
-            <Setter Property="Width" Value="300" />
+            <Setter Property="Width" Value="200" />
             <Setter Property="Margin" Value="2" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5" />

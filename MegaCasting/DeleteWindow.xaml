@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Supprimer un client" MinHeight="180" MinWidth="400" MaxHeight="180" MaxWidth="400">
+        Title="Demande de suppression" MinHeight="180" MinWidth="400" MaxHeight="180" MaxWidth="400">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="85"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 

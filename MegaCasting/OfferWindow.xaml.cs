@@ -57,9 +57,19 @@ namespace MegaCasting
         public void Panel1Pin_Click(object sender, RoutedEventArgs e)
         {
             if (ButtonPanel1.Visibility == Visibility.Collapsed)
+            {
                 UndockPanel(1);
+                this.MaxWidth = 600;
+                this.MinWidth = 600;
+                this.Width    = 600;
+            }
             else
+            {
+                this.MaxWidth = 1050;
+                this.MinWidth = 1050;
+                this.Width    = 1050;
                 DockPanel(1);
+            }
         }
 
         // Montre le Panel 1 au survol de la souris sur ce boutton
@@ -188,12 +198,27 @@ namespace MegaCasting
 
             // Make the geocode request
             GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-            GeocodeResponse geocodeResponse = geocodeService.Geocode(geocodeRequest);
+            GeocodeResponse geocodeResponse;
+            try
+            {
+                geocodeResponse = geocodeService.Geocode(geocodeRequest);
+            }
+            catch
+            {
+                MapLabelTextBox.Text = "Adresse non trouvée";
+                return null;
+            }
 
             if (geocodeResponse.Results.Length > 0)
+            {
+                MapLabelTextBox.Text = address;
                 return geocodeResponse.Results[0].Locations[0];
+            }
             else
+            {
+                MapLabelTextBox.Text = "Adresse non trouvée";
                 return null;
+            }
 
         }
 

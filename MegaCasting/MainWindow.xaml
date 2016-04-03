@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Client | MegaCasting" Height="500" Width="850" MinHeight="500" MinWidth="850">
+        Title="MegaCasting" Height="500" Width="850" MinHeight="500" MinWidth="850">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

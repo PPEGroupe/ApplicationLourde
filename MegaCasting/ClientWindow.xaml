@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion client" MinHeight="340" MinWidth="400" MaxHeight="400" MaxWidth="410">
+        Title="Gestion | Client" MinHeight="375" MinWidth="430" MaxHeight="375" MaxWidth="430">
     <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="200" />

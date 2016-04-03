@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion Offre" >
+        Title="Gestion Offre" MinHeight="620" MinWidth="600" MaxHeight="620" MaxWidth="600">
 
     <DockPanel>
         <StackPanel Name="ButtonBar" Orientation="Horizontal" DockPanel.Dock="Right">
@@ -113,12 +113,11 @@
                         <Button Width="26" Name="Panel1Pin" DockPanel.Dock="Right" Click="Panel1Pin_Click" Background="White">
                             <Image Name="Panel1PinImage" Source="pinHorizontal.gif"/>
                         </Button>
-                        <TextBlock Padding="8" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" DockPanel.Dock="Left">Carte</TextBlock>
+                        <TextBlock Padding="8" Name="MapLabelTextBox" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" DockPanel.Dock="Left"/>
                     </DockPanel>
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-
                         </Grid.RowDefinitions>
 
                         <Image Grid.Row="0" x:Name="imageResults" Margin="10" Stretch="None"/>
