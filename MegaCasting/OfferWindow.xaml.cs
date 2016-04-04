@@ -136,44 +136,6 @@ namespace MegaCasting
         #endregion
 
         #region Carte
-        private void GeocodeAddress(string address)
-        {
-            string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
-            GeocodeRequest geocodeRequest = new GeocodeRequest();
-
-            // Set the credentials using a valid Bing Maps key
-            geocodeRequest.Credentials = new GeocodeService.Credentials();
-            geocodeRequest.Credentials.ApplicationId = key;
-
-            // Set the full address query
-            geocodeRequest.Query = address;
-
-            // Set the options to only return high confidence results 
-            ConfidenceFilter[] filters = new ConfidenceFilter[1];
-            filters[0] = new ConfidenceFilter();
-            filters[0].MinimumConfidence = GeocodeService.Confidence.High;
-
-            // Add the filters to the options
-            GeocodeOptions geocodeOptions = new GeocodeOptions();
-            geocodeOptions.Filters = filters;
-            geocodeRequest.Options = geocodeOptions;
-
-            // Make the geocode request
-            GeocodeServiceClient geocodeService = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-            GeocodeResponse geocodeResponse = geocodeService.Geocode(geocodeRequest);
-
-            if (geocodeResponse.Results.Length > 0)
-            {
-                latitude = geocodeResponse.Results[0].Locations[0].Latitude.ToString();
-                longitude = geocodeResponse.Results[0].Locations[0].Longitude.ToString();
-            }
-            else
-            {
-                latitude = null;
-                longitude = null;
-            }
-        }
-
         private GeocodeService.Location GeocodeAddressGetLocation(string address)
         {
             string key = "l4o5yybDpLNG7xrsTmoP~A0DSZhcYTwcaKvEUgBi44g~AsAjqiCU7gZND03eLCfpdqNDGFXfMdzqXYLFVEGnFy1SgQSlDA8ld0BpbCgI4JsD";
@@ -211,12 +173,16 @@ namespace MegaCasting
 
             if (geocodeResponse.Results.Length > 0)
             {
+                latitude = geocodeResponse.Results[0].Locations[0].Latitude.ToString();
+                longitude = geocodeResponse.Results[0].Locations[0].Longitude.ToString();
                 MapLabelTextBox.Text = address;
                 return geocodeResponse.Results[0].Locations[0];
             }
             else
             {
                 MapLabelTextBox.Text = "Adresse non trouvée";
+                latitude = null;
+                longitude = null;
                 return null;
             }
 
