@@ -7,7 +7,7 @@
       <Diagram DiagramId="635d9d7b8dd641e9a60f6bc1495005da" Name="MegaCastingEntities">
         <EntityTypeShape EntityType="MegaCastingModel.Job" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MegaCastingModel.JobDomain" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MegaCastingModel.Partner" Width="1.5" PointX="7.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MegaCastingModel.Partner" Width="1.5" PointX="8.375" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="MegaCastingModel.TypeOfContract" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="MegaCastingModel.FK_Job_JobDomain" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MegaCastingModel.Client" Width="1.5" PointX="3.375" PointY="0.75" />
@@ -15,6 +15,8 @@
         <AssociationConnector Association="MegaCastingModel.FK_Offer_Client" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_Job" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_TypeOfContract" />
+        <EntityTypeShape EntityType="MegaCastingModel.Post" Width="1.5" PointX="8.375" PointY="0.5" />
+        <AssociationConnector Association="MegaCastingModel.FK_Post_Offer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

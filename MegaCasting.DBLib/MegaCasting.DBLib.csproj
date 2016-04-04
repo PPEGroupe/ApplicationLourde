@@ -82,6 +82,9 @@
     <Compile Include="Partner.cs">
       <DependentUpon>MegaCastingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Post.cs">
+      <DependentUpon>MegaCastingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeOfContract.cs">
       <DependentUpon>MegaCastingModel.tt</DependentUpon>

@@ -54,15 +54,30 @@ namespace MegaCasting
             // Mise à jour de la source
             else
             {
-                CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                Client client = (Client)this.DataContext;
 
-                this.DialogResult = true;
+                if (!String.IsNullOrWhiteSpace(client.Password)
+                    || (String.IsNullOrWhiteSpace(client.Password) && !String.IsNullOrWhiteSpace(PasswordTextBox.Password)))
+                {
+                    CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+                    if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
+                    {
+                        client.Password = PasswordTextBox.Password;
+                    }
+                    this.DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez remplir renseigner un mot de passe");
+                }
             }  
         }
         #endregion

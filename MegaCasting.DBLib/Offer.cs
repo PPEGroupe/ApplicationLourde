@@ -14,6 +14,12 @@ namespace MegaCasting.DBLib
     
     public partial class Offer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Offer()
+        {
+            this.Post = new ObservableCollection<Post>();
+        }
+    
         public long Identifier { get; set; }
         public string Title { get; set; }
         public string Reference { get; set; }
@@ -35,5 +41,7 @@ namespace MegaCasting.DBLib
         public virtual Client Client { get; set; }
         public virtual Job Job { get; set; }
         public virtual TypeOfContract TypeOfContract { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ObservableCollection<Post> Post { get; set; }
     }
 }

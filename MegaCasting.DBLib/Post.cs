@@ -12,26 +12,21 @@ namespace MegaCasting.DBLib
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class Client
+    public partial class Post
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
-        {
-            this.Offer = new ObservableCollection<Offer>();
-        }
-    
         public long Identifier { get; set; }
-        public string URL { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string Fax { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string ZipCode { get; set; }
-        public string Company { get; set; }
-        public string Password { get; set; }
+        public Nullable<System.DateTime> DatePost { get; set; }
+        public string Letter { get; set; }
+        public string CV { get; set; }
+        public long IdOffer { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Offer> Offer { get; set; }
+        public virtual Offer Offer { get; set; }
     }
 }
