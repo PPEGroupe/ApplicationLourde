@@ -185,7 +185,6 @@ namespace MegaCasting
                 longitude = null;
                 return null;
             }
-
         }
 
         private string GetImagery(string locationString)
