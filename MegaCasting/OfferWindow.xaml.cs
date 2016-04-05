@@ -235,18 +235,16 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
+            if (String.IsNullOrWhiteSpace(this.ClientComboBox.Text)
+                   || String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.JobComboBox.Text)
+                   || String.IsNullOrWhiteSpace(this.TypeOfContractComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.ReferenceTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.TitleTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.DateStartPublicationDatePicker.Text)
                    || String.IsNullOrWhiteSpace(this.PublicationDurationTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.DateStartContractDatePicker.Text)
-                   || String.IsNullOrWhiteSpace(this.JobQuantityTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.JobDescriptionTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.AddressTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.CityTextBox.Text)
-                   || String.IsNullOrWhiteSpace(this.ZipCodeTextBox.Text))
+                   || String.IsNullOrWhiteSpace(this.JobQuantityTextBox.Text))
             {
                 MessageBox.Show("Veuillez remplir tous les champs avant de valider");
             }

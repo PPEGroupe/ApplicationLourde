@@ -25,13 +25,13 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}">Société :</Label>
+        <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}">Société * :</Label>
         <TextBox Grid.Column="1" Grid.Row="0" x:Name="CompanyTextBox" Text="{Binding Path=Company, UpdateSourceTrigger=Explicit}" />
 
         <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelForTextBox}">Site Internet :</Label>
         <TextBox Grid.Column="1" Grid.Row="1" x:Name="WebSiteTextBox" Text="{Binding Path=URL, UpdateSourceTrigger=Explicit}" />
 
-        <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}">E-mail :</Label>
+        <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}">E-mail * :</Label>
         <TextBox Grid.Column="1" Grid.Row="2" x:Name="EmailTextBox" Text="{Binding Path=Email, UpdateSourceTrigger=Explicit}" />
 
         <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelForTextBox}">Téléphone :</Label>

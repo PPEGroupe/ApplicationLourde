@@ -45,34 +45,34 @@
                     <ColumnDefinition Width="310"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Société :</Label>
+                <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Société * :</Label>
                 <ComboBox Grid.Column="1" Grid.Row="0"  x:Name="ClientComboBox" ItemsSource="{Binding Path=Clients}"  SelectedItem="{Binding Offer.Client}" DisplayMemberPath="Company" />
 
-                <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Domaine de métier :</Label>
+                <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Domaine de métier * :</Label>
                 <ComboBox Grid.Column="1" Grid.Row="1" x:Name="JobDomainComboBox" ItemsSource="{Binding Path=JobDomains}"  SelectedItem="{Binding Offer.Job.JobDomain}" DisplayMemberPath="Label" />
 
-                <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Métier :</Label>
+                <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Métier * :</Label>
                 <ComboBox Grid.Column="1" Grid.Row="2" x:Name="JobComboBox" ItemsSource="{Binding Path=Jobs}"  SelectedItem="{Binding Offer.Job}" DisplayMemberPath="Label" />
 
-                <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Type de contrat :</Label>
+                <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Type de contrat * :</Label>
                 <ComboBox Grid.Column="1" Grid.Row="3" x:Name="TypeOfContractComboBox" ItemsSource="{Binding Path=TypeOfContracts}"  SelectedItem="{Binding Offer.TypeOfContract}" DisplayMemberPath="Label" />
 
-                <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">N° Offre :</Label>
-                <TextBox Grid.Column="1" Grid.Row="4" x:Name="ReferenceTextBox" Text="{Binding Path=Offer.Reference, UpdateSourceTrigger=Explicit}"/>
+                <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Référence de l'offre :</Label>
+                <TextBox Grid.Column="1" Grid.Row="4" x:Name="ReferenceTextBox" IsEnabled="False" Text="{Binding Path=Offer.Reference, UpdateSourceTrigger=Explicit}"/>
 
-                <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Nom de l'offre :</Label>
+                <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Nom de l'offre * :</Label>
                 <TextBox Grid.Column="1" Grid.Row="5" x:Name="TitleTextBox" Text="{Binding Path=Offer.Title, UpdateSourceTrigger=Explicit}" />
 
-                <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Date de début :</Label>
+                <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Date de début * :</Label>
                 <DatePicker Grid.Column="1" Grid.Row="6" x:Name="DateStartPublicationDatePicker" SelectedDate="{Binding Path=Offer.DateStartPublication, UpdateSourceTrigger=Explicit}" />
 
-                <Label Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Durée de l'offre :</Label>
+                <Label Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Durée de l'offre * :</Label>
                 <TextBox Grid.Column="1" Grid.Row="7" x:Name="PublicationDurationTextBox" Text="{Binding Path=Offer.PublicationDuration, UpdateSourceTrigger=Explicit}" />
 
-                <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Date de début du contrat :</Label>
+                <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Date de début du contrat * :</Label>
                 <DatePicker Grid.Column="1" Grid.Row="8" x:Name="DateStartContractDatePicker" SelectedDate="{Binding Path=Offer.DateStartContract, UpdateSourceTrigger=Explicit}"  />
 
-                <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Nombre de postes :</Label>
+                <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Nombre de poste(s) * :</Label>
                 <TextBox Grid.Column="1" Grid.Row="9" x:Name="JobQuantityTextBox" Text="{Binding Path=Offer.JobQuantity, UpdateSourceTrigger=Explicit}" />
 
                 <Label Grid.Column="0" Grid.Row="10" Style="{StaticResource LabelForTextBox}" Height="25" Margin="0,5">Description de l'offre :</Label>

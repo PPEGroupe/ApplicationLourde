@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Crypting.cs" />
     <Compile Include="PartnerWindow.xaml.cs">
       <DependentUpon>PartnerWindow.xaml</DependentUpon>
     </Compile>

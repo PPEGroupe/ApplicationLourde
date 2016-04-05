@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,15 +42,9 @@ namespace MegaCasting
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
             // Vérification des champs vides
-            if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text)
-                ||String.IsNullOrWhiteSpace(this.WebSiteTextBox.Text)
-                ||String.IsNullOrWhiteSpace(this.EmailTextBox.Text)
-                ||String.IsNullOrWhiteSpace(this.PhoneNumberTextBox.Text)
-                ||String.IsNullOrWhiteSpace(this.FaxTextBox.Text)
-                ||String.IsNullOrWhiteSpace(this.AddressTextBox.Text)
-                ||String.IsNullOrWhiteSpace(this.ZipCodeTextBox.Text))
+            if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text) || String.IsNullOrWhiteSpace(this.EmailTextBox.Text))
             {
-                MessageBox.Show("Veuillez remplir tous les champs avant de valider");
+                MessageBox.Show("Veuillez remplir tous les champs obligatoire avant de valider");
             }
             // Mise à jour de la source
             else
@@ -70,13 +65,17 @@ namespace MegaCasting
 
                     if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
                     {
-                        client.Password = PasswordTextBox.Password;
+                        using (MD5 md5Hash = MD5.Create())
+                        {
+                            string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
+                            client.Password = hash;
+                        }
                     }
                     this.DialogResult = true;
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez remplir renseigner un mot de passe");
+                    MessageBox.Show("Veuillez renseigner un mot de passe");
                 }
             }  
         }

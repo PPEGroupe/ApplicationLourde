@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,7 +61,11 @@ namespace MegaCasting
 
                     if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
                     {
-                        partner.Password = PasswordTextBox.Password;
+                        using (MD5 md5Hash = MD5.Create())
+                        {
+                            string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
+                            partner.Password = hash;
+                        }
                     }
                     this.DialogResult = true;
                 }
