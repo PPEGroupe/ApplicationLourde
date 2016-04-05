@@ -56,18 +56,33 @@ namespace MegaCasting
                 if (!String.IsNullOrWhiteSpace(partner.Password)
                     || (String.IsNullOrWhiteSpace(partner.Password) && !String.IsNullOrWhiteSpace(PasswordTextBox.Password)))
                 {
-                    URLTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-
-                    if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
+                    // Vérifie de ne pas ajouter un partenaire existant
+                    if (partner.Email == EmailTextBox.Text || partner.Identifier == 0 && db.Partner.FirstOrDefault(dbPartner => dbPartner.Email == EmailTextBox.Text) == null)
                     {
-                        using (MD5 md5Hash = MD5.Create())
+                        if (partner.URL == URLTextBox.Text || db.Partner.FirstOrDefault(dbPartner => dbPartner.URL == URLTextBox.Text) == null)
                         {
-                            string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
-                            partner.Password = hash;
+                            URLTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+                            if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
+                            {
+                                using (MD5 md5Hash = MD5.Create())
+                                {
+                                    string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
+                                    partner.Password = hash;
+                                }
+                            }
+                            this.DialogResult = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cet URL est déjà enregistré");
                         }
                     }
-                    this.DialogResult = true;
+                    else
+                    {
+                        MessageBox.Show("Cet email est déjà enregistré");
+                    }
                 }
                 else
                 {

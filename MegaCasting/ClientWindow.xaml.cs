@@ -54,24 +54,39 @@ namespace MegaCasting
                 if (!String.IsNullOrWhiteSpace(client.Password)
                     || (String.IsNullOrWhiteSpace(client.Password) && !String.IsNullOrWhiteSpace(PasswordTextBox.Password)))
                 {
-                    CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                    ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-
-                    if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
+                    // Vérifie de ne pas ajouter un client existant
+                    if (client.Email == EmailTextBox.Text || client.Identifier == 0 && db.Client.FirstOrDefault(dbClient => dbClient.Email == EmailTextBox.Text) == null)
                     {
-                        using (MD5 md5Hash = MD5.Create())
+                        if (client.Company == CompanyTextBox.Text || db.Client.FirstOrDefault(dbClient => dbClient.Company == CompanyTextBox.Text) == null)
                         {
-                            string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
-                            client.Password = hash;
+                            CompanyTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            WebSiteTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            EmailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            PhoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            FaxTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+                            if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
+                            {
+                                using (MD5 md5Hash = MD5.Create())
+                                {
+                                    string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
+                                    client.Password = hash;
+                                }
+                            }
+                            this.DialogResult = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cet société est déjà enregistrée");
                         }
                     }
-                    this.DialogResult = true;
+                    else
+                    {
+                        MessageBox.Show("Cet email est déjà enregistré");
+                    }
                 }
                 else
                 {

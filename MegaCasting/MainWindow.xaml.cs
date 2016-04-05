@@ -107,22 +107,29 @@ namespace MegaCasting
             // Teste si la fenetre deleteWindow renvoi un vrai
             if (client != null)
             {
-                DeleteWindow deleteWindow = new DeleteWindow();
-                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le client " + client.Company + " ?";
-                deleteWindow.ShowDialog();
-
-                // tester si la fenetre deleteWindow renvois un vrai
-                if (deleteWindow.DialogResult == true)
+                if (db.Offer.FirstOrDefault(dbOffer => dbOffer.IdClient == client.Identifier) != null)
                 {
-                    // Si il'y a une offre séléctionée.             
-                    // supprimer le client de la base de donnée 
-                    db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
+                    MessageBox.Show("Impossible de supprimer ce client car il a créé une ou plusieurs offre(s).");
+                }
+                else
+                {
+                    DeleteWindow deleteWindow = new DeleteWindow();
+                    deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le client " + client.Company + " ?";
+                    deleteWindow.ShowDialog();
 
-                    // supprimer le l'offre de la fenétre.
-                    Clients.Remove(client);
+                    // tester si la fenetre deleteWindow renvois un vrai
+                    if (deleteWindow.DialogResult == true)
+                    {
+                        // Si il'y a une offre séléctionée.             
+                        // supprimer le client de la base de donnée 
+                        db.Client.Remove(db.Client.First(dbClient => dbClient.Identifier == client.Identifier));
 
-                    //Sauvegarder les changements.
-                    db.SaveChanges();
+                        // supprimer le l'offre de la fenétre.
+                        Clients.Remove(client);
+
+                        //Sauvegarder les changements.
+                        db.SaveChanges();
+                    }
                 }
             }
             else
@@ -194,22 +201,30 @@ namespace MegaCasting
 
             if (offer != null)
             {
-                DeleteWindow deleteWindow = new DeleteWindow();
-                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer l'offre n°" + offer.Reference + " ?";
-                deleteWindow.ShowDialog();
-
-                // tester si la fenetre deleteWindow renvois un vrai
-                if (deleteWindow.DialogResult == true)
+                DateTime now = DateTime.Now;
+                TimeSpan gap = now - offer.DateStartPublication;
+                // Vérifie si l'offre est dans la période de publication
+                if (gap.Days <= offer.PublicationDuration)
                 {
-                    // Si il'y a une offre séléctionée.             
-                    // supprimer l'offre de la base de donnée 
-                    db.Offer.Remove(db.Offer.First(dbOffer => dbOffer.Identifier == offer.Identifier));
+                    MessageBox.Show("Cette offre est en cours de publication.");
+                }
+                else
+                {
+                    DeleteWindow deleteWindow = new DeleteWindow();
+                    deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer l'offre n°" + offer.Reference + " ?";
+                    deleteWindow.ShowDialog();
+                    
+                    if (deleteWindow.DialogResult == true)
+                    {          
+                        // Supprime l'offre de la base de donnée 
+                        db.Offer.Remove(db.Offer.First(dbOffer => dbOffer.IdClient == offer.IdClient));
 
-                    // supprimer le l'offre de la fenétre.
-                    Offers.Remove(offer);
+                        // Supprime le l'offre de la fenétre.
+                        Offers.Remove(offer);
 
-                    //Sauvegarder les changements.
-                    db.SaveChanges();
+                        // Sauvegarder les changements.
+                        db.SaveChanges();
+                    }
                 }
             }
             else

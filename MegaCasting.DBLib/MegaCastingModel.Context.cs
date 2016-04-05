@@ -32,5 +32,6 @@ namespace MegaCasting.DBLib
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Offer> Offer { get; set; }
         public virtual DbSet<Post> Post { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

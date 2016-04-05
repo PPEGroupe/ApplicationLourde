@@ -17,6 +17,7 @@
         <AssociationConnector Association="MegaCastingModel.FK_Offer_TypeOfContract" />
         <EntityTypeShape EntityType="MegaCastingModel.Post" Width="1.5" PointX="8.375" PointY="0.5" />
         <AssociationConnector Association="MegaCastingModel.FK_Post_Offer" />
+        <EntityTypeShape EntityType="MegaCastingModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
