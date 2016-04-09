@@ -18,7 +18,8 @@ GO
 INSERT INTO TypeOfContract(Identifier, Label) VALUES
 (1, 'CDD'),
 (2, 'CDI'),
-(3, 'Intérim');
+(3, 'Intérim'),
+(4, 'Intermittens');
 SET IDENTITY_INSERT TypeOfContract OFF
 GO
 
@@ -37,14 +38,14 @@ GO
 SET IDENTITY_INSERT Job ON
 GO
 INSERT INTO Job	(Identifier, Label,			IdJobDomain) VALUES
-				(1,			'Danseur',		1),
-				(2,			'Réalisateur',  3),
-				(3,			'Musisien',		2),
-				(4,			'Acteur',		3),
-				(5,			'Chanteur',		4),
-				(6,			'Humouriste',	5),
-				(7,			'Acteur',		6),
-				(8,			'Chanteur',		2);
+				(1,			'Danseur',		  1),
+				(2,			'Réalisateur',    3),
+				(3,			'Musisien',		  2),
+				(4,			'Acteur/Actrice', 3),
+				(5,			'Chanteur',		  4),
+				(6,			'Humouriste',	  5),
+				(7,			'Caméraman',	  6),
+				(8,			'Chanteur',		  2);
 SET IDENTITY_INSERT Job OFF
 GO
 
@@ -62,12 +63,12 @@ GO
 
 SET IDENTITY_INSERT Client ON
 GO
-INSERT INTO Client	(Identifier, URL,							PhoneNumber,  Fax,	 Address,			City,	 ZipCode, Company,		 DateRegister,  IsValid, IdAccount) VALUES
-					(1,			'http://ppe.kpic.fr/kevin',		'0612345678', null, '01 rue intitut',	'Laval', '53000', 'Kpichon',	 GETDATE(),		0,		 1),
-					(2,			'http://ppe.kpic.fr/martin',	'0612345678', null, '01 rue intitut',	'Laval', '53000', 'Mamicel',	 GETDATE(),		0,		 3),
-					(3,			'http://ppe.kpic.fr/radouane',	'0612345678', null, '01 rue intitut',	'Laval', '53000', 'Rbouzerrara', GETDATE(),		0,		 2),
-					(4,			'http://ppe.kpic.fr/test1',		'0612345678', null, '01 rue intitut',	'Laval', '53000', 'Test1',		 GETDATE(),		1,		 4),
-					(5,			'http://ppe.kpic.fr/test2',		'0612345678', null, '01 rue intitut',	'Laval', '53000', 'Test2',		 GETDATE(),		0,		 5);
+INSERT INTO Client	(Identifier, URL,							PhoneNumber,  Fax,	Address,				City,	  ZipCode, Company,		  DateRegister,  IsValid, IdAccount) VALUES
+					(1,			'http://ppe.kpic.fr/kevin',		'0612345678', null, '1 rue eugene messmer',	'Laval',  '53000', 'Kpichon',	  GETDATE(),		0,		 1),
+					(2,			'http://ppe.kpic.fr/martin',	'0612345678', null, '1 rue de paris', 		'Rennes', '35000', 'Mamicel',	  GETDATE(),		0,		 3),
+					(3,			'http://ppe.kpic.fr/radouane',	'0612345678', null, '1 rue d'' alger',		'Lille',  '59000', 'Rbouzerrara', GETDATE(),		0,		 2),
+					(4,			'http://ppe.kpic.fr/test1',		'0612345678', null, '1 rue renaise',		'Laval',  '53000', 'Test1',		  GETDATE(),		1,		 4),
+					(5,			'http://ppe.kpic.fr/test2',		'0612345678', null, '1 rue alcan',			'Metz',   '57000', 'Test2',		  GETDATE(),		0,		 5);
 SET IDENTITY_INSERT Client OFF
 GO
 
