@@ -37,6 +37,8 @@ namespace MegaCasting.DBLib
         public long IdTypeOfContract { get; set; }
         public long IdJob { get; set; }
         public long IdClient { get; set; }
+        public int NumberViews { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Job Job { get; set; }

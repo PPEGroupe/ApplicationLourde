@@ -51,11 +51,11 @@ namespace MegaCasting
             {
                 Client client = (Client)this.DataContext;
 
-                if (!String.IsNullOrWhiteSpace(client.Password)
-                    || (String.IsNullOrWhiteSpace(client.Password) && !String.IsNullOrWhiteSpace(PasswordTextBox.Password)))
+                if (!String.IsNullOrWhiteSpace(client.Account.Password)
+                    || (String.IsNullOrWhiteSpace(client.Account.Password) && !String.IsNullOrWhiteSpace(PasswordTextBox.Password)))
                 {
                     // Vérifie de ne pas ajouter un client existant
-                    if (client.Email == EmailTextBox.Text || client.Identifier == 0 && db.Client.FirstOrDefault(dbClient => dbClient.Email == EmailTextBox.Text) == null)
+                    if (client.Account.Email == EmailTextBox.Text || client.Identifier == 0 && db.Client.FirstOrDefault(dbClient => dbClient.Account.Email == EmailTextBox.Text) == null)
                     {
                         if (client.Company == CompanyTextBox.Text || db.Client.FirstOrDefault(dbClient => dbClient.Company == CompanyTextBox.Text) == null)
                         {
@@ -67,13 +67,14 @@ namespace MegaCasting
                             AddressTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                             CityTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                             ZipCodeTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                            IsValidCheckBox.GetBindingExpression(CheckBox.IsCheckedProperty).UpdateSource();
 
                             if (!String.IsNullOrWhiteSpace(PasswordTextBox.Password))
                             {
                                 using (MD5 md5Hash = MD5.Create())
                                 {
                                     string hash = Crypting.GetMd5Hash(md5Hash, PasswordTextBox.Password);
-                                    client.Password = hash;
+                                    client.Account.Password = hash;
                                 }
                             }
                             this.DialogResult = true;

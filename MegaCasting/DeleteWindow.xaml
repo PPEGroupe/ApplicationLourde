@@ -12,7 +12,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Description}"/>
+        <TextBlock Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Description}"/>
 
         <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
             <Button Content="Annuler" Click="ButtonCancel_Click"/>

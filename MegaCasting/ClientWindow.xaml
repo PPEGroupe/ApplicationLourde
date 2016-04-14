@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting"
         mc:Ignorable="d"
-        Title="Gestion | Client" MinHeight="410" MinWidth="430" MaxHeight="410" MaxWidth="430">
+        Title="Gestion | Client" MinHeight="445" MinWidth="430" MaxHeight="445" MaxWidth="430">
     <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="200" />
@@ -13,6 +13,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
@@ -32,7 +33,7 @@
         <TextBox Grid.Column="1" Grid.Row="1" x:Name="WebSiteTextBox" Text="{Binding Path=URL, UpdateSourceTrigger=Explicit}" />
 
         <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelForTextBox}">E-mail * :</Label>
-        <TextBox Grid.Column="1" Grid.Row="2" x:Name="EmailTextBox" Text="{Binding Path=Email, UpdateSourceTrigger=Explicit}" />
+        <TextBox Grid.Column="1" Grid.Row="2" x:Name="EmailTextBox" Text="{Binding Path=Account.Email, UpdateSourceTrigger=Explicit}" />
 
         <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelForTextBox}">Téléphone :</Label>
         <TextBox Grid.Column="1" Grid.Row="3" x:Name="PhoneNumberTextBox" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=Explicit}" />
@@ -51,8 +52,10 @@
 
         <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelForTextBox}">Mot de passe :</Label>
         <PasswordBox Grid.Column="1" Grid.Row="8" x:Name="PasswordTextBox" />
-        
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource StackPanelForButtons}">
+
+        <CheckBox Grid.ColumnSpan="2" Grid.Row="9" Name="IsValidCheckBox" IsChecked="{Binding Path=IsValid, UpdateSourceTrigger=Explicit}" Content="Validé"/>
+
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="10" Style="{StaticResource StackPanelForButtons}">
             <Button Click="ButtonCancel_Click">Annuler</Button>
             <Button Click="ButtonValidate_Click">Valider</Button>
         </StackPanel>

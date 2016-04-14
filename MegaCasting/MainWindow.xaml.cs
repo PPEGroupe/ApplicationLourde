@@ -31,7 +31,9 @@ namespace MegaCasting
         public ObservableCollection<Job> Jobs { get; set; }
         public ObservableCollection<JobDomain> JobDomains { get; set; }
         public ObservableCollection<Partner> Partners { get; set; }
+        public ObservableCollection<WebUser> WebUsers { get; set; }
         public ObservableCollection<TypeOfContract> TypeOfContracts { get; set; }
+        public ObservableCollection<Pack> Packs { get; set; }
         #endregion
 
         #region Constructeur
@@ -46,7 +48,9 @@ namespace MegaCasting
                 this.Offers = new ObservableCollection<Offer>(db.Offer.ToList());
                 this.JobDomains = new ObservableCollection<JobDomain>(db.JobDomain.ToList());
                 this.Partners = new ObservableCollection<Partner>(db.Partner.ToList());
+                this.WebUsers = new ObservableCollection<WebUser>(db.WebUser.ToList());
                 this.TypeOfContracts = new ObservableCollection<TypeOfContract>(db.TypeOfContract.ToList());
+                this.Packs = new ObservableCollection<Pack>(db.Pack.ToList());
 
                 this.Jobs = new ObservableCollection<Job>();
             }
@@ -404,6 +408,76 @@ namespace MegaCasting
         }
         #endregion
 
+        #region Internautes
+        private void ButtonAddWebUser_Click(object sender, RoutedEventArgs e)
+        {
+            WebUser webUser = new WebUser();
+            WebUserWindow webUserWindow = new WebUserWindow(db);
+
+            webUserWindow.DataContext = webUser;
+            webUserWindow.ShowDialog();
+
+            if (webUserWindow.DialogResult == true)
+            {
+                WebUsers.Add(webUser);
+                db.WebUser.Add(webUser);
+
+                db.SaveChanges();
+            }
+        }
+
+        private void ButtonUpdateWebUser_Click(object sender, RoutedEventArgs e)
+        {
+            WebUser webUser = (WebUser)ListWebUser.SelectedItem;
+
+            if (webUser != null)
+            {
+                WebUserWindow webUserWindow = new WebUserWindow(db);
+                webUserWindow.DataContext = webUser;
+                webUserWindow.ShowDialog();
+
+                if (webUserWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vous n'avez séléctionné aucun client.");
+            }
+        }
+
+        private void ButtonDeleteWebUser_Click(object sender, RoutedEventArgs e)
+        {
+            WebUser webUser = (WebUser)ListWebUser.SelectedItem;
+
+            if (webUser != null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer l'internaute " + webUser.Firstname + " " + webUser.Lastname + " ?";
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
+                {          
+                    // supprimer l'internaute de la base de donnée 
+                    db.WebUser.Remove(db.WebUser.First(dbWebUser => dbWebUser.Identifier == webUser.Identifier));
+
+                    // supprimer le l'internaute de la fenétre.
+                    WebUsers.Remove(webUser);
+
+                    //Sauvegarder les changements.
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Veuillez sélectionner un internaute.");
+            }
+        }
+        #endregion
+
         #region Boutons Partenaire
         private void ButtonAddPartner_Click(object sender, RoutedEventArgs e)
         {
@@ -450,7 +524,7 @@ namespace MegaCasting
             if (partner != null)
             {
                 DeleteWindow deleteWindow = new DeleteWindow();
-                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le partenaire " + partner.Email + " ?";
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le partenaire " + partner.Account.Email + " ?";
                 deleteWindow.ShowDialog();
 
                 // tester si la fenetre deleteWindow renvois un vrai
@@ -542,6 +616,77 @@ namespace MegaCasting
             {
                 // Afficher le message d'erreur 
                 MessageBox.Show("Veuillez sélectionner un type de contrat.");
+            }
+        }
+        #endregion
+
+
+        #region Pack
+        private void ButtonAddPack_Click(object sender, RoutedEventArgs e)
+        {
+            Pack pack = new Pack();
+            PackWindow packWindow = new PackWindow(db);
+
+            packWindow.DataContext = pack;
+            packWindow.ShowDialog();
+
+            if (packWindow.DialogResult == true)
+            {
+                Packs.Add(pack);
+                db.Pack.Add(pack);
+
+                db.SaveChanges();
+            }
+        }
+
+        private void ButtonUpdatePack_Click(object sender, RoutedEventArgs e)
+        {
+            Pack pack = (Pack)ListPack.SelectedItem;
+
+            if (pack != null)
+            {
+                PackWindow packWindow = new PackWindow(db);
+                packWindow.DataContext = pack;
+                packWindow.ShowDialog();
+
+                if (packWindow.DialogResult == true)
+                {
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vous n'avez séléctionné aucun client.");
+            }
+        }
+
+        private void ButtonDeletePack_Click(object sender, RoutedEventArgs e)
+        {
+            Pack pack = (Pack)ListPack.SelectedItem;
+
+            if (pack != null)
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Description = "Êtes-vous sûr(e) de vouloir supprimer le pack de " + pack.NumberDays + " jour(s) et " + pack.NumberOffers + " offre(s) à " + pack.Price + "€ ? ";
+                deleteWindow.ShowDialog();
+
+                // tester si la fenetre deleteWindow renvois un vrai
+                if (deleteWindow.DialogResult == true)
+                {
+                    // supprimer l'internaute de la base de donnée 
+                    db.Pack.Remove(db.Pack.First(dbPack => dbPack.Identifier == pack.Identifier));
+
+                    // supprimer le l'internaute de la fenétre.
+                    Packs.Remove(pack);
+
+                    //Sauvegarder les changements.
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                // Afficher le message d'erreur 
+                MessageBox.Show("Veuillez sélectionner un pack.");
             }
         }
         #endregion

@@ -16,7 +16,10 @@ namespace MegaCasting.DBLib
     {
         public long Identifier { get; set; }
         public string URL { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public long IdAccount { get; set; }
+        public System.DateTime DateRegister { get; set; }
+        public bool IsValid { get; set; }
+    
+        public virtual Account Account { get; set; }
     }
 }

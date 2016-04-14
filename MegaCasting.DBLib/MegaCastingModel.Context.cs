@@ -25,13 +25,16 @@ namespace MegaCasting.DBLib
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<JobDomain> JobDomain { get; set; }
-        public virtual DbSet<Partner> Partner { get; set; }
-        public virtual DbSet<TypeOfContract> TypeOfContract { get; set; }
-        public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Offer> Offer { get; set; }
+        public virtual DbSet<Pack> Pack { get; set; }
+        public virtual DbSet<PackPaid> PackPaid { get; set; }
+        public virtual DbSet<Partner> Partner { get; set; }
         public virtual DbSet<Post> Post { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TypeOfContract> TypeOfContract { get; set; }
+        public virtual DbSet<WebUser> WebUser { get; set; }
     }
 }

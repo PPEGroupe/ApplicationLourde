@@ -5,19 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="635d9d7b8dd641e9a60f6bc1495005da" Name="MegaCastingEntities">
-        <EntityTypeShape EntityType="MegaCastingModel.Job" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MegaCastingModel.JobDomain" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MegaCastingModel.Partner" Width="1.5" PointX="8.375" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MegaCastingModel.TypeOfContract" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <AssociationConnector Association="MegaCastingModel.FK_Job_JobDomain" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MegaCastingModel.Client" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="MegaCastingModel.Offer" Width="1.5" PointX="5.625" PointY="0.75" />
+        <EntityTypeShape EntityType="MegaCastingModel.Account" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="MegaCastingModel.Client" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="MegaCastingModel.Job" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="MegaCastingModel.JobDomain" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="MegaCastingModel.Offer" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="MegaCastingModel.Pack" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="MegaCastingModel.PackPaid" Width="1.5" PointX="8.25" PointY="5.5" />
+        <EntityTypeShape EntityType="MegaCastingModel.Partner" Width="1.5" PointX="3" PointY="13.25" />
+        <EntityTypeShape EntityType="MegaCastingModel.Post" Width="1.5" PointX="7.5" PointY="9" />
+        <EntityTypeShape EntityType="MegaCastingModel.TypeOfContract" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="MegaCastingModel.WebUser" Width="1.5" PointX="3" PointY="9.375" />
+        <AssociationConnector Association="MegaCastingModel.FK_Client_Account" />
+        <AssociationConnector Association="MegaCastingModel.FK_Partner_Account1" />
+        <AssociationConnector Association="MegaCastingModel.FK_WebUser_Account" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_Client" />
+        <AssociationConnector Association="MegaCastingModel.FK_PackPaid_Client" />
+        <AssociationConnector Association="MegaCastingModel.FK_Job_JobDomain" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_Job" />
         <AssociationConnector Association="MegaCastingModel.FK_Offer_TypeOfContract" />
-        <EntityTypeShape EntityType="MegaCastingModel.Post" Width="1.5" PointX="8.375" PointY="0.5" />
         <AssociationConnector Association="MegaCastingModel.FK_Post_Offer" />
-        <EntityTypeShape EntityType="MegaCastingModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="MegaCastingModel.FK_PackPaid_Pack" />
+        <AssociationConnector Association="MegaCastingModel.FK_Post_WebUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

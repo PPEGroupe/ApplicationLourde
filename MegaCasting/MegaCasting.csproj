@@ -71,6 +71,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Crypting.cs" />
+    <Compile Include="PackWindow.xaml.cs">
+      <DependentUpon>PackWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PartnerWindow.xaml.cs">
       <DependentUpon>PartnerWindow.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,9 @@
     </Compile>
     <Compile Include="TypeOfContractWindows.xaml.cs">
       <DependentUpon>TypeOfContractWindows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserWindow.xaml.cs">
+      <DependentUpon>WebUserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ClientWindow.xaml">
       <SubType>Designer</SubType>
@@ -142,11 +148,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PackWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PartnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TypeOfContractWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WebUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

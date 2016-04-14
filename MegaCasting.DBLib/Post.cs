@@ -15,18 +15,13 @@ namespace MegaCasting.DBLib
     public partial class Post
     {
         public long Identifier { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string ZipCode { get; set; }
-        public Nullable<System.DateTime> DatePost { get; set; }
+        public System.DateTime DatePost { get; set; }
         public string Letter { get; set; }
         public string CV { get; set; }
         public long IdOffer { get; set; }
+        public long IdWebUser { get; set; }
     
         public virtual Offer Offer { get; set; }
+        public virtual WebUser WebUser { get; set; }
     }
 }

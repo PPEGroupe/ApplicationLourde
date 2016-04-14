@@ -5,20 +5,29 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MegaCastingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Identifier" />
           </Key>
           <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="URL" Type="nvarchar" MaxLength="500" />
-          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Fax" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="250" />
           <Property Name="City" Type="nvarchar" MaxLength="100" />
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Company" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdAccount" Type="bigint" Nullable="false" />
+          <Property Name="DateRegister" Type="date" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -41,13 +50,13 @@
           </Key>
           <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Reference" Type="nvarchar" MaxLength="100" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DateStartPublication" Type="date" Nullable="false" />
           <Property Name="PublicationDuration" Type="int" Nullable="false" />
           <Property Name="DateStartContract" Type="date" Nullable="false" />
           <Property Name="JobQuantity" Type="int" Nullable="false" />
-          <Property Name="Latitude" Type="nchar" MaxLength="10" />
-          <Property Name="Longitude" Type="nchar" MaxLength="10" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
           <Property Name="JobDescription" Type="text" Nullable="false" />
           <Property Name="ProfileDescription" Type="text" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -56,6 +65,28 @@
           <Property Name="IdTypeOfContract" Type="bigint" Nullable="false" />
           <Property Name="IdJob" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="bigint" Nullable="false" />
+          <Property Name="NumberViews" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pack">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NumberDays" Type="int" />
+          <Property Name="NumberOffers" Type="int" />
+        </EntityType>
+        <EntityType Name="PackPaid">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClient" Type="bigint" Nullable="false" />
+          <Property Name="IdPack" Type="bigint" />
+          <Property Name="NumberOffers" Type="int" />
+          <Property Name="NumberDays" Type="int" />
+          <Property Name="DatePaiment" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Partner">
           <Key>
@@ -63,35 +94,20 @@
           </Key>
           <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="URL" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="IdAccount" Type="bigint" Nullable="false" />
+          <Property Name="DateRegister" Type="date" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
             <PropertyRef Name="Identifier" />
           </Key>
           <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" />
-          <Property Name="City" Type="nvarchar" MaxLength="150" />
-          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="DatePost" Type="date" />
+          <Property Name="DatePost" Type="date" Nullable="false" />
           <Property Name="Letter" Type="nvarchar" MaxLength="255" />
-          <Property Name="CV" Type="nvarchar" MaxLength="255" />
+          <Property Name="CV" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="IdOffer" Type="bigint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="IdWebUser" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeOfContract">
           <Key>
@@ -100,6 +116,32 @@
           <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Label" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="WebUser">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdAccount" Type="bigint" />
+          <Property Name="DateRegister" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Job_JobDomain">
           <End Role="JobDomain" Type="Self.JobDomain" Multiplicity="1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
@@ -148,6 +190,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PackPaid_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="PackPaid" Type="Self.PackPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="PackPaid">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackPaid_Pack">
+          <End Role="Pack" Type="Self.Pack" Multiplicity="0..1" />
+          <End Role="PackPaid" Type="Self.PackPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pack">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="PackPaid">
+              <PropertyRef Name="IdPack" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partner_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="IdAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Post_Offer">
           <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
@@ -160,15 +238,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Post_WebUser">
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="IdWebUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUser_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="WebUser">
+              <PropertyRef Name="IdAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MegaCastingModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobDomain" EntityType="Self.JobDomain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pack" EntityType="Self.Pack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackPaid" EntityType="Self.PackPaid" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfContract" EntityType="Self.TypeOfContract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Account" Association="Self.FK_Client_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
           <AssociationSet Name="FK_Job_JobDomain" Association="Self.FK_Job_JobDomain">
             <End Role="JobDomain" EntitySet="JobDomain" />
             <End Role="Job" EntitySet="Job" />
@@ -185,76 +294,70 @@
             <End Role="TypeOfContract" EntitySet="TypeOfContract" />
             <End Role="Offer" EntitySet="Offer" />
           </AssociationSet>
+          <AssociationSet Name="FK_PackPaid_Client" Association="Self.FK_PackPaid_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PackPaid" EntitySet="PackPaid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackPaid_Pack" Association="Self.FK_PackPaid_Pack">
+            <End Role="Pack" EntitySet="Pack" />
+            <End Role="PackPaid" EntitySet="PackPaid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partner_Account1" Association="Self.FK_Partner_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
           <AssociationSet Name="FK_Post_Offer" Association="Self.FK_Post_Offer">
             <End Role="Offer" EntitySet="Offer" />
             <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_WebUser" Association="Self.FK_Post_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUser_Account" Association="Self.FK_WebUser_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="WebUser" EntitySet="WebUser" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MegaCastingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Job">
-          <Key>
-            <PropertyRef Name="Identifier" />
-          </Key>
-          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdJobDomain" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="JobDomain" Relationship="Self.FK_Job_JobDomain" FromRole="Job" ToRole="JobDomain" />
-          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_Job" FromRole="Job" ToRole="Offer" />
-        </EntityType>
-        <EntityType Name="JobDomain">
-          <Key>
-            <PropertyRef Name="Identifier" />
-          </Key>
-          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Label" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Job" Relationship="Self.FK_Job_JobDomain" FromRole="JobDomain" ToRole="Job" />
-        </EntityType>
-        <EntityType Name="Partner">
-          <Key>
-            <PropertyRef Name="Identifier" />
-          </Key>
-          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TypeOfContract">
-          <Key>
-            <PropertyRef Name="Identifier" />
-          </Key>
-          <Property Name="Identifier" Type="Int64" Nullable="false" />
-          <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_TypeOfContract" FromRole="TypeOfContract" ToRole="Offer" />
-        </EntityType>
-        <Association Name="FK_Job_JobDomain">
-          <End Role="JobDomain" Type="Self.JobDomain" Multiplicity="1" />
-          <End Role="Job" Type="Self.Job" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobDomain">
-              <PropertyRef Name="Identifier" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="IdJobDomain" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MegaCastingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Job" EntityType="Self.Job" />
-          <EntitySet Name="JobDomain" EntityType="Self.JobDomain" />
-          <EntitySet Name="Partner" EntityType="Self.Partner" />
-          <EntitySet Name="TypeOfContract" EntityType="Self.TypeOfContract" />
-          <AssociationSet Name="FK_Job_JobDomain" Association="Self.FK_Job_JobDomain">
-            <End Role="JobDomain" EntitySet="JobDomain" />
-            <End Role="Job" EntitySet="Job" />
-          </AssociationSet>
+          <EntitySet Name="Account" EntityType="MegaCastingModel.Account" />
           <EntitySet Name="Client" EntityType="MegaCastingModel.Client" />
+          <EntitySet Name="Job" EntityType="MegaCastingModel.Job" />
+          <EntitySet Name="JobDomain" EntityType="MegaCastingModel.JobDomain" />
           <EntitySet Name="Offer" EntityType="MegaCastingModel.Offer" />
+          <EntitySet Name="Pack" EntityType="MegaCastingModel.Pack" />
+          <EntitySet Name="PackPaid" EntityType="MegaCastingModel.PackPaid" />
+          <EntitySet Name="Partner" EntityType="MegaCastingModel.Partner" />
+          <EntitySet Name="Post" EntityType="MegaCastingModel.Post" />
+          <EntitySet Name="TypeOfContract" EntityType="MegaCastingModel.TypeOfContract" />
+          <EntitySet Name="WebUser" EntityType="MegaCastingModel.WebUser" />
+          <AssociationSet Name="FK_Client_Account" Association="MegaCastingModel.FK_Client_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partner_Account1" Association="MegaCastingModel.FK_Partner_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUser_Account" Association="MegaCastingModel.FK_WebUser_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="WebUser" EntitySet="WebUser" />
+          </AssociationSet>
           <AssociationSet Name="FK_Offer_Client" Association="MegaCastingModel.FK_Offer_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Offer" EntitySet="Offer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackPaid_Client" Association="MegaCastingModel.FK_PackPaid_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PackPaid" EntitySet="PackPaid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_JobDomain" Association="MegaCastingModel.FK_Job_JobDomain">
+            <End Role="JobDomain" EntitySet="JobDomain" />
+            <End Role="Job" EntitySet="Job" />
           </AssociationSet>
           <AssociationSet Name="FK_Offer_Job" Association="MegaCastingModel.FK_Offer_Job">
             <End Role="Job" EntitySet="Job" />
@@ -264,28 +367,66 @@
             <End Role="TypeOfContract" EntitySet="TypeOfContract" />
             <End Role="Offer" EntitySet="Offer" />
           </AssociationSet>
-          <EntitySet Name="Post" EntityType="MegaCastingModel.Post" />
           <AssociationSet Name="FK_Post_Offer" Association="MegaCastingModel.FK_Post_Offer">
             <End Role="Offer" EntitySet="Offer" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="MegaCastingModel.sysdiagrams" />
-          </EntityContainer>
+          <AssociationSet Name="FK_PackPaid_Pack" Association="MegaCastingModel.FK_PackPaid_Pack">
+            <End Role="Pack" EntitySet="Pack" />
+            <End Role="PackPaid" EntitySet="PackPaid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_WebUser" Association="MegaCastingModel.FK_Post_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="MegaCastingModel.FK_Client_Account" FromRole="Account" ToRole="Client" />
+          <NavigationProperty Name="Partner" Relationship="MegaCastingModel.FK_Partner_Account1" FromRole="Account" ToRole="Partner" />
+          <NavigationProperty Name="WebUser" Relationship="MegaCastingModel.FK_WebUser_Account" FromRole="Account" ToRole="WebUser" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Identifier" />
           </Key>
           <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdAccount" Type="Int64" Nullable="false" />
+          <Property Name="DateRegister" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="MegaCastingModel.FK_Client_Account" FromRole="Client" ToRole="Account" />
           <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_Client" FromRole="Client" ToRole="Offer" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PackPaid" Relationship="MegaCastingModel.FK_PackPaid_Client" FromRole="Client" ToRole="PackPaid" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdJobDomain" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="JobDomain" Relationship="MegaCastingModel.FK_Job_JobDomain" FromRole="Job" ToRole="JobDomain" />
+          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_Job" FromRole="Job" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="JobDomain">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="MegaCastingModel.FK_Job_JobDomain" FromRole="JobDomain" ToRole="Job" />
         </EntityType>
         <EntityType Name="Offer">
           <Key>
@@ -293,13 +434,13 @@
           </Key>
           <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Reference" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Reference" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DateStartPublication" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PublicationDuration" Type="Int32" Nullable="false" />
           <Property Name="DateStartContract" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="JobQuantity" Type="Int32" Nullable="false" />
-          <Property Name="Latitude" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Longitude" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ProfileDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -308,11 +449,120 @@
           <Property Name="IdTypeOfContract" Type="Int64" Nullable="false" />
           <Property Name="IdJob" Type="Int64" Nullable="false" />
           <Property Name="IdClient" Type="Int64" Nullable="false" />
+          <Property Name="NumberViews" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="MegaCastingModel.FK_Offer_Client" FromRole="Offer" ToRole="Client" />
           <NavigationProperty Name="Job" Relationship="MegaCastingModel.FK_Offer_Job" FromRole="Offer" ToRole="Job" />
           <NavigationProperty Name="TypeOfContract" Relationship="MegaCastingModel.FK_Offer_TypeOfContract" FromRole="Offer" ToRole="TypeOfContract" />
           <NavigationProperty Name="Post" Relationship="MegaCastingModel.FK_Post_Offer" FromRole="Offer" ToRole="Post" />
         </EntityType>
+        <EntityType Name="Pack">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="NumberDays" Type="Int32" />
+          <Property Name="NumberOffers" Type="Int32" />
+          <NavigationProperty Name="PackPaid" Relationship="MegaCastingModel.FK_PackPaid_Pack" FromRole="Pack" ToRole="PackPaid" />
+        </EntityType>
+        <EntityType Name="PackPaid">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="Int64" Nullable="false" />
+          <Property Name="IdPack" Type="Int64" />
+          <Property Name="NumberOffers" Type="Int32" />
+          <Property Name="NumberDays" Type="Int32" />
+          <Property Name="DatePaiment" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Client" Relationship="MegaCastingModel.FK_PackPaid_Client" FromRole="PackPaid" ToRole="Client" />
+          <NavigationProperty Name="Pack" Relationship="MegaCastingModel.FK_PackPaid_Pack" FromRole="PackPaid" ToRole="Pack" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdAccount" Type="Int64" Nullable="false" />
+          <Property Name="DateRegister" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="MegaCastingModel.FK_Partner_Account1" FromRole="Partner" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatePost" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Letter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CV" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdOffer" Type="Int64" Nullable="false" />
+          <Property Name="IdWebUser" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Post_Offer" FromRole="Post" ToRole="Offer" />
+          <NavigationProperty Name="WebUser" Relationship="MegaCastingModel.FK_Post_WebUser" FromRole="Post" ToRole="WebUser" />
+        </EntityType>
+        <EntityType Name="TypeOfContract">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Offer_TypeOfContract" FromRole="TypeOfContract" ToRole="Offer" />
+        </EntityType>
+        <EntityType Name="WebUser">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdAccount" Type="Int64" />
+          <Property Name="DateRegister" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Account" Relationship="MegaCastingModel.FK_WebUser_Account" FromRole="WebUser" ToRole="Account" />
+          <NavigationProperty Name="Post" Relationship="MegaCastingModel.FK_Post_WebUser" FromRole="WebUser" ToRole="Post" />
+        </EntityType>
+        <Association Name="FK_Client_Account">
+          <End Type="MegaCastingModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="MegaCastingModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partner_Account1">
+          <End Type="MegaCastingModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="MegaCastingModel.Partner" Role="Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="IdAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUser_Account">
+          <End Type="MegaCastingModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="MegaCastingModel.WebUser" Role="WebUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="WebUser">
+              <PropertyRef Name="IdAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Offer_Client">
           <End Type="MegaCastingModel.Client" Role="Client" Multiplicity="1" />
           <End Type="MegaCastingModel.Offer" Role="Offer" Multiplicity="*" />
@@ -322,6 +572,30 @@
             </Principal>
             <Dependent Role="Offer">
               <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackPaid_Client">
+          <End Type="MegaCastingModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="MegaCastingModel.PackPaid" Role="PackPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="PackPaid">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_JobDomain">
+          <End Type="MegaCastingModel.JobDomain" Role="JobDomain" Multiplicity="1" />
+          <End Type="MegaCastingModel.Job" Role="Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobDomain">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="IdJobDomain" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,24 +623,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Post">
-          <Key>
-            <PropertyRef Name="Identifier" />
-          </Key>
-          <Property Name="Identifier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DatePost" Type="DateTime" Precision="0" />
-          <Property Name="Letter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IdOffer" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Offer" Relationship="MegaCastingModel.FK_Post_Offer" FromRole="Post" ToRole="Offer" />
-        </EntityType>
         <Association Name="FK_Post_Offer">
           <End Type="MegaCastingModel.Offer" Role="Offer" Multiplicity="1" />
           <End Type="MegaCastingModel.Post" Role="Post" Multiplicity="*" />
@@ -379,69 +635,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-      </Schema>
+        <Association Name="FK_PackPaid_Pack">
+          <End Type="MegaCastingModel.Pack" Role="Pack" Multiplicity="0..1" />
+          <End Type="MegaCastingModel.PackPaid" Role="PackPaid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pack">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="PackPaid">
+              <PropertyRef Name="IdPack" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_WebUser">
+          <End Type="MegaCastingModel.WebUser" Role="WebUser" Multiplicity="1" />
+          <End Type="MegaCastingModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="Identifier" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="IdWebUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MegaCastingModelStoreContainer" CdmEntityContainer="MegaCastingEntities">
-          <EntitySetMapping Name="Job">
-            <EntityTypeMapping TypeName="MegaCastingModel.Job">
-              <MappingFragment StoreEntitySet="Job">
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
-                <ScalarProperty Name="IdJobDomain" ColumnName="IdJobDomain" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="JobDomain">
-            <EntityTypeMapping TypeName="MegaCastingModel.JobDomain">
-              <MappingFragment StoreEntitySet="JobDomain">
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Partner">
-            <EntityTypeMapping TypeName="MegaCastingModel.Partner">
-              <MappingFragment StoreEntitySet="Partner">
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="MegaCastingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypeOfContract">
-            <EntityTypeMapping TypeName="MegaCastingModel.TypeOfContract">
-              <MappingFragment StoreEntitySet="TypeOfContract">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="MegaCastingModel.Client">
               <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job">
+            <EntityTypeMapping TypeName="MegaCastingModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="IdJobDomain" ColumnName="IdJobDomain" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobDomain">
+            <EntityTypeMapping TypeName="MegaCastingModel.JobDomain">
+              <MappingFragment StoreEntitySet="JobDomain">
+                <ScalarProperty Name="Label" ColumnName="Label" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -449,6 +711,8 @@
           <EntitySetMapping Name="Offer">
             <EntityTypeMapping TypeName="MegaCastingModel.Offer">
               <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NumberViews" ColumnName="NumberViews" />
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
                 <ScalarProperty Name="IdJob" ColumnName="IdJob" />
                 <ScalarProperty Name="IdTypeOfContract" ColumnName="IdTypeOfContract" />
@@ -469,32 +733,71 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Post">
-            <EntityTypeMapping TypeName="MegaCastingModel.Post">
-              <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="IdOffer" ColumnName="IdOffer" />
-                <ScalarProperty Name="CV" ColumnName="CV" />
-                <ScalarProperty Name="Letter" ColumnName="Letter" />
-                <ScalarProperty Name="DatePost" ColumnName="DatePost" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <EntitySetMapping Name="Pack">
+            <EntityTypeMapping TypeName="MegaCastingModel.Pack">
+              <MappingFragment StoreEntitySet="Pack">
+                <ScalarProperty Name="NumberOffers" ColumnName="NumberOffers" />
+                <ScalarProperty Name="NumberDays" ColumnName="NumberDays" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MegaCastingModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+          <EntitySetMapping Name="PackPaid">
+            <EntityTypeMapping TypeName="MegaCastingModel.PackPaid">
+              <MappingFragment StoreEntitySet="PackPaid">
+                <ScalarProperty Name="DatePaiment" ColumnName="DatePaiment" />
+                <ScalarProperty Name="NumberDays" ColumnName="NumberDays" />
+                <ScalarProperty Name="NumberOffers" ColumnName="NumberOffers" />
+                <ScalarProperty Name="IdPack" ColumnName="IdPack" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partner">
+            <EntityTypeMapping TypeName="MegaCastingModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="MegaCastingModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="IdWebUser" ColumnName="IdWebUser" />
+                <ScalarProperty Name="IdOffer" ColumnName="IdOffer" />
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Letter" ColumnName="Letter" />
+                <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfContract">
+            <EntityTypeMapping TypeName="MegaCastingModel.TypeOfContract">
+              <MappingFragment StoreEntitySet="TypeOfContract">
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUser">
+            <EntityTypeMapping TypeName="MegaCastingModel.WebUser">
+              <MappingFragment StoreEntitySet="WebUser">
+                <ScalarProperty Name="DateRegister" ColumnName="DateRegister" />
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,35 +16,6 @@
         <Image Grid.Row="0" MaxHeight="95" Margin="10,0,10,0" Source="header.png"/>
 
         <TabControl Grid.Row="1">
-
-            <!-- Onglet Client-->
-            <TabItem Header="Client" MinWidth="150" Height="30">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-
-                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}" CellStyle="{StaticResource DataGridCellCenter}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn  MinWidth="100" Header="Société"        Binding="{Binding Company}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="E-mail"         Binding="{Binding Email}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Téléphone"      Binding="{Binding PhoneNumber}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Fax"            Binding="{Binding Fax}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Adresse"        Binding="{Binding Address}"/>
-                            <DataGridTextColumn  MinWidth="100" Header="Code postal"    Binding="{Binding ZipCode}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
-                        <Button Content="Ajouter" Click="ButtonAddClient_Click"/>
-                        <Button Content="Modifier" Click="ButtonUpdateClient_Click"/>
-                        <Button Content="Supprimer" Click="ButtonDeleteClient_Click"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
-
             <!-- Onglet Offre-->
             <TabItem Header="Offre" MinWidth="150" Height="30">
                 <Grid>
@@ -70,10 +41,91 @@
                             <DataGridTextColumn  MinWidth="70" Header="Code Postal"                 Binding="{Binding ZipCode}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    
                     <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
                         <Button Content="Ajouter" Click="ButtonAddOffer_Click"/>
                         <Button Content="Modifier" Click="ButtonUpdateOffer_Click"/>
                         <Button Content="Supprimer" Click="ButtonDeleteOffer_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <!-- Onglet Client-->
+            <TabItem Header="Client" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" x:Name="ListClient" ItemsSource="{Binding Path=Clients}" CellStyle="{StaticResource DataGridCellCenter}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  MinWidth="100" Header="Société"        Binding="{Binding Company}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Site"           Binding="{Binding URL}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="E-mail"         Binding="{Binding Account.Email}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Téléphone"      Binding="{Binding PhoneNumber}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Fax"            Binding="{Binding Fax}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Adresse"        Binding="{Binding Address}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Code postal"    Binding="{Binding ZipCode}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Content="Ajouter" Click="ButtonAddClient_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateClient_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteClient_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Internaute -->
+            <TabItem Header="Internaute" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" x:Name="ListWebUser" ItemsSource="{Binding Path=WebUsers}" CellStyle="{StaticResource DataGridCellCenter}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  MinWidth="100" Header="Prénom"       Binding="{Binding Firstname}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Nom"          Binding="{Binding LastName}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="N° Téléphone" Binding="{Binding PhoneNumber}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Email"        Binding="{Binding Account.Email}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Adresse"      Binding="{Binding Address}"/>
+                            <DataGridTextColumn  MinWidth="100" Header="Ville"        Binding="{Binding City}"/>
+                            <DataGridTextColumn  MinWidth="70" Header="Code Postal"   Binding="{Binding ZipCode}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Content="Ajouter" Click="ButtonAddWebUser_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdateWebUser_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeleteWebUser_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Partenaire -->
+            <TabItem Header="Partenaire" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" x:Name="ListPartner" Width="400"
+                              ItemsSource="{Binding Path=Partners}" 
+                              CellStyle="{StaticResource DataGridCellCenter}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="URL"   Binding="{Binding URL}"/>
+                            <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Account.Email}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Content="Ajouter"    Click="ButtonAddPartner_Click"/>
+                        <Button Content="Modifier"   Click="ButtonUpdatePartner_Click"/>
+                        <Button Content="Supprimer"  Click="ButtonDeletePartner_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -111,7 +163,7 @@
                               ItemsSource="{Binding Jobs , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
                               CellStyle="{StaticResource DataGridCellCenter}"
                               Width="400">
-                        <DataGrid.Columns >
+                        <DataGrid.Columns>
                             <DataGridTextColumn Width="*" Header="Métier" Binding="{Binding Label}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -123,36 +175,16 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-
-            <!-- Onglet Partenaire et Type de contrat -->
-            <TabItem Header="Partenaires / Types de contrat" MinWidth="150" Height="30">
+            
+            <!-- Onglet Type de contrat -->
+            <TabItem Header="Type de contrat" MinWidth="150" Height="30">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <DataGrid Grid.Row="0" Grid.Column="0" x:Name="ListPartner" Width="400"
-                              ItemsSource="{Binding Path=Partners}" 
-                              CellStyle="{StaticResource DataGridCellCenter}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="*" Header="URL"   Binding="{Binding URL}"/>
-                            <DataGridTextColumn Width="*" Header="Email" Binding="{Binding Email}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource StackPanelForButtons}">
-                        <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddPartner_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdatePartner_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeletePartner_Click"/>
-                    </StackPanel>
-
-                    <DataGrid Grid.Row="0" Grid.Column="1" x:Name="ListTypeOfContract" Width="400"
+                    <DataGrid Grid.Row="0" x:Name="ListTypeOfContract" Width="400"
                               ItemsSource="{Binding Path=TypeOfContracts}" 
                               CellStyle="{StaticResource DataGridCellCenter}">
                         <DataGrid.Columns>
@@ -160,10 +192,35 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StackPanelForButtons}">
-                        <Button Style="{StaticResource Tight}" Content="Ajouter"    Click="ButtonAddTypeOfContract_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Modifier"   Click="ButtonUpdateTypeOfContract_Click"/>
-                        <Button Style="{StaticResource Tight}" Content="Supprimer"  Click="ButtonDeleteTypeOfContract_Click"/>
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Content="Ajouter"    Click="ButtonAddTypeOfContract_Click"/>
+                        <Button Content="Modifier"   Click="ButtonUpdateTypeOfContract_Click"/>
+                        <Button Content="Supprimer"  Click="ButtonDeleteTypeOfContract_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Pack -->
+            <TabItem Header="Pack" MinWidth="150" Height="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" x:Name="ListPack" Width="400"
+                              ItemsSource="{Binding Path=Packs}" 
+                              CellStyle="{StaticResource DataGridCellCenter}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Width="*" Header="Nombre d'offres" Binding="{Binding NumberOffers}"/>
+                            <DataGridTextColumn  Width="*" Header="Nombre de jours" Binding="{Binding NumberDays}"/>
+                            <DataGridTextColumn  Width="*" Header="Prix (€)"        Binding="{Binding Price}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" Style="{StaticResource StackPanelForButtons}">
+                        <Button Content="Ajouter" Click="ButtonAddPack_Click"/>
+                        <Button Content="Modifier" Click="ButtonUpdatePack_Click"/>
+                        <Button Content="Supprimer" Click="ButtonDeletePack_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

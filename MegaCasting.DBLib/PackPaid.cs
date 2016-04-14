@@ -12,12 +12,16 @@ namespace MegaCasting.DBLib
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class sysdiagrams
+    public partial class PackPaid
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public long Identifier { get; set; }
+        public long IdClient { get; set; }
+        public Nullable<long> IdPack { get; set; }
+        public Nullable<int> NumberOffers { get; set; }
+        public Nullable<int> NumberDays { get; set; }
+        public System.DateTime DatePaiment { get; set; }
+    
+        public virtual Client Client { get; set; }
+        public virtual Pack Pack { get; set; }
     }
 }
