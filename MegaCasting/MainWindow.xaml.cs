@@ -65,10 +65,11 @@ namespace MegaCasting
         }
         #endregion
 
-        #region Boutons Clients
+        #region Boutons Client
         private void ButtonAddClient_Click(object sender, RoutedEventArgs e)
         {
             Client client = new Client();
+            client.Account = new Account();
             ClientWindow clientWindow = new ClientWindow(db);
 
             clientWindow.DataContext = client;
@@ -412,6 +413,7 @@ namespace MegaCasting
         private void ButtonAddWebUser_Click(object sender, RoutedEventArgs e)
         {
             WebUser webUser = new WebUser();
+            webUser.Account = new Account();
             WebUserWindow webUserWindow = new WebUserWindow(db);
 
             webUserWindow.DataContext = webUser;
@@ -482,6 +484,7 @@ namespace MegaCasting
         private void ButtonAddPartner_Click(object sender, RoutedEventArgs e)
         {
             Partner partner = new Partner();
+            partner.Account = new Account();
             PartnerWindow partnerWindow = new PartnerWindow(db);
 
             partnerWindow.DataContext = partner;
