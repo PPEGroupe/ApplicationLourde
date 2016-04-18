@@ -26,14 +26,14 @@ namespace MegaCasting
     {
         #region Attributs
         private MegaCastingEntities db = new MegaCastingEntities();
-        public ObservableCollection<Client> Clients { get; set; }
-        public ObservableCollection<Offer> Offers { get; set; }
-        public ObservableCollection<Job> Jobs { get; set; }
-        public ObservableCollection<JobDomain> JobDomains { get; set; }
-        public ObservableCollection<Partner> Partners { get; set; }
-        public ObservableCollection<WebUser> WebUsers { get; set; }
-        public ObservableCollection<TypeOfContract> TypeOfContracts { get; set; }
-        public ObservableCollection<Pack> Packs { get; set; }
+        private ObservableCollection<Client> Clients { get; set; }
+        private ObservableCollection<Offer> Offers { get; set; }
+        private ObservableCollection<Job> Jobs { get; set; }
+        private ObservableCollection<JobDomain> JobDomains { get; set; }
+        private ObservableCollection<Partner> Partners { get; set; }
+        private ObservableCollection<WebUser> WebUsers { get; set; }
+        private ObservableCollection<TypeOfContract> TypeOfContracts { get; set; }
+        private ObservableCollection<Pack> Packs { get; set; }
         #endregion
 
         #region Constructeur
@@ -77,6 +77,7 @@ namespace MegaCasting
 
             if (clientWindow.DialogResult == true)
             {
+                // Ajouter le client à la BDD.
                 Clients.Add(client);
                 db.Client.Add(client);
 

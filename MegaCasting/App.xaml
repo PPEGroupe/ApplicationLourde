@@ -78,7 +78,7 @@
             <Setter Property="HorizontalGridLinesBrush" Value="#CCC" />
             <Setter Property="VerticalGridLinesBrush" Value="#CCC" />
         </Style>
-
+        
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="FontFamily" Value="Century Gothic" />
             <Setter Property="FontSize" Value="13" />
@@ -142,7 +142,7 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#CCC"/>
         </Style>
-
+        <!--Style appliqué sur les Boutons Tight-->
         <Style TargetType="Button" x:Key="Tight">
             <Setter Property="Width" Value="120" />
             <Setter Property="Height" Value="30" />

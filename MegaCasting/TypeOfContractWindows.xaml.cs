@@ -30,9 +30,10 @@ namespace MegaCasting
         #region Constructeur
         public TypeOfContractWindow(MegaCastingEntities context)
         {
-            db = context;
-
             InitializeComponent();
+
+            // Récupére l'instance de la connexion à la BDD.
+            db = context;
         }
         #endregion
 

@@ -28,8 +28,10 @@ namespace MegaCasting
         #region Constructeur
         public ClientWindow(MegaCastingEntities context)
         {
-            db = context;
             InitializeComponent();
+
+            // Récupére l'instance de la connexion à la BDD.
+            db = context;
         }
         #endregion
 
@@ -41,16 +43,17 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
-            // Vérification des champs vides
+            // Vérification des champs vides.
             if (String.IsNullOrWhiteSpace(this.CompanyTextBox.Text) || String.IsNullOrWhiteSpace(this.EmailTextBox.Text))
             {
                 MessageBox.Show("Veuillez remplir tous les champs obligatoire avant de valider");
             }
-            // Mise à jour de la source
+            // Mise à jour du client.
             else
             {
                 Client client = (Client)this.DataContext;
-
+                
+                // Si le client à un mot de passe ou qu'un mot de passe a été renseigné.
                 if (!String.IsNullOrWhiteSpace(client.Account.Password)
                     || (String.IsNullOrWhiteSpace(client.Account.Password) && !String.IsNullOrWhiteSpace(PasswordTextBox.Password)))
                 {

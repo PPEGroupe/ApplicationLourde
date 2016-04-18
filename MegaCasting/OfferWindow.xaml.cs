@@ -87,7 +87,6 @@ namespace MegaCasting
             string address = AddressTextBox.Text;
             string city = CityTextBox.Text;
             string zipCode = ZipCodeTextBox.Text;
-            //Get URI and set image
             String imageURI = GetImagery(address + " " + city + " " + zipCode);
             imageResults.Source = new BitmapImage(new Uri(imageURI));
         }

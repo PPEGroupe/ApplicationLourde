@@ -26,7 +26,6 @@ namespace MegaCasting
     {
         #region Attributs
         private MegaCastingEntities db = new MegaCastingEntities();
-        public ObservableCollection<Client> Clients { get; set; }
         public string Description { get; set; }
         #endregion
 
@@ -34,9 +33,6 @@ namespace MegaCasting
         public DeleteWindow()
         {
             InitializeComponent();
-
-            this.Clients = new ObservableCollection<Client>(db.Client.ToList());
-
             this.DataContext = this;
         }
         #endregion
@@ -44,11 +40,13 @@ namespace MegaCasting
         #region Boutons
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
+            // return false.
             this.DialogResult = false;
         }
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            // return true.
             this.DialogResult = true;
         }
         #endregion
