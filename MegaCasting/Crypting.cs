@@ -12,14 +12,17 @@ namespace MegaCasting
         static public string GetMd5Hash(MD5 md5Hash, string input)
         {
             // Convert the input string to a byte array and compute the hash.
+            // Convertir la chaîne d'entrée à un tableau d'octets et calculer le hachage .
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
             // Create a new Stringbuilder to collect the bytes
             // and create a string.
+            // Créer un nouveau StringBuilder pour recueillir les octets
             StringBuilder sBuilder = new StringBuilder();
 
             // Loop through each byte of the hashed data 
-            // and format each one as a hexadecimal string.
+            // and format each one as a hexadecimal string
+            //construit la chaine cryptée.
             for (int i = 0; i < data.Length; i++)
             {
                 sBuilder.Append(data[i].ToString("x2"));

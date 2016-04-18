@@ -31,9 +31,10 @@ namespace MegaCasting
         #region Constructeur
         public JobDomainWindow(MegaCastingEntities context)
         {
-            db = context;
-
             InitializeComponent();
+
+            // Récupére l'instance de la connexion à la BDD.
+            db = context;
         }
         #endregion
 
@@ -52,6 +53,7 @@ namespace MegaCasting
             }
             else
             {
+                // Met à jour le champ du domaine métier.
                 LabelTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 this.DialogResult = true;
             }

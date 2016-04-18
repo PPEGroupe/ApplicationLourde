@@ -30,9 +30,10 @@ namespace MegaCasting
         #region Constructeur
         public JobWindow(MegaCastingEntities context)
         {
-            db = context;
-
             InitializeComponent();
+
+            // Récupére l'instance de la connexion à la BDD.
+            db = context;
         }
         #endregion
 
@@ -44,13 +45,15 @@ namespace MegaCasting
 
         private void ButtonValidate_Click(object sender, RoutedEventArgs e)
         {
+            // Vérification de la validité des champs
             if (String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
                 || String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text))
             {
-                MessageBox.Show("Veuillez remplir tous les champs avant de valider");
+                MessageBox.Show("Veuillez remplir tous les champs avant de valider.");
             }
             else
             {
+                // Met à jour le champ du métier.
                 LabelTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
                 this.DialogResult = true;
