@@ -60,7 +60,7 @@ namespace MegaCasting
                 {
                     // Vérifie de ne pas ajouter un partenaire existant
                     Partner partnerExist = db.Partner.FirstOrDefault(dbPartner => dbPartner.Account.Email == EmailTextBox.Text);
-                    if (partner.Account.Email == EmailTextBox.Text || partner.Identifier == 0 && partnerExist == null)
+                    if (partner.Account.Email == EmailTextBox.Text || partnerExist == null)
                     {
                         if (partner.URL == URLTextBox.Text || db.Partner.FirstOrDefault(dbPartner => dbPartner.URL == URLTextBox.Text) == null)
                         {

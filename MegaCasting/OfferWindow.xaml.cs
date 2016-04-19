@@ -46,6 +46,7 @@ namespace MegaCasting
             db = context;
 
             InitializeComponent();
+
             // Initialise les clones de colonnes pour docker
             column1CloneForLayer0 = new ColumnDefinition();
             column1CloneForLayer0.SharedSizeGroup = "column1";
@@ -238,14 +239,13 @@ namespace MegaCasting
                    || String.IsNullOrWhiteSpace(this.JobDomainComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.JobComboBox.Text)
                    || String.IsNullOrWhiteSpace(this.TypeOfContractComboBox.Text)
-                   || String.IsNullOrWhiteSpace(this.ReferenceTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.TitleTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.DateStartPublicationDatePicker.Text)
                    || String.IsNullOrWhiteSpace(this.PublicationDurationTextBox.Text)
                    || String.IsNullOrWhiteSpace(this.DateStartContractDatePicker.Text)
                    || String.IsNullOrWhiteSpace(this.JobQuantityTextBox.Text))
             {
-                MessageBox.Show("Veuillez remplir tous les champs avant de valider");
+                MessageBox.Show("Veuillez remplir tous les champs obligatoire avant de valider");
             }
             else
             {
@@ -253,7 +253,7 @@ namespace MegaCasting
                 OfferDataContext offerDataContext = (OfferDataContext)this.DataContext;
                 offerDataContext.Offer.Latitude = latitude;
                 offerDataContext.Offer.Longitude = longitude;
-                ReferenceTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                offerDataContext.Offer.Reference = GenerateRandomString();
                 TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 DateStartPublicationDatePicker.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
                 PublicationDurationTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
@@ -268,8 +268,25 @@ namespace MegaCasting
                 this.DialogResult = true;
             }
         }
-
         #endregion
 
+        #region RandomString
+        public String GenerateRandomString()
+        {
+            String returnString = "";
+
+            String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            Random randNum = new Random();
+            
+            for (int i = 0; i <= 20; i++)
+            {
+                int rand = randNum.Next(36);
+                returnString  += chars.Substring(rand, 1);
+            }
+
+            return returnString;
+        }
+        #endregion
     }
 }
