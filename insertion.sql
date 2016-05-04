@@ -40,7 +40,7 @@ GO
 INSERT INTO Job	(Identifier, Label,			IdJobDomain) VALUES
 				(1,			'Danseur',		  1),
 				(2,			'Réalisateur',    3),
-				(3,			'Musisien',		  2),
+				(3,			'Musicien',		  2),
 				(4,			'Acteur/Actrice', 3),
 				(5,			'Chanteur',		  4),
 				(6,			'Humouriste',	  5),
@@ -99,4 +99,14 @@ INSERT INTO Pack(Identifier, Price,  NumberDays, NumberOffers) VALUES
 				(5,			 200.00, 150,		 40),
 				(6,			 400.00, 500,		 100);
 SET IDENTITY_INSERT Pack OFF
+GO
+
+SET IDENTITY_INSERT Offer ON
+GO
+INSERT INTO Offer(Identifier, Title,						Reference,		DateStartPublication, PublicationDuration,  DateStartContract, JobQuantity, Latitude, Longitude, Address,				  City,	  ZipCode,  IdTypeOfContract, IdJob, IdClient, JobDescription, ProfileDescription) VALUES
+				 (1,		  'Recherche Developpeur',		'ADKJ97DQD87D', '25-04-2016',		  5,					'01-05-2016',	   1,		    NULL,	  NULL,		 '22 Rue Eugne Messmer', 'Laval', 53000,	1,				  1,	 1,		  'On recherche un développeur PHP pour plusieurs missions diverses',	'Expert PHP ayant des connaissances en Ajax. BONUS : Connaissances en Javascript et HTML5/CSS3'),
+				 (2,		  'Musiciens',					'OIJQ9776986T',	'15-05-2016',		  15,					'20-05-2016',	   4,		    NULL,	  NULL,		 '39 Rue Franche Comté', 'Laval', 53000,	2,				  3,	 3,		  'On recherche un pianiste, un guitariste et un batteur.',				'Pianiste, guitariste ou batteur'),
+				 (3,		  'Acteurs pour film de comédie','98UJZDGJ6EFQ','28-04-2016',		  8,					'05-05-2016',	   2,		    NULL,	  NULL,		 'Rue de Rennes',		 'Rennes', 35000,	3,				  4,	 2,		  'On recherche deux acteurs pour un film de comédie',					'Acteur de comédie ayant déjà partcipé dans au moins 5 films'),
+				 (4,		  'Opérateurs',					'09ZFLHX5WHS5', '17-03-2016',		  4,					'07-04-2016',	   12,		    NULL,	  NULL,		 '3 Place de France',	 'Nantes', 44000,	4,				  5,	 2,		  'On recherche un chanteur d''opéra',									'Opérateur');
+SET IDENTITY_INSERT Offer OFF
 GO

@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Connections.config" />
     <None Include="MegaCastingModel.edmx.diagram">
       <DependentUpon>MegaCastingModel.edmx</DependentUpon>
     </None>
